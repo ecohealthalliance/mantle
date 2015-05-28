@@ -6,6 +6,8 @@ blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
 check@1.0.5
+coffeescript@1.0.6
+cosmos:browserify@0.1.4
 ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
@@ -20,12 +22,18 @@ json@1.0.3
 launch-screen@1.0.2
 livedata@1.0.13
 logging@1.0.7
+mantle:layout@0.0.1
+mantle:router@0.0.1
+mantle:splash-page@0.0.1
 meteor@1.1.6
 meteor-platform@1.2.2
+meteorhacks:flow-layout@1.3.0
+meteorhacks:flow-router@1.9.0
 minifiers@1.1.5
 minimongo@1.0.8
 mobile-status-bar@1.0.3
 mongo@1.1.0
+mquandalle:jade@0.4.1
 observe-sequence@1.0.6
 ordered-dict@1.0.3
 random@1.0.3
@@ -39,6 +47,7 @@ spacebars@1.0.6
 spacebars-compiler@1.0.6
 templating@1.1.1
 tracker@1.0.7
+twbs:bootstrap@3.3.4
 ui@1.0.6
 underscore@1.0.3
 url@1.0.4
