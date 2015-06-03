@@ -3,4 +3,4 @@ FlowRouter.route '/',
   action: () ->
     FlowLayout.render 'layout',
       main: 'splashPage'
-      data: {}
+      params: {}
