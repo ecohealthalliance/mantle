@@ -6,3 +6,6 @@
 
 meteor-platform
 mantle:router
+mantle:accounts
+eha:useraccounts-core
+aldeed:autoform

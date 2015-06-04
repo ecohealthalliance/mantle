@@ -10,6 +10,7 @@ Package.onUse(function(api) {
   api.use('templating');
   api.use('mquandalle:jade@0.4.1');
   api.use('twbs:bootstrap@3.3.4');
+  api.use('eha:useraccounts-core');
   api.addFiles('layout.jade', 'client');
   api.addFiles('header.jade', 'client');
   api.addFiles('footer.jade', 'client');
