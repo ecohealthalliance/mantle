@@ -1,0 +1,1 @@
+Template.splashPage.testVar = -> "testVar"

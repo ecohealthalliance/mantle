@@ -1,2 +1,6 @@
 template(name="splashPage")
-  p Welcome to Mantle
+  p testVar1: #{testVar}
+  +partialTest
+
+template(name="partialTest")
+  p testVar2: #{testVar}
