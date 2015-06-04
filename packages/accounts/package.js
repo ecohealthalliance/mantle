@@ -20,12 +20,8 @@ Package.onUse(function(api) {
   api.use('eha:useraccounts-bootstrap');
   
   api.addFiles('user_publication.coffee', 'server');
-  api.addFiles('profile_schema.coffee', ['client', 'server']);
   api.addFiles('header_buttons.jade', 'client');
   api.addFiles('header_buttons.coffee', 'client');
-  api.addFiles('profile.jade', 'client');
-  api.addFiles('profile.coffee', 'client');
   api.addFiles('useraccounts_templates.jade', 'client');
   api.addFiles('useraccounts_templates.coffee', 'client');
-  api.addFiles('accounts_config.coffee', ['client', 'server']);
 });

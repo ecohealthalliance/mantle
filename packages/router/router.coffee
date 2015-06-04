@@ -16,16 +16,3 @@ FlowRouter.route '/signUp',
   action: () ->
     FlowLayout.render 'layout',
       main: 'signUp'
-
-FlowRouter.route '/profile',
-  name: 'profile'
-  action: () ->
-    FlowLayout.render 'layout',
-      main: 'profile'
-
-FlowRouter.route '/profile/:id',
-  name: 'profile'
-  template: 'profile'
-  action: () ->
-    FlowLayout.render 'layout',
-      main: 'profile'

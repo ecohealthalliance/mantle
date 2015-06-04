@@ -1,3 +1,3 @@
 # User accounts for the mantle project
 
-This package controls user login, registration, and profiles.
+This package controls user login and registration.
