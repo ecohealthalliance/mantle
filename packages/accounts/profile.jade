@@ -1,0 +1,66 @@
+template(name="profile")
+  if Template.subscriptionsReady
+    if user
+      section.rm-pad-btm
+        .container
+          h2 #{user.profile.name}
+          if isCurrentUser
+            h3 Edit Your Profile
+      if isCurrentUser
+        +editProfile user=user
+      else
+        h4
+          span
+            i Organization
+          span
+            b #{user.profile.organization}
+    else
+      if userIdIsUnknown
+        h2 Unknown user id
+      else
+        h2 You must be logged in to view this page.
+
+template(name="editProfile")
+  +autoForm(
+    id="update-user-profile-form"
+    schema=profileSchema
+    doc=user.profile
+  )
+    section.rm-pad
+      .container
+        .row.space-btm-2
+          .col-md-3.space-btm-2
+            +afQuickField name='name'
+            +afQuickField name='phone' minor='(Must include the country code)'
+    section.rm-pad
+      .container
+        .row
+          .col-sm-6.space-btm-2
+            +afQuickField name="organization"
+
+    section.rm-pad-top
+      .container
+        .row
+          .col-sm-10
+            .row
+              .col-sm-6
+                +afQuickField name="organizationStreet"
+              .col-sm-6
+                +afQuickField name="organizationStreet2"
+            .row
+              .col-sm-4
+                +afQuickField name="organizationCity"
+              .col-sm-4
+                +afQuickField name="organizationStateOrProvince"
+              .col-sm-2
+                +afQuickField name="organizationPostalCode"
+            .row
+              .col-sm-6
+                +afQuickField name="organizationCountry"
+
+    section.rm-pad-top
+      .container
+        .row
+          .col-sm-4
+            .form-group
+              button.btn-lg.btn.btn-success.btn-block(type='submit') Submit
