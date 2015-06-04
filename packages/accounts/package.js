@@ -9,11 +9,7 @@ Package.onUse(function(api) {
   api.use('templating');
   api.use('coffeescript');
   api.use('underscore');
-  api.use('reactive-var');
   api.use('mquandalle:jade@0.4.3');
-  api.use('aldeed:collection2');
-  api.use('aldeed:simple-schema');
-  api.use('aldeed:autoform@5.0.0');
   
   api.use('accounts-password');
   api.use('eha:useraccounts-core');
