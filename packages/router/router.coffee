@@ -5,12 +5,6 @@ FlowRouter.route '/',
       main: 'splashPage'
       params: {}
 
-FlowRouter.route '/signIn',
-  name: 'signIn'
-  action: () ->
-    FlowLayout.render 'layout',
-      main: 'signIn'
-
 FlowRouter.route '/signUp',
   name: 'signUp'
   action: () ->

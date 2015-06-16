@@ -15,6 +15,7 @@ Package.onUse(function(api) {
   api.use('accounts-password');
   api.use('useraccounts:core');
   api.use('useraccounts:bootstrap');
+  api.use('meteorhacks:flow-layout@1.3.0');
   
   api.addFiles('header_buttons.jade', 'client');
   api.addFiles('header_buttons.coffee', 'client');
