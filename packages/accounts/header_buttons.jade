@@ -1,5 +1,12 @@
 template(name="accountsHeaderButtons")
-  li.account
-    a.sign-out(href="#")
-      i.fa.fa-sign-out
-      span Sign Out
+  ul.nav.navbar-nav.navbar-right
+    if currentUser
+      li.account
+        a.sign-out.navbar-btn(href="#")
+          i.fa.fa-sign-out
+          span Sign Out
+    else
+      li
+        a.sign-in.navbar-btn(href="/signIn")
+          i.fa.fa-sign-in
+          span Sign In 
