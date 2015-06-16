@@ -1,0 +1,10 @@
+sudo: required
+language: node_js
+node_js:
+  - 0.10
+before_install:
+  - "curl https://install.meteor.com/ | sh"
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+script:
+  - DEBUG=1 JASMINE_DEBUG=1 VELOCITY_DEBUG=1 VELOCITY_DEBUG_MIRROR=1 JASMINE_BROWSER=Firefox meteor --test
