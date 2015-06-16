@@ -31,6 +31,7 @@ localstorage@1.0.3
 logging@1.0.7
 mantle:accounts@0.0.1
 mantle:layout@0.0.1
+mantle:path@0.0.1
 mantle:router@0.0.1
 mantle:splash-page@0.0.1
 meteor@1.1.6

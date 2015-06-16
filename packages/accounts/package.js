@@ -11,6 +11,7 @@ Package.onUse(function(api) {
   api.use('underscore');
   api.use('mquandalle:jade@0.4.3');
   
+  api.use('mantle:path');
   api.use('accounts-password');
   api.use('eha:useraccounts-core');
   api.use('eha:useraccounts-bootstrap');
