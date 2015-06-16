@@ -16,7 +16,6 @@ Package.onUse(function(api) {
   api.use('eha:useraccounts-core');
   api.use('eha:useraccounts-bootstrap');
   
-  api.addFiles('user_publication.coffee', 'server');
   api.addFiles('header_buttons.jade', 'client');
   api.addFiles('header_buttons.coffee', 'client');
   api.addFiles('useraccounts_templates.jade', 'client');
