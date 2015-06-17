@@ -16,4 +16,4 @@ for FILE in `find packages/|grep tests|grep .js`; do
   if [[ $? -eq 0 ]]; then cp $FILE tests/jasmine/client/unit/; fi
 done
 
-DEBUG=1 JASMINE_DEBUG=1 VELOCITY_DEBUG=1 VELOCITY_DEBUG_MIRROR=1 JASMINE_BROWSER=Firefox meteor --test
+JASMINE_BROWSER=Firefox meteor --test || touch FAILURE
