@@ -1,3 +1,3 @@
 Template.accountsHeaderButtons.events
-  'click .sign-out' : () ->
-    Meteor.logout()
+  'click .quit' : () ->
+    alert('Nope')
