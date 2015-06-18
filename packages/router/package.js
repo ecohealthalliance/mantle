@@ -13,6 +13,7 @@ Package.onUse(function(api) {
   api.use('meteorhacks:flow-layout@1.3.0');
   api.use('meteorhacks:flow-router@1.9.0');
   api.use('mantle:splash-page@0.0.1');
+  api.use('mantle:accounts');
   api.addFiles('router.coffee', ['client', 'server']);
 });
 

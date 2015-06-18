@@ -1,2 +1,10 @@
-template(name='header')
-  p HEADER
+template(name="header")
+  header
+    nav.navbar
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type="button", data-toggle="collapse" data-target=".navbar-collapse") Menu
+          a.navbar-brand(href="/")
+            span Mantle
+        .navbar-collapse.collapse
+          +accountsHeaderButtons
