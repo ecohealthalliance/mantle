@@ -12,7 +12,6 @@ Package.onUse(function(api) {
   api.use('meteorhacks:flow-router@1.9.0');
   
   api.addFiles('helpers.coffee', 'client');
-  api.addFiles('path.coffee', 'client');
 });
 
 Package.onTest(function(api) {
