@@ -6,7 +6,3 @@
 
 meteor-platform
 mantle:router
-mantle:accounts
-sanjo:jasmine
-velocity:html-reporter
-velocity:console-reporter
