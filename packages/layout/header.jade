@@ -1,26 +1,10 @@
 template(name="header")
   header
     nav.navbar
-      .fluid-container
-        .container
-          .navbar-header
-            button.navbar-toggle.collapsed(type="button", data-toggle="collapse" data-target=".navbar-collapse") Menu
-            a.navbar-brand(href="/")
-              span Mantle
-          .navbar-collapse.collapse
-            ul.nav.navbar-nav.navbar-right
-              +navLinks
-
-template(name="navLinks")
-  if currentUser
-    li.nav-icon.dropdown
-      a.dropdown-toggle.admin-settings(href="#" data-toggle="dropdown" aria-expanded="false")
-        i.fa.fa-gear
-        span Settings
-      ul.dropdown-menu(role="menu")
-        +accountsHeaderButtons
-  else
-    li
-      a(href="/signIn" class="sign-in navbar-btn")
-        span Sign In 
-        i.fa.fa-sign-in
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed(type="button", data-toggle="collapse" data-target=".navbar-collapse") Menu
+          a.navbar-brand(href="/")
+            span Mantle
+        .navbar-collapse.collapse
+          +accountsHeaderButtons

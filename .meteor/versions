@@ -13,8 +13,6 @@ coffeescript@1.0.6
 cosmos:browserify@0.1.4
 ddp@1.1.0
 deps@1.0.7
-eha:useraccounts-bootstrap@1.11.0
-eha:useraccounts-core@1.10.0
 ejson@1.0.6
 email@1.0.6
 fastclick@1.0.3
@@ -74,6 +72,8 @@ twbs:bootstrap@3.3.4
 ui@1.0.6
 underscore@1.0.3
 url@1.0.4
+useraccounts:bootstrap@1.0.1
+useraccounts:core@1.10.0
 velocity:chokidar@1.0.1_1
 velocity:console-reporter@0.1.1
 velocity:core@0.6.5

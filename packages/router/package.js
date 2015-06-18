@@ -14,7 +14,6 @@ Package.onUse(function(api) {
   api.use('meteorhacks:flow-router@1.9.0');
   api.use('mantle:splash-page@0.0.1');
   api.use('mantle:accounts');
-  api.use('eha:useraccounts-core');
   api.addFiles('router.coffee', ['client', 'server']);
 });
 
