@@ -12,7 +12,6 @@ Package.onUse(function(api) {
   api.use('reactive-var');
   api.use('mquandalle:jade@0.4.3');
   
-  api.use('mantle:path');
   api.use('accounts-password');
   api.use('useraccounts:core');
   api.use('useraccounts:bootstrap');

@@ -13,8 +13,6 @@ Package.onUse(function(api) {
   
   api.addFiles('helpers.coffee', 'client');
   api.addFiles('path.coffee', 'client');
-  
-  api.export('Path', 'client');
 });
 
 Package.onTest(function(api) {
