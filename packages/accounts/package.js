@@ -24,8 +24,10 @@ Package.onUse(function(api) {
 
 Package.onTest(function(api) {
   api.use('coffeescript');
+  api.use('accounts-base');
   api.use('mantle:accounts');
   api.use('sanjo:jasmine@0.13.3');
-  api.addFiles('tests/client/unit/accounts_tests.js', 'client')
+  api.addFiles('tests/client/unit/accounts_tests.js', 'client');
+  api.addFiles('tests/server/fixtures.coffee', 'server');
   api.addFiles('tests/client/integration/accounts_tests.coffee', 'client');
 });
