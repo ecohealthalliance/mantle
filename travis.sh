@@ -2,7 +2,7 @@
 
 mkdir -p tests/jasmine/server/integration/ tests/jasmine/client/integration/ tests/jasmine/client/unit/ tests/jasmine/server/unit/
 
-for FILE in `find packages/|grep tests|grep .js`; do
+for FILE in `find packages/|grep tests|grep .coffee`; do
   ls $FILE| grep server| grep integration
   if [[ $? -eq 0 ]]; then cp $FILE tests/jasmine/server/integration/; fi
 
