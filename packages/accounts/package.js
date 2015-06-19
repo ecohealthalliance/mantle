@@ -14,6 +14,7 @@ Package.onUse(function(api) {
   api.use('accounts-password');
   api.use('useraccounts:core');
   api.use('useraccounts:bootstrap');
+  api.use('mantle:style');
   
   api.addFiles('header_buttons.jade', 'client');
   api.addFiles('header_buttons.coffee', 'client');
@@ -22,7 +23,9 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
+  api.use('coffeescript');
   api.use('mantle:accounts');
   api.use('sanjo:jasmine@0.13.3');
   api.addFiles('tests/client/unit/accounts_tests.js', 'client')
+  api.addFiles('tests/client/integration/accounts_tests.coffee', 'client');
 });
