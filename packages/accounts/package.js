@@ -11,6 +11,7 @@ Package.onUse(function(api) {
   api.use('underscore');
   api.use('reactive-var');
   api.use('mquandalle:jade@0.4.3');
+  api.use('matb33:bootstrap-modals');
 
   api.use('accounts-password');
   api.use('useraccounts:core');
@@ -26,7 +27,6 @@ Package.onTest(function(api) {
   api.use('coffeescript');
   api.use('mantle:accounts');
   api.use('accounts-base');
-  api.use('matb33:bootstrap-modals');
   api.use('practicalmeteor:munit');
   api.use('test-helpers');
   api.addFiles('tests/server/fixtures.coffee', 'server');

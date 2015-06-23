@@ -6,6 +6,5 @@
 
 meteor-platform
 mantle:router
-mantle:accounts
 practicalmeteor:munit
 matb33:bootstrap-modals

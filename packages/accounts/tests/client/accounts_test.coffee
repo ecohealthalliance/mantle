@@ -1,16 +1,21 @@
 describe("Account header", () ->
 
-  beforeEach((test) ->
-    $('.modal').modal('hide')
-    Meteor.call("clearUsers")
-    @view = Blaze.render(Template.accountsHeaderButtons, document.body)
+  beforeEach((test, waitFor) ->
+    testSetup = waitFor(() ->
+      $('.modal').modal('hide')
+      test.view = Blaze.render(Template.accountsHeaderButtons, document.body)
+    )
+
+    Meteor.call("clearUsers", (response) ->
+      testSetup()
+    )
   )
 
   afterEach((test) ->  
     Meteor.call("clearUsers")
     $('.modal').modal('hide')
-    Blaze.remove(@view)
-    @view = null
+    Blaze.remove(test.view)
+    test.view = null
   )
 
   it("displays sign in modal when user clicks Sign In", (test) ->
@@ -39,16 +44,20 @@ describe("Account header", () ->
   )
 
   it("allows user to sign in", (test, waitFor) ->
+    currentUserId = ''
 
-    checkLogin = (userId) ->
+    checkLogin = waitFor(() ->
       try
         test.isTrue($('.sign-out').is(":visible"))
-        test.equal(Meteor.userId(), userId)
+        test.equal(Meteor.userId(), currentUserId)
         test.isFalse($('.accounts-modal').is(":visible"))
       catch error
         test.exception error
+    )
 
     Meteor.call("createTestUser", "signin@test.com", "password", (error, userId) ->
+      currentUserId = userId
+
       $('.sign-in').click()
 
       $('#at-field-email').val("signin@test.com")
@@ -56,7 +65,7 @@ describe("Account header", () ->
 
       $('#at-btn').click()
 
-      setTimeout(waitFor(checkLogin(userId)), 500)
+      setTimeout(checkLogin, 500)
     )
   )
 )
