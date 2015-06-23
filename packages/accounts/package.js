@@ -11,13 +11,24 @@ Package.onUse(function(api) {
   api.use('underscore');
   api.use('reactive-var');
   api.use('mquandalle:jade@0.4.3');
-  
+  api.use('matb33:bootstrap-modals');
+
   api.use('accounts-password');
   api.use('useraccounts:core');
   api.use('useraccounts:bootstrap');
-  
+
   api.addFiles('header_buttons.jade', 'client');
   api.addFiles('header_buttons.coffee', 'client');
   api.addFiles('accounts_modal.jade', 'client');
   api.addFiles('accounts_modal.coffee', 'client');
+});
+
+Package.onTest(function(api) {
+  api.use('coffeescript');
+  api.use('mantle:accounts');
+  api.use('accounts-base');
+  api.use('practicalmeteor:munit');
+  api.use('test-helpers');
+  api.addFiles('tests/server/fixtures.coffee', 'server');
+  api.addFiles('tests/client/accounts_test.coffee', 'client');
 });
