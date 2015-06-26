@@ -1,3 +1,3 @@
 # mantle:path
 
-This package creates a global `path` template helper that other packages can use to create links.
+This package creates a global `path` template helper that views can use to create links.
