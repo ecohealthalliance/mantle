@@ -20,3 +20,11 @@ describe 'User profile', ->
     expect(profile.bio).to.eq('This is my bio')
 
   it 'includes emailHidden', ->
+    profile.set('emailHidden', true)
+    profile.save
+    expect(profile.emailHidden).to.eq(true)
+
+  it 'includes userId', ->
+    profile.set('userId', "someMongoId")
+    profile.save
+    expect(profile.userId).to.eq("someMongoId")

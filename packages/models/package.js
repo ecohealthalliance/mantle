@@ -13,7 +13,7 @@ Package.onUse(function(api) {
   api.use('useraccounts:core@1.7.0');
   api.use('mongo');
   api.addFiles('user_profiles.coffee', ['client', 'server']);
-  api.export('UserProfile', ['client', 'server']);
+  api.export(['UserProfile', 'UserProfiles'], ['client', 'server']);
 });
 
 Package.onTest(function(api) {
