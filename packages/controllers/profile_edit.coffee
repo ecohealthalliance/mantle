@@ -3,11 +3,6 @@ if Meteor.isClient
     instance = this
     subscription = instance.subscribe('userProfile')
 
-    if subscription.ready()
-      console.log("Ready")
-    else
-      console.log("Not ready")
-
   Template.profileEdit.helpers
     userProfile: ->
       UserProfiles.findOne()
@@ -25,8 +20,7 @@ if Meteor.isServer
   Meteor.methods
     updateProfile: (profileId, fields, callback) ->
       userProfile = UserProfiles.findOne({_id: profileId})
-      userProfile.update fields, ->
-        console.log(userProfile)
+      userProfile.update fields, callback
 
   Meteor.publish 'userProfile', ->
     UserProfiles.find({userId: this.userId})

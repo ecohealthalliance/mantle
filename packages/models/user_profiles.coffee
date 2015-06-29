@@ -14,5 +14,11 @@ UserProfile = Astro.Class
     update: (fields, callback) ->
       this.set(fields)
       this.save ->
-        if callback
-          callback()
+        callback?()
+
+if Meteor.isServer
+  Accounts.onCreateUser (options, user) ->
+    profile = new UserProfile()
+    profile.set(userId: user._id)
+    profile.save(-> {})
+    user

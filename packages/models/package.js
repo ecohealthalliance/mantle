@@ -22,5 +22,5 @@ Package.onTest(function(api) {
   api.use('mantle:models');
   api.use('practicalmeteor:munit');
   api.use('test-helpers');
-  api.addFiles('tests/server/profiles_test.coffee', 'server');
+  api.addFiles('tests/server/user_profiles_test.coffee', 'server');
 });
