@@ -12,7 +12,10 @@ if Meteor.isClient
       event.preventDefault()
       form = event.target
       fields = {
+        fullName: form.fullName.value
+        jobTitle: form.jobTitle.value
         bio: form.bio.value
+        emailHidden: form.emailHidden.value
       }
       Meteor.call('updateProfile', form.profileId.value, fields, -> {})
 

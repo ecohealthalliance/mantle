@@ -2,11 +2,19 @@ template(name="profileEdit")
   .container
     if Template.subscriptionsReady
       form
+        input(name="profileId" type="string" hidden="true" value=userProfile._id)
+        .row
+          .col-sm-12
+            label Full Name
+              input.form-control(name="fullName" type="string" value=userProfile.fullName)
+        .row
+          .col-sm-12
+            label Job Title
+              input.form-control(name="jobTitle" type="string" value=userProfile.jobTitle)
         .row
           .col-sm-12
             label Bio
               input.form-control(name="bio" type="string" value=userProfile.bio)
-            input(name="profileId" type="string" hidden="true" value=userProfile._id)
         .row
           .col-sm-12
             input.btn.btn-primary(type="submit" value="Save")
