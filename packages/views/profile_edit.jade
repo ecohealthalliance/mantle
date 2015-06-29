@@ -1,5 +1,12 @@
 template(name="profileEdit")
-  form
-    input.form-control(name="bio" type="string")
-    input(name="profileId" type="string" hidden="true" value="wJQGh4gCsYGM3p6nf")
-    input.btn.btn-primary(type="submit" value="Save")
+  .container
+    if Template.subscriptionsReady
+      form
+        .row
+          .col-sm-12
+            label Bio
+              input.form-control(name="bio" type="string" value=userProfile.bio)
+            input(name="profileId" type="string" hidden="true" value=userProfile._id)
+        .row
+          .col-sm-12
+            input.btn.btn-primary(type="submit" value="Save")

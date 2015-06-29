@@ -5,9 +5,8 @@ FlowRouter.route '/',
       main: 'splashPage'
       params: {}
 
-FlowRouter.route '/profile/:id/edit',
+FlowRouter.route '/profile/edit',
   name: 'profileEdit'
   action: () ->
     FlowLayout.render 'layout',
       main: 'profileEdit'
-      params: {}

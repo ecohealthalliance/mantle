@@ -14,4 +14,5 @@ UserProfile = Astro.Class
     update: (fields, callback) ->
       this.set(fields)
       this.save ->
-        callback()
+        if callback
+          callback()

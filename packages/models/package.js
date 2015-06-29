@@ -14,7 +14,6 @@ Package.onUse(function(api) {
   api.use('mongo');
   api.addFiles('user_profiles.coffee', ['client', 'server']);
   api.export(['UserProfile', 'UserProfiles'], ['client', 'server']);
-  api.export('updateProfile', ['server']);
 });
 
 Package.onTest(function(api) {
