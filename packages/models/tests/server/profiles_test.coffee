@@ -1,4 +1,4 @@
-describe 'User profile', ->
+describe 'UserProfile attributes', ->
   profile = null
 
   beforeEach ->
@@ -28,3 +28,19 @@ describe 'User profile', ->
     profile.set('userId', "someMongoId")
     profile.save
     expect(profile.userId).to.eq("someMongoId")
+
+describe 'UserProfile#update', ->
+  profile = null
+
+  beforeEach ->
+    profile = new UserProfile()
+    profile.set(bio: "First bio")
+    profile.save
+
+  it 'updates fields on the profile', ->
+    profile.update({bio: "Second bio"})
+    expect(profile.bio).to.eq("Second bio")
+
+  it 'does not update fields that are not on the profile', ->
+    profile.update({somethingElse: "Fake information"})
+    expect(profile.somethingElse).to.not.be.ok
