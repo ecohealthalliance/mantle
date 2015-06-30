@@ -58,7 +58,7 @@ do ->
         .waitForExist('.accounts-modal.modal.in')
         .click('#at-signUp')
         .waitForExist('#at-field-password_again')
-        .setValue('#at-field-email', 'test' + Math.floor(Math.random() * 100) + '@user.com')
+        .setValue('#at-field-email', 'test@user.com')
         .setValue('#at-field-password', 'testuser')
         .setValue('#at-field-password_again', 'testuser')
         .submitForm('#at-field-email', assert.ifError)
