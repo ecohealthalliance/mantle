@@ -64,3 +64,25 @@ do ->
         .submitForm('#at-field-email', assert.ifError)
         .waitForExist('.sign-out')
         .call(callback)
+
+    @When 'I fill out the profile edit form', (callback) ->
+      @browser
+        .url(url.resolve(process.env.ROOT_URL, '/profile/edit'))
+        .waitForExist('#profile-edit-form')
+        .setValue('#profile-fullname', 'Test User')
+        .setValue('#profile-jobtitle', 'User Tester')
+        .setValue('#profile-bio', 'I am a test user')
+        .submitForm('#profile-fullname', assert.ifError)
+        .call(callback)
+
+    @Then /^I should( not)? see a "([^"]*)" toast$/, (noToast, message, callback) ->
+      @browser
+        .waitForVisible('body *')
+        .getHTML('.toast', (error, response) ->
+          match = response?.toString().match(message)
+          if noToast
+            assert.ok(error or not match)
+          else
+            assert.ifError(error)
+            assert.ok(match)
+        ).call(callback)

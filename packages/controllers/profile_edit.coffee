@@ -1,7 +1,6 @@
 if Meteor.isClient
   Template.profileEdit.onCreated ->
-    instance = this
-    subscription = instance.subscribe('userProfile')
+    @subscribe('userProfile')
 
   Template.profileEdit.helpers
     userProfile: ->
@@ -17,13 +16,17 @@ if Meteor.isClient
         bio: form.bio?.value
         emailHidden: form.emailHidden?.value
       }
-      Meteor.call('updateProfile', fields, -> {})
+      Meteor.call 'updateProfile', fields, (error, response) ->
+        if error
+          toaster.error("Error")
+        else
+          toastr.success("Success")
 
 if Meteor.isServer
   Meteor.methods
-    updateProfile: (fields, callback) ->
+    updateProfile: (fields) ->
       userProfile = UserProfiles.findOne({userId: this.userId})
-      userProfile.update fields, callback
+      userProfile.update(fields)
 
   Meteor.publish 'userProfile', ->
     UserProfiles.find({userId: this.userId})

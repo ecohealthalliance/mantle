@@ -14,6 +14,7 @@ Package.onUse(function(api) {
   api.use('mantle:views');
   api.use('accounts-password');
   api.use('useraccounts:core');
+  api.use('chrismbeckett:toastr');
 
   api.addFiles('accounts_modal.coffee', 'client');
   api.addFiles('accounts_header_buttons.coffee', 'client');
