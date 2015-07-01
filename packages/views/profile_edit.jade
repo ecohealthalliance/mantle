@@ -16,4 +16,8 @@ template(name="profileEdit")
               input#profile-bio.form-control(name="bio" type="string" value=userProfile.bio)
         .row
           .col-sm-12
+            label Hide Email Address
+              input#profile-email-hidden.form-control(name="emailHidden" type="checkbox" checked=userProfile.emailHidden)
+        .row
+          .col-sm-12
             input.btn.btn-primary(type="submit" value="Save")

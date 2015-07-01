@@ -14,7 +14,7 @@ if Meteor.isClient
         fullName: form.fullName?.value
         jobTitle: form.jobTitle?.value
         bio: form.bio?.value
-        emailHidden: form.emailHidden?.value
+        emailHidden: form.emailHidden?.checked
       }
       Meteor.call 'updateProfile', fields, (error, response) ->
         if error
