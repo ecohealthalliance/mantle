@@ -11,10 +11,20 @@ Feature: Accounts
     And I should see content "Sign Out"
     And I should see content "Profile"
 
-  @dev
   Scenario: Editing my profile
     When I register an account
     And I navigate to "/profile/edit"
     Then I should not see a "Success" toast
     When I fill out the profile edit form
     Then I should see a "Success" toast
+
+Feature: Viewing profiles
+  Background:
+    Given there is a profile in the database
+
+  @dev
+  Scenario: Viewing a public profile
+    When I navigate to "/profiles/fakeid"
+    Then I should see the profile test attributes
+
+  Scenario: Viewing a public profile

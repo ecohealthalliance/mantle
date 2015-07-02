@@ -10,6 +10,9 @@ do ->
     @Given /^I am a new user$/, ->
       @server.call('reset')
 
+    @Given /^there is a profile in the database$/, ->
+      @server.call('createProfile')
+
     @When /^I navigate to "([^"]*)"$/, (relativePath, callback) ->
       @client
         .url(url.resolve(process.env.ROOT_URL, relativePath))
@@ -74,6 +77,10 @@ do ->
         .setValue('#profile-bio', 'I am a test user')
         .click("#profile-email-hidden")
         .submitForm('#profile-fullname', assert.ifError)
+        .call(callback)
+
+    @Then "I should see the profile test attributes", (callback) ->
+      @browser
         .call(callback)
 
     @Then /^I should( not)? see a "([^"]*)" toast$/, (noToast, message, callback) ->
