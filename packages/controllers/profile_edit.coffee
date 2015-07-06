@@ -18,7 +18,7 @@ if Meteor.isClient
       }
       Meteor.call 'updateProfile', fields, (error, response) ->
         if error
-          toaster.error("Error")
+          toastr.error("Error")
         else
           toastr.success("Success")
 

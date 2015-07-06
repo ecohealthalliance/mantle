@@ -12,7 +12,8 @@ UserProfile = Astro.Class
 
   methods:
     update: (fields, callback) ->
-      this.set(fields)
+      filteredFields = _.pick(fields, 'fullName', 'jobTitle', 'bio', 'emailHidden')
+      this.set(filteredFields)
       this.save ->
         callback?()
 

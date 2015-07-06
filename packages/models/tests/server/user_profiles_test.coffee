@@ -34,7 +34,7 @@ describe 'UserProfile#update', ->
 
   beforeEach ->
     profile = new UserProfile()
-    profile.set(bio: "First bio")
+    profile.set(bio: "First bio", userId: 'testUserId')
     profile.save
 
   it 'updates fields on the profile', ->
@@ -44,3 +44,7 @@ describe 'UserProfile#update', ->
   it 'does not update fields that are not on the profile', ->
     profile.update({somethingElse: "Fake information"})
     expect(profile.somethingElse).to.not.be.ok
+
+  it 'does not update userId', ->
+    profile.update({userId: "securityRisk"})
+    expect(profile.userId).to.eq('testUserId')
