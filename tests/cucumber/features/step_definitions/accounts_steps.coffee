@@ -21,7 +21,7 @@ do ->
     @Then /^I should see content "([^"]*)"$/, (text, callback) ->
       @client
         .waitForVisible('body *')
-        .getHTML 'header', (error, response) ->
+        .getHTML 'body', (error, response) ->
           assert.ok(response.toString().match(text))
         .call(callback)
 

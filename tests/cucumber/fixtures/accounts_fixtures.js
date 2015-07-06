@@ -9,10 +9,10 @@
     },
 
     'createProfile' : function(field, value) {
-      var profile = new UserProfile();
-      profile.set('_id', 'fakeid');
-      profile.set(field, value);
-      profile.save();
+      var attributes = {};
+      attributes[field] = value;
+      attributes['_id'] = 'fakeid';
+      UserProfiles.insert(attributes);
     }
   });
 

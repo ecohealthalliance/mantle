@@ -1,4 +1,7 @@
 template(name="profileDetail")
   .container
-    p Hello!
-    p= userProfile
+    .row
+      .col-sm-12
+        p Full Name: #{userProfile.fullName}
+        p Job Title: #{userProfile.jobTitle}
+        p Bio: #{userProfile.bio}
