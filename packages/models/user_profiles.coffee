@@ -9,6 +9,7 @@ UserProfile = Astro.Class
     bio: 'string'
     emailHidden: 'boolean'
     userId: 'string'
+    emailAddress: 'string'
 
   methods:
     update: (fields, callback) ->
@@ -20,6 +21,6 @@ UserProfile = Astro.Class
 if Meteor.isServer
   Accounts.onCreateUser (options, user) ->
     profile = new UserProfile()
-    profile.set(userId: user._id)
+    profile.set({userId: user._id, emailAddress: user.emails[0].address})
     profile.save(-> {})
     user

@@ -18,11 +18,15 @@ do ->
         .url(url.resolve(process.env.ROOT_URL, relativePath))
         .call(callback)
 
-    @Then /^I should see content "([^"]*)"$/, (text, callback) ->
+    @Then /^I should( not)? see content "([^"]*)"$/, (shouldNot, text, callback) ->
       @client
         .waitForVisible('body *')
         .getHTML 'body', (error, response) ->
-          assert.ok(response.toString().match(text))
+          match = response.toString().match(text)
+          if shouldNot
+            assert.notOk(match)
+          else
+            assert.ok(match)
         .call(callback)
 
     @Then /I am( not)? logged in/, (amNot, callback) ->
@@ -54,18 +58,32 @@ do ->
         .waitForExist('.sign-out')
         .call(callback)
 
-    @When 'I register an account', (callback) ->
-      @browser
+    registerAccount = (browser, email, callback) ->
+      browser
         .url(url.resolve(process.env.ROOT_URL, '/'))
         .click('.sign-in', assert.ifError)
         .waitForExist('.accounts-modal.modal.in')
         .click('#at-signUp')
         .waitForExist('#at-field-password_again')
-        .setValue('#at-field-email', 'test@user.com')
+        .setValue('#at-field-email', email)
         .setValue('#at-field-password', 'testuser')
         .setValue('#at-field-password_again', 'testuser')
         .submitForm('#at-field-email', assert.ifError)
         .waitForExist('.sign-out')
+        .call(callback)
+
+    @When "I register an account", (callback) ->
+      registerAccount(@browser, email, callback)
+
+    @When /^I register an account with email address "([^"]*)"$/, (email, callback) ->
+      registerAccount(@browser, email, callback)
+
+    @When "I hide my email address from my profile", (callback) ->
+      @browser
+        .url(url.resolve(process.env.ROOT_URL, '/profile/edit'))
+        .waitForExist('#profile-edit-form')
+        .click("#profile-email-hidden")
+        .submitForm('#profile-fullname', assert.ifError)
         .call(callback)
 
     @When 'I fill out the profile edit form', (callback) ->
@@ -77,6 +95,14 @@ do ->
         .setValue('#profile-bio', 'I am a test user')
         .click("#profile-email-hidden")
         .submitForm('#profile-fullname', assert.ifError)
+        .call(callback)
+
+    @When /^I view my public profile$/, (callback) ->
+      @browser
+        .url(url.resolve(process.env.ROOT_URL, '/profile/edit'))
+        .waitForExist('#profile-edit-form')
+        .click('.profile-detail-link')
+        .waitForExist('.profile-detail')
         .call(callback)
 
     @Then "I should see the profile test attributes", (callback) ->

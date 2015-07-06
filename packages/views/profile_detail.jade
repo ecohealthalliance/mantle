@@ -2,6 +2,9 @@ template(name="profileDetail")
   .container
     .row
       .col-sm-12
-        p Full Name: #{userProfile.fullName}
-        p Job Title: #{userProfile.jobTitle}
-        p Bio: #{userProfile.bio}
+        .profile-detail
+          p Full Name: #{userProfile.fullName}
+          p Job Title: #{userProfile.jobTitle}
+          p Bio: #{userProfile.bio}
+          unless userProfile.emailHidden
+            p Email Address: #{userProfile.emailAddress}

@@ -18,10 +18,17 @@ Feature: Accounts
     When I fill out the profile edit form
     Then I should see a "Success" toast
 
-  @dev
   Scenario: Viewing a public profile
     Given there is a profile in the database where "fullName" is "Test Title"
     When I navigate to "/profiles/fakeid"
     Then I should see content "Test Title"
 
-  Scenario: Viewing a public profile
+  @dev
+  Scenario: Hiding/displaying email address on profile page
+    When I register an account with email address "test@example.com"
+    And I view my public profile
+    Then I should see content "test@example.com"
+
+    When I hide my email address from my profile
+    And I view my public profile
+    Then I should not see content "test@example.com"

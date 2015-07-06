@@ -29,6 +29,11 @@ describe 'UserProfile attributes', ->
     profile.save
     expect(profile.userId).to.eq("someMongoId")
 
+  it 'includes emailAddress', ->
+    profile.set('emailAddress', "test@example.com")
+    profile.save
+    expect(profile.emailAddress).to.eq("test@example.com")
+
 describe 'UserProfile#update', ->
   profile = null
 

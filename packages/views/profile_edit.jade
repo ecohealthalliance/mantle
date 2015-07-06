@@ -1,6 +1,7 @@
 template(name="profileEdit")
   .container
     if Template.subscriptionsReady
+      a.btn.btn-primary.profile-detail-link(href="/profiles/#{userProfile._id}") View Public Profile
       form#edit-profile-form
         .row
           .col-sm-12
