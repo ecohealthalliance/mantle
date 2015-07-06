@@ -14,4 +14,3 @@ Package.onUse(function(api) {
   api.use('mantle:controllers');
   api.addFiles('router.coffee', ['client', 'server']);
 });
-

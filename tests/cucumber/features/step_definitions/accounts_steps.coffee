@@ -10,8 +10,8 @@ do ->
     @Given /^I am a new user$/, ->
       @server.call('reset')
 
-    @Given /^there is a profile in the database$/, ->
-      @server.call('createProfile')
+    @Given /^there is a profile in the database where "([^"]*)" is "([^"]*)"$/, (field, value)->
+      @server.call('createProfile', field, value)
 
     @When /^I navigate to "([^"]*)"$/, (relativePath, callback) ->
       @client
@@ -22,8 +22,8 @@ do ->
       @client
         .waitForVisible('body *')
         .getHTML 'header', (error, response) ->
-          assert response.toString().match(text)
-        .call callback
+          assert.ok(response.toString().match(text))
+        .call(callback)
 
     @Then /I am( not)? logged in/, (amNot, callback) ->
       @browser

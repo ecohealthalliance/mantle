@@ -18,13 +18,10 @@ Feature: Accounts
     When I fill out the profile edit form
     Then I should see a "Success" toast
 
-Feature: Viewing profiles
-  Background:
-    Given there is a profile in the database
-
   @dev
   Scenario: Viewing a public profile
+    Given there is a profile in the database where "fullName" is "Test Title"
     When I navigate to "/profiles/fakeid"
-    Then I should see the profile test attributes
+    Then I should see content "Test Title"
 
   Scenario: Viewing a public profile
