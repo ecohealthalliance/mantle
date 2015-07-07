@@ -6,4 +6,5 @@
 
 meteor-platform
 mantle:router
-mantle:accounts
+xolvio:cucumber
+mantle:models
