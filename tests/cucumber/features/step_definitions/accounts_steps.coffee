@@ -10,36 +10,13 @@ do ->
     @Given /^I am a new user$/, ->
       @server.call('reset')
 
-    @Given /^there is a profile in the database where "([^"]*)" is "([^"]*)"$/, (field, value)->
+    @Given /^there is a profile with ID 'fakeid' where "([^"]*)" is "([^"]*)"$/, (field, value)->
       @server.call('createProfile', field, value)
 
     @When /^I navigate to "([^"]*)"$/, (relativePath, callback) ->
       @client
         .url(url.resolve(process.env.ROOT_URL, relativePath))
         .call(callback)
-
-    @Then /^I should( not)? see content "([^"]*)"$/, (shouldNot, text, callback) ->
-      @client
-        .waitForVisible('body *')
-        .getHTML 'body', (error, response) ->
-          match = response.toString().match(text)
-          if shouldNot
-            assert.notOk(match)
-          else
-            assert.ok(match)
-        .call(callback)
-
-    @Then /I am( not)? logged in/, (amNot, callback) ->
-      @browser
-        .execute((->
-          Meteor.userId()
-        ), (err, ret) ->
-          assert.ifError(err)
-          if amNot
-            assert.equal(ret.value, null, 'Authenticated')
-          else
-            assert(ret.value, 'Not authenticated')
-        ).call(callback)
 
     @When 'I open the account modal', (callback) ->
       @browser
@@ -51,7 +28,7 @@ do ->
       @browser
         .click('#at-signUp')
         .waitForExist('#at-field-password_again')
-        .setValue('#at-field-email', 'test' + Math.floor(Math.random() * 100) + '@user.com')
+        .setValue('#at-field-email', 'test@user.com')
         .setValue('#at-field-password', 'testuser')
         .setValue('#at-field-password_again', 'testuser')
         .submitForm('#at-field-email', assert.ifError)
@@ -73,7 +50,7 @@ do ->
         .call(callback)
 
     @When "I register an account", (callback) ->
-      registerAccount(@browser, email, callback)
+      registerAccount(@browser, "test@user.com", callback)
 
     @When /^I register an account with email address "([^"]*)"$/, (email, callback) ->
       registerAccount(@browser, email, callback)
@@ -105,10 +82,6 @@ do ->
         .waitForExist('.profile-detail')
         .call(callback)
 
-    @Then "I should see the profile test attributes", (callback) ->
-      @browser
-        .call(callback)
-
     @Then /^I should( not)? see a "([^"]*)" toast$/, (noToast, message, callback) ->
       @browser
         .waitForVisible('body *')
@@ -119,4 +92,27 @@ do ->
           else
             assert.ifError(error)
             assert.ok(match)
+        ).call(callback)
+
+    @Then /^I should( not)? see content "([^"]*)"$/, (shouldNot, text, callback) ->
+      @client
+        .waitForVisible('body *')
+        .getHTML 'body', (error, response) ->
+          match = response.toString().match(text)
+          if shouldNot
+            assert.notOk(match)
+          else
+            assert.ok(match)
+        .call(callback)
+
+    @Then /I am( not)? logged in/, (amNot, callback) ->
+      @browser
+        .execute((->
+          Meteor.userId()
+        ), (err, ret) ->
+          assert.ifError(err)
+          if amNot
+            assert.equal(ret.value, null, 'Authenticated')
+          else
+            assert(ret.value, 'Not authenticated')
         ).call(callback)

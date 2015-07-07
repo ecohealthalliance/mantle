@@ -6,5 +6,5 @@ template(name="profileDetail")
           p Full Name: #{userProfile.fullName}
           p Job Title: #{userProfile.jobTitle}
           p Bio: #{userProfile.bio}
-          unless userProfile.emailHidden
+          if userProfile.emailAddress
             p Email Address: #{userProfile.emailAddress}

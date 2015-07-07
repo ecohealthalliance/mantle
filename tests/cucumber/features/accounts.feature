@@ -19,11 +19,10 @@ Feature: Accounts
     Then I should see a "Success" toast
 
   Scenario: Viewing a public profile
-    Given there is a profile in the database where "fullName" is "Test Title"
+    Given there is a profile with ID 'fakeid' where "fullName" is "Test Title"
     When I navigate to "/profiles/fakeid"
     Then I should see content "Test Title"
 
-  @dev
   Scenario: Hiding/displaying email address on profile page
     When I register an account with email address "test@example.com"
     And I view my public profile
