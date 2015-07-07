@@ -9,7 +9,9 @@ if Meteor.isClient
 if Meteor.isServer
   Meteor.publish 'userProfileDetail', (id) ->
     profile = UserProfiles.findOne(id)
-    UserProfiles.find(id,
-      fields:
-        emailAddress: !(profile?.emailHidden)
-    )
+    if profile.emailHidden
+      UserProfiles.find(id, fields:
+        emailAddress: false
+      )
+    else
+      UserProfiles.find(id)
