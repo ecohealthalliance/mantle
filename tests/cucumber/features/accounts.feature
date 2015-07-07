@@ -15,8 +15,10 @@ Feature: Accounts
     When I register an account
     And I navigate to "/profile/edit"
     Then I should not see a "Success" toast
-    When I fill out the profile edit form
+    When I fill out the profile edit form with fullName "Test Name"
     Then I should see a "Success" toast
+    When I view my public profile
+    And I should see content "Test Name"
 
   Scenario: Viewing a public profile
     Given there is a profile with ID 'fakeid' where "fullName" is "Test Title"
@@ -27,7 +29,6 @@ Feature: Accounts
     When I register an account with email address "test@example.com"
     And I view my public profile
     Then I should see content "test@example.com"
-
     When I hide my email address from my profile
     And I view my public profile
     Then I should not see content "test@example.com"

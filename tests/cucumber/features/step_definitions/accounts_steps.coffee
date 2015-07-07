@@ -63,11 +63,11 @@ do ->
         .submitForm('#profile-fullname', assert.ifError)
         .call(callback)
 
-    @When 'I fill out the profile edit form', (callback) ->
+    @When /^I fill out the profile edit form with fullName "([^"]*)"$/, (fullName, callback) ->
       @browser
         .url(url.resolve(process.env.ROOT_URL, '/profile/edit'))
         .waitForExist('#profile-edit-form')
-        .setValue('#profile-fullname', 'Test User')
+        .setValue('#profile-fullname', fullName)
         .setValue('#profile-jobtitle', 'User Tester')
         .setValue('#profile-bio', 'I am a test user')
         .click("#profile-email-hidden")

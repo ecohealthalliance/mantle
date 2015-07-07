@@ -11,8 +11,5 @@ if Meteor.isServer
     profile = UserProfiles.findOne(id)
     UserProfiles.find(id,
       fields:
-        fullName: true
-        jobTitle: true
-        bio: true
         emailAddress: !(profile?.emailHidden)
     )
