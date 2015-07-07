@@ -11,7 +11,7 @@ do ->
       @server.call('reset')
 
     @Given /^there is a profile with ID 'fakeid' where "([^"]*)" is "([^"]*)"$/, (field, value)->
-      @server.call('createProfile', field, value)
+      @server.call('createProfile', field, value, 'fakeid')
 
     @When /^I navigate to "([^"]*)"$/, (relativePath, callback) ->
       @client

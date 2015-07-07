@@ -8,10 +8,10 @@
       UserProfiles.remove({});
     },
 
-    'createProfile' : function(field, value) {
+    'createProfile' : function(field, value, id) {
       var attributes = {};
       attributes[field] = value;
-      attributes['_id'] = 'fakeid';
+      attributes['_id'] = id;
       UserProfiles.insert(attributes);
     }
   });

@@ -11,9 +11,9 @@ FlowRouter.route '/profile/edit',
     FlowLayout.render 'layout',
       main: 'profileEdit'
 
-FlowRouter.route '/profiles/:id',
+FlowRouter.route '/profiles/:_id',
   name: 'profileDetail'
   action: (params) ->
     FlowLayout.render 'layout',
       main: 'profileDetail'
-      params: {"profileId": params.id}
+      params: {"profileId": params._id}
