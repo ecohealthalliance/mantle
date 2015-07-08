@@ -1,0 +1,141 @@
+addFont($fontTitle, $allTypes = true, type = '')
+  @font-face
+    if $allTypes
+      src url('/fonts/' + $fontTitle + '.eot')
+      src url('/fonts/' + $fontTitle + '.eot?#iefix') format('embedded-opentype'), url('/fonts/' + $fontTitle + '.woff') format('woff'), url('/fonts/{fontTitle}.ttf') format('truetype'), url('/fonts/' + $fontTitle + '.svg') format('svg')
+    else
+      src url('/fonts/' + $fontTitle + '.'+type)
+    font-family $fontTitle
+
+transition($duration = .2s, $prop = , $ease = , $delay = )
+  -webkit-transition $prop $duration $ease $delay
+  -moz-transition $prop $duration $ease $delay
+  -o-transition $prop $duration $ease $delay
+  transition $prop $duration $ease $delay
+
+vAlign()
+  display inline-block
+  vertical-align middle
+
+makeButton($color, $text = white, $dark = false, $noOutline = false, $hoverColor = white)
+  border 2px solid darken($color, 10%)
+  background $color
+  if $dark
+    @extend .light-shadow
+    &:hover
+      color $hoverColor
+  else
+    @extend .dark-shadow
+  color $text
+  &:hover,
+  &:focus
+    border-color darken($color, 50%)
+    background darken($color, 20%)
+    color $text
+  &:active
+    background darken($color, 20%)
+  transition()
+  if $noOutline
+    &:focus
+      outline 0
+
+loading($positioned=false)
+  @extend .icons
+  animate(2s)
+  if $positioned
+    centerPosition()
+    position absolute
+    top 50%
+    left 45%
+    z-index 100
+  opacity 1
+  font-size 200px
+
+animate($speed)
+  animation spin $speed infinite linear
+  -webkit-animation spin $speed infinite linear
+  -moz-animation spin $speed infinite linear
+  -o-animation spin $speed infinite linear
+
+@keyframes spin
+  from
+    transform rotate(0deg)
+  to
+    transform rotate(360deg)
+
+@-webkit-keyframes spin
+  from
+    -webkit-transform rotate(0deg)
+  to
+    -webkit-transform rotate(360deg)
+
+@-moz-keyframes spin
+  from
+    -moz-transform rotate(0deg)
+  to
+    -moz-transform rotate(360deg)
+
+@-o-keyframes spin
+  from
+    -o-transform rotate(0deg)
+  to
+    -o-transform rotate(360deg)
+
+bg($path, $w, $h, $type)
+  width $w
+  height $h
+  background-image url($path + '.' + $type)
+  background-repeat no-repeat
+  background-size @width @height
+  text-indent -9999px
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (-moz-min-device-pixel-ratio: 2)
+    background-image: url($path + '-2x.' + $type);
+
+changeBGSize($w,$h)
+  width $w
+  height $h
+  background-size $w $h
+
+centerSmall(margin-bottom=0)
+  @media (max-width:400px)
+    display block
+    margin 0 auto
+    float none
+    if margin-bottom
+      margin-bottom margin-bottom
+
+buttonHover(hoverBG, bg=none)
+  transition()
+  background bg
+  &:hover
+    background hoverBG
+    transition()
+    color white
+
+centerPosition(h=-50%,v=-50%)
+  -webkit-transform translate(h,v)
+  -moz-transform $duration $prop
+  -o-transform $duration $prop
+  transform translate(h,v)
+
+cover()
+  position absolute
+  top 0
+  bottom 0
+  left 0
+  right 0
+  z-index 500
+
+addBorder(w=false, h, c)
+  if w
+    border-{w} unit(h,'px') solid c
+  else
+    border unit(h, 'px') solid c
+
+shadow(c, opacity)
+  text-shadow 0 1px 0 rgba(c,c,c,opacity)
+
+linkColor(color, hover = darken(color, 35%))
+  color color
+  &:hover
+    color hover
