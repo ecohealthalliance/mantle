@@ -1,0 +1,17 @@
+template(name="organizations")
+  .container
+    .row
+      .col-sm-12
+        h2 Organizations
+        a.btn.btn-default.new-organization-link(href="{{path route='newOrganization'}}") Create
+  table.table.table-striped
+    tbody
+      each organizations
+        tr
+          .container
+            .row
+              .col-sm-3
+                td
+                  p.lead= name
+              .col-sm-9
+                td= description

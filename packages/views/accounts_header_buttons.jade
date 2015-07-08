@@ -2,6 +2,9 @@ template(name="accountsHeaderButtons")
   ul.nav.navbar-nav.navbar-right
     if currentUser
       li
+        a.navbar-btn(href="{{path route='organizations'}}")
+          span Organizations
+      li
         a.navbar-btn(href="{{path route='profileEdit'}}") Profile
       li.account
         a.sign-out.navbar-btn(href="#")
