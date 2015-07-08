@@ -6,6 +6,7 @@
     'reset' : function() {
       Meteor.users.remove({});
       UserProfiles.remove({});
+      Organizations.remove({});
     },
 
     'createProfile' : function(field, value, id) {
