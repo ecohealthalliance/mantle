@@ -82,7 +82,7 @@ bg($path, $w, $h, $type)
   background-repeat no-repeat
   background-size @width @height
   text-indent -9999px
-  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (-moz-min-device-pixel-ratio: 2)
+  +retina()
     background-image: url($path + '-2x.' + $type);
 
 changeBGSize($w,$h)
@@ -91,7 +91,7 @@ changeBGSize($w,$h)
   background-size $w $h
 
 centerSmall($marginBottom=0)
-  @media (max-width:400px)
+  +below(400px)
     display block
     margin 0 auto
     float none
