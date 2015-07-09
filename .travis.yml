@@ -4,6 +4,8 @@ node_js:
   - 0.10
 before_install:
   - "curl https://install.meteor.com/ | sh"
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 script:
   - ./travis.sh | grep -v "/.meteor/"
   - if [[ -e FAILURE ]]; then exit 1; fi
