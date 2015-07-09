@@ -9,20 +9,28 @@ This package defines styles for mantle.
 - **Mixin Library**: [Nib](http://tj.github.io/nib/)
 
 ###Adding Files and styles
-- Create a file with the name of associated view or package.  Import files into *main.styl* **and** add them to package.js:
+- Create a file with the name of associated view or package. Import files into *main.styl* **and** add them to *package.js*:
   - Filename: *viewname.import.styl*
   - Importing: `@import viewname.import`
   - Add to package.js: `api.addFiles('viewname.import.styl');`
-- Custom mixins should be added to *mixins.import.styl*
-- Global styles should be added to *globals.inport.styl*
-- Add global variables to *varaibles.import.styl*
+- Add custom mixins to *mixins.import.styl*
+- Add global styles to  *globals.import.styl*
+- Add global variables to *variables.import.styl*
 
 ####Syntax Patterns
 - Do not use brackets, colons, or semicolons
 - Class names should be lowercase, hyphenated and as short as possible while accurately indicating purpose
-- Try to use classes as selectors only
+- Avoid styling with id attributes
 - Use single quotes
+- Avoid deeply nested selectors
 - Prefix variable names and functions with `$`
+- Separate multiple selectors with line breaks, not commas:
+```
+  .class-1
+  .class-2
+  .class-3
+    position absolute
+```
 - Browser prefixes are added with Nib and Autoprefixer
 
 ###Media Queries
@@ -49,6 +57,7 @@ Order properties by type. Mixins, extends, functions, etc should be grouped with
   3. Background
   4. Font and text adjustment
   5. Other
+  6. Nested Selectors
   6. Media Queries
 
 ```
@@ -77,6 +86,10 @@ Order properties by type. Mixins, extends, functions, etc should be grouped with
 
     // Other
     transition .2s
+
+    //Nested Selectors
+    &:hover
+      color red
 
     // Media Queries
     +below(1)
