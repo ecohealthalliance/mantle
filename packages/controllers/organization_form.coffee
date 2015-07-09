@@ -16,8 +16,11 @@ if Meteor.isClient
 if Meteor.isServer
   Meteor.methods
     createOrganization: (fields) ->
-      organization = new Organization()
-      organization.set(fields)
-      organization.set('createdById', this.userId)
-      organization.save ->
-        organization
+      if this.userId
+        organization = new Organization()
+        organization.set(fields)
+        organization.set('createdById', this.userId)
+        organization.save ->
+          organization
+      else
+        throw "Not logged in"

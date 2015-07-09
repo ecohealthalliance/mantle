@@ -1,14 +1,20 @@
 template(name="organizationForm")
-  .container
-    form#new-organization-form
+  if currentUser
+    .container
+      form#new-organization-form
+        .row
+          .col-sm-12
+            label Name
+              input#organization-name.form-control(name="name" type="string")
+        .row
+          .col-sm-12
+            label Description
+              input#organization-description.form-control(name="description" type="string")
+        .row
+          .col-sm-12
+            input.btn.btn-primary(type="submit" value="Save")
+  else
+    .container
       .row
         .col-sm-12
-          label Name
-            input#organization-name.form-control(name="name" type="string")
-      .row
-        .col-sm-12
-          label Description
-            input#organization-description.form-control(name="description" type="string")
-      .row
-        .col-sm-12
-          input.btn.btn-primary(type="submit" value="Save")
+          p Please log in or sign up to continue.
