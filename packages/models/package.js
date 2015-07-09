@@ -12,10 +12,16 @@ Package.onUse(function(api) {
   api.use('accounts-password');
   api.use('useraccounts:core@1.7.0');
   api.use('mongo');
+  api.use('cfs:standard-packages');
+  api.use('cfs:gridfs');
   api.addFiles('user_profiles.coffee', ['client', 'server']);
   api.addFiles('organizations.coffee', ['client', 'server']);
+  api.addFiles('raw_files.coffee', ['client', 'server']);
+  api.addFiles('datasets.coffee', ['client', 'server']);
   api.export(['UserProfile', 'UserProfiles'], ['client', 'server']);
   api.export(['Organization', 'Organizations'], ['client', 'server']);
+  api.export(['RawFiles'], ['client', 'server']);
+  api.export(['Dataset', 'Datasets'], ['client', 'server']);
 });
 
 Package.onTest(function(api) {

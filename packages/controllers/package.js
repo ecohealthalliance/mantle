@@ -22,5 +22,7 @@ Package.onUse(function(api) {
   api.addFiles('profile_detail.coffee', ['client', 'server']);
   api.addFiles('organizations.coffee', ['client', 'server']);
   api.addFiles('organization_form.coffee', ['client', 'server']);
+  api.addFiles('dataset_form.coffee', ['client', 'server']);
+  api.addFiles('dataset_detail.coffee', ['client', 'server']);
 });
 

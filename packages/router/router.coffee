@@ -29,3 +29,16 @@ FlowRouter.route '/organizations/new',
   action: () ->
     FlowLayout.render 'layout',
       main: 'organizationForm'
+
+FlowRouter.route '/datasets/new',
+  name: 'newDataset'
+  action: () ->
+    FlowLayout.render 'layout',
+      main: 'datasetForm'
+
+FlowRouter.route '/datasets/:_id',
+  name: 'datasetDetail'
+  action: (params) ->
+    FlowLayout.render 'layout',
+      main: 'datasetDetail'
+      params: {"datasetId": params._id}

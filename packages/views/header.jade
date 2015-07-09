@@ -8,6 +8,10 @@ template(name="header")
             span Mantle
         .navbar-collapse.collapse
           ul.nav.navbar-nav.navbar-right
+            if currentUser
+              li
+                a.navbar-btn(href="{{path route='newDataset'}}")
+                  span + Add Dataset
             li
               a.navbar-btn(href="{{path route='organizations'}}")
                 span Organizations
