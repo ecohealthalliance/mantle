@@ -57,8 +57,8 @@ Order properties by type. Mixins, extends, functions, etc should be grouped with
   3. Background
   4. Font and text adjustment
   5. Other
-  6. Nested Selectors
   6. Media Queries
+  6. Nested Selectors
 
 ```
 .selector
@@ -87,14 +87,14 @@ Order properties by type. Mixins, extends, functions, etc should be grouped with
     // Other
     transition .2s
 
-    //Nested Selectors
-    &:hover
-      color red
-
     // Media Queries
     +below(1)
       width @width / 2
       height @height / 2
+
+    //Nested Selectors
+    &:hover
+      color red
 ```
 
 ###Resources:
