@@ -4,7 +4,8 @@ if Meteor.isClient
 
   Template.organizations.helpers
     organizations: ->
-      Organizations.find({createdById: Meteor.userId()})
+      if Meteor.userId()
+        Organizations.find({createdById: Meteor.userId()})
 
 if Meteor.isServer
   Meteor.publish 'currentUserOrganizations', ->
