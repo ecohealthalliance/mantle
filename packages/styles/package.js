@@ -12,5 +12,10 @@ Package.onUse(function(api) {
   api.use('mquandalle:stylus');
   api.use('fortawesome:fontawesome');
 
+  api.addFiles('variables.import.styl');
+  api.addFiles('mixins.import.styl');
+  api.addFiles('extends.import.styl');
+  api.addFiles('globals.import.styl');
+
   api.addFiles('main.styl');
 });

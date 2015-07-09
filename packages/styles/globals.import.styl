@@ -1,15 +1,16 @@
-html,
+html
 body
   height 100%
 
 body
-  @extend .primary-font
+  @extend .body-font
   color $body-text
 
-h1,
-h2,
-h3,
+h1
+h2
+h3
 h4
+  @extend .header-font
   color $primary
   font-weight 700
 
@@ -47,7 +48,7 @@ h5
   font-weight 600
   color $d-gray
 
-a,
+a
 button
 .btn
   transition()
@@ -56,7 +57,7 @@ button
 
 a
   color $primary-strong
-  &:hover,
+  &:hover
   &:focus
     color $primary
 
@@ -67,7 +68,6 @@ textarea
   padding 6px 12px
   border 1px solid #ccc
   border-radius 4px
-  -webkit-box-shadow inset 0 1px 1px rgba(0, 0, 0, .075)
   box-shadow inset 0 1px 1px rgba(0, 0, 0, .075)
   background-color #fff
   background-image none
@@ -75,23 +75,20 @@ textarea
   line-height 1.42857143
   color #555
   transition $border-color ease-in-out .15s, box-shadow ease-in-out .15s
-  -webkit-transition $border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s
-  -o-transition $border-color ease-in-out .15s, box-shadow ease-in-out .15s
 
-select.form-control,
-input.form-control,
-textarea,
+select.form-control
+input.form-control
+textarea
 textarea.form-control
   border 2px solid $m-gray
 
-input,
-textarea,
+input
+textarea
 .form-control
   &:focus
     outline 0
     box-shadow none
-    webkit-box-shadow none
-    $border-color $secondary
+    border-color $secondary
 
 .page-wrap
   position relative
@@ -120,14 +117,14 @@ textarea,
 .btn-primary
   makeButton($secondary)
 
-.btn-success,
+.btn-success
 .at-btn
   makeButton($confirm)
 
 .btn-danger
   makeButton($primary-strong)
 
-.button-default['disabled'],
+.button-default['disabled']
 .btn['disabled']
   background lighten($secondary-light, 20%)
   color $body-text

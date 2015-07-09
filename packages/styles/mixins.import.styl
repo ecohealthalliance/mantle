@@ -7,11 +7,8 @@ addFont($fontTitle, $allTypes = true, type = '')
       src url('/fonts/' + $fontTitle + '.'+type)
     font-family $fontTitle
 
-transition($duration = .2s, $prop = , $ease = , $delay = )
-  -webkit-transition $prop $duration $ease $delay
-  -moz-transition $prop $duration $ease $delay
-  -o-transition $prop $duration $ease $delay
-  transition $prop $duration $ease $delay
+transition($duration = .2s, args...)
+  transition $duration args
 
 vAlign()
   display inline-block
@@ -27,7 +24,7 @@ makeButton($color, $text = white, $dark = false, $noOutline = false, $hoverColor
   else
     @extend .dark-shadow
   color $text
-  &:hover,
+  &:hover
   &:focus
     border-color darken($color, 50%)
     background darken($color, 20%)
@@ -53,9 +50,6 @@ loading($positioned=false)
 
 animate($speed)
   animation spin $speed infinite linear
-  -webkit-animation spin $speed infinite linear
-  -moz-animation spin $speed infinite linear
-  -o-animation spin $speed infinite linear
 
 @keyframes spin
   from
@@ -96,27 +90,24 @@ changeBGSize($w,$h)
   height $h
   background-size $w $h
 
-centerSmall(margin-bottom=0)
+centerSmall($marginBottom=0)
   @media (max-width:400px)
     display block
     margin 0 auto
     float none
-    if margin-bottom
-      margin-bottom margin-bottom
+    if $marginBottom
+      margin-bottom $marginBottom
 
-buttonHover(hoverBG, bg=none)
+buttonHover($hoverBG, $bg=none)
   transition()
-  background bg
+  background $bg
   &:hover
-    background hoverBG
+    background $hoverBG
     transition()
     color white
 
-centerPosition(h=-50%,v=-50%)
-  -webkit-transform translate(h,v)
-  -moz-transform $duration $prop
-  -o-transform $duration $prop
-  transform translate(h,v)
+centerPosition($h=-50%, $v=-50%)
+  transform translate($h, $v)
 
 cover()
   position absolute
@@ -126,16 +117,16 @@ cover()
   right 0
   z-index 500
 
-addBorder(w=false, h, c)
-  if w
-    border-{w} unit(h,'px') solid c
+addBorder($w=false, $h, $color)
+  if $w
+    border-{$w} unit($h,'px') solid $color
   else
-    border unit(h, 'px') solid c
+    border unit($h, 'px') solid $color
 
-shadow(c, opacity)
-  text-shadow 0 1px 0 rgba(c,c,c,opacity)
+shadow($color, $opacity)
+  text-shadow 0 1px 0 rgba($color, $color, $color, $opacity)
 
-linkColor(color, hover = darken(color, 35%))
-  color color
+linkColor($color, $hover = darken($color, 35%))
+  color $color
   &:hover
-    color hover
+    color $hover

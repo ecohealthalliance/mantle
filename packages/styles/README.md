@@ -7,13 +7,12 @@ This package defines styles for mantle.
 - **Icon Font**: [Font Awesome](http://fontawesome.io/)
 - **Media Queries**: [Rupture](http://jenius.github.io/rupture/)
 - **Mixin Library**: [Nib](http://tj.github.io/nib/)
-- **Typography**: [Typographic](https://github.com/corysimmons/typographic)
 
 ###Adding Files and styles
-- Create a file with the name of associated view or package and import files into *main.styl*:
+- Create a file with the name of associated view or package.  Import files into *main.styl* **and** add them to package.js:
   - Filename: *viewname.import.styl*
   - Importing: `@import viewname.import`
-  - Views with multiple stylesheets can be grouped in a folder
+  - Add to package.js: `api.addFiles('viewname.import.styl');`
 - Custom mixins should be added to *mixins.import.styl*
 - Global styles should be added to *globals.inport.styl*
 - Add global variables to *varaibles.import.styl*
@@ -23,12 +22,12 @@ This package defines styles for mantle.
 - Class names should be lowercase, hyphenated and as short as possible while accurately indicating purpose
 - Try to use classes as selectors only
 - Use single quotes
-- Start variable names with `$`
-- Browser prefixes are added with Autoprefixer
+- Prefix variable names and functions with `$`
+- Browser prefixes are added with Nib and Autoprefixer
 
 ###Media Queries
-Media Queries should be placed near affected element. Use [Rupture](http://jenius.github.io/rupture/)
-Rupture scale follows Bootstrap's breakpoints:
+Media Queries should be placed near affected element. [Rupture](http://jenius.github.io/rupture/)
+ scale follows Bootstrap's breakpoints:
 ```
 scale = 0 768px 992px 1200px
         0---1-----2-----3
@@ -44,7 +43,7 @@ Usage example (see [Rupture documentation](http://jenius.github.io/rupture/) for
 ```
 
 ###Declaration order
-Order properties by type. Mixins and extends should be grouped with associated type and placed first in group.
+Order properties by type. Mixins, extends, functions, etc should be grouped with associated type and placed first in group.
   1. Positioning
   2. Display and Box-Model
   3. Background
