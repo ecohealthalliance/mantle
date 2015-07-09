@@ -58,7 +58,7 @@ Order properties by type. Mixins, extends, functions, etc should be grouped with
   4. Font and text adjustment
   5. Other
   6. Media Queries
-  6. Nested Selectors
+  7. Nested Selectors
 
 ```
 .selector

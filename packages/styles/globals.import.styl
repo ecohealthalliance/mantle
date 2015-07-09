@@ -6,6 +6,13 @@ body
   @extend .body-font
   color $body-text
 
+.page-wrap
+  position relative
+  min-height 100%
+
+.content-wrap
+  padding-bottom $footer-height-actual+10
+
 h1
 h2
 h3
@@ -50,51 +57,6 @@ a
   &:focus
     color $primary
 
-textarea
-  display block
-  width 100%
-  height 34px
-  padding 6px 12px
-  border 1px solid #ccc
-  border-radius 4px
-  box-shadow inset 0 1px 1px rgba(0, 0, 0, .075)
-  background-color #fff
-  background-image none
-  font-size 14px
-  line-height 1.42857143
-  color #555
-  transition $border-color ease-in-out .15s, box-shadow ease-in-out .15s
-
-select.form-control
-input.form-control
-textarea
-textarea.form-control
-  border 2px solid $m-gray
-
-input
-textarea
-.form-control
-  &:focus
-    outline 0
-    box-shadow none
-    border-color $secondary
-
-.page-wrap
-  position relative
-  min-height 100%
-
-.content-wrap
-  padding-bottom $footer-height-actual+10
-
-.rm-pad
-  padding 0
-
-.rm-pad-top
-  padding-top 0
-
-.rm-pad-btm
-  padding-bottom 0
-
 .btn
   border-width 2px
   .fa
@@ -118,8 +80,26 @@ textarea
   color $body-text
   text-shadow none
 
+select.form-control
+input.form-control
+textarea.form-control
+  border 2px solid $m-gray
+  &:focus
+    outline 0
+    box-shadow none
+    border-color $secondary
+
 .col-sm-0
   width 0%
+
+.rm-pad
+  padding 0
+
+.rm-pad-top
+  padding-top 0
+
+.rm-pad-btm
+  padding-bottom 0
 
 for $num in 1 2 3 4 5 6
   .space-btm-{$num}
