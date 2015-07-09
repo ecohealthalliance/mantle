@@ -5,6 +5,8 @@ template(name="header")
         .navbar-header
           button.navbar-toggle.collapsed(type="button", data-toggle="collapse" data-target=".navbar-collapse") Menu
           a.navbar-brand(href="/")
-            span Mantle
+            h1 Mantle
         .navbar-collapse.collapse
           +accountsHeaderButtons
+  +accountsModal state=state
+
