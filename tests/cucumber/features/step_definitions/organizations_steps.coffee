@@ -9,6 +9,7 @@ do ->
 
     @When "I click the new organization link", (callback) ->
       @browser
+        .waitForExist('.organizations-table')
         .click('.new-organization-link', assert.ifError)
         .waitForExist('#new-organization-form')
         .call(callback)

@@ -2,10 +2,10 @@ Feature: Organizations
 
   Background:
     Given I am a new user
+    And there is a test user in the database
 
-  @dev
   Scenario: Creating a new organization
-    Given I have registered an account
+    When I log in as the test user
     When I navigate to "/organizations"
     And I click the new organization link
     And I fill out the new organization form with name "Test Organization"
