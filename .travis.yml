@@ -1,5 +1,7 @@
 sudo: false
 language: node_js
+env:
+  - PATH=$PATH:$HOME/.meteor
 node_js:
   - 0.10
 before_install:
