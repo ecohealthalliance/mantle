@@ -1,0 +1,9 @@
+sudo: required
+language: node_js
+node_js:
+  - 0.10
+before_install:
+  - "curl https://install.meteor.com/ | sh"
+script:
+  - ./travis.sh | grep -v "/.meteor/"
+  - if [[ -e FAILURE ]]; then exit 1; fi
