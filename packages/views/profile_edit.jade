@@ -1,0 +1,27 @@
+template(name="profileEdit")
+  .container
+    if currentUser
+      if Template.subscriptionsReady
+        a.btn.btn-primary.profile-detail-link(href= "{{path route='profileDetail' params=userProfile}}") View Public Profile
+        form#edit-profile-form
+          .row
+            .col-sm-12
+              label Full Name
+                input#profile-fullname.form-control(name="fullName" type="string" value=userProfile.fullName)
+          .row
+            .col-sm-12
+              label Job Title
+                input#profile-jobtitle.form-control(name="jobTitle" type="string" value=userProfile.jobTitle)
+          .row
+            .col-sm-12
+              label Bio
+                input#profile-bio.form-control(name="bio" type="string" value=userProfile.bio)
+          .row
+            .col-sm-12
+              label Hide Email Address
+                input#profile-email-hidden.form-control(name="emailHidden" type="checkbox" checked=userProfile.emailHidden)
+          .row
+            .col-sm-12
+              input.btn.btn-primary(type="submit" value="Save")
+    else
+      p Please log in or sign up to continue.

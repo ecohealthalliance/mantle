@@ -1,0 +1,10 @@
+template(name="profileDetail")
+  .container
+    .row
+      .col-sm-12
+        .profile-detail
+          p Full Name: #{userProfile.fullName}
+          p Job Title: #{userProfile.jobTitle}
+          p Bio: #{userProfile.bio}
+          if userProfile.emailAddress
+            p Email Address: #{userProfile.emailAddress}
