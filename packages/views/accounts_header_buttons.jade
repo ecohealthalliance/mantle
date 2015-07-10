@@ -1,14 +1,13 @@
 template(name="accountsHeaderButtons")
-  ul.nav.navbar-nav.navbar-right
-    if currentUser
-      li
-        a(href="{{path route='profileEdit'}}") Profile
-      li.account
-        a.sign-out.navbar-btn(href="#")
-          i.fa.fa-sign-out
-          span Sign Out
-    else
-      li
-        a.sign-in.navbar-btn
-          i.fa.fa-sign-in
-          span Sign In
+  if currentUser
+    li
+      a(href="{{path route='profileEdit'}}") Profile
+    li.account
+      a.sign-out.navbar-btn(href="#")
+        i.fa.fa-sign-out
+        span Sign Out
+  else
+    li
+      a.sign-in.navbar-btn
+        i.fa.fa-sign-in
+        span Sign In

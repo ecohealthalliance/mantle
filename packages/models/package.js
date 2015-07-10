@@ -13,7 +13,9 @@ Package.onUse(function(api) {
   api.use('useraccounts:core@1.7.0');
   api.use('mongo');
   api.addFiles('user_profiles.coffee', ['client', 'server']);
+  api.addFiles('organizations.coffee', ['client', 'server']);
   api.export(['UserProfile', 'UserProfiles'], ['client', 'server']);
+  api.export(['Organization', 'Organizations'], ['client', 'server']);
 });
 
 Package.onTest(function(api) {
@@ -23,4 +25,5 @@ Package.onTest(function(api) {
   api.use('practicalmeteor:munit');
   api.use('test-helpers');
   api.addFiles('tests/server/user_profiles_test.coffee', 'server');
+  api.addFiles('tests/server/organizations_test.coffee', 'server');
 });

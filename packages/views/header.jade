@@ -7,6 +7,9 @@ template(name="header")
           a.navbar-brand(href="/")
             h1 Mantle
         .navbar-collapse.collapse
-          +accountsHeaderButtons
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href="{{path route='organizations'}}")
+                span Organizations
+            +accountsHeaderButtons
   +accountsModal state=state
-
