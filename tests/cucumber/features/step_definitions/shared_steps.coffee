@@ -7,7 +7,7 @@ do ->
 
     url = require('url')
 
-    @Given /^I am a new user$/, ->
+    @Before ->
       @server.call('reset')
       @client.url(url.resolve(process.env.ROOT_URL, '/'))
 
