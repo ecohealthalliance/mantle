@@ -20,3 +20,7 @@ Feature: Datasets
     And I fill out the dataset form
     And I submit the dataset form
     Then I should see an "Error" toast
+
+  Scenario: Not logged in
+    When I navigate to "/datasets/new"
+    Then I should see content "Please log in"
