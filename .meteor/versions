@@ -51,7 +51,7 @@ logging@1.0.7
 mantle:controllers@0.0.1
 mantle:fixtures@0.0.1
 mantle:models@0.0.1
-mantle:path@0.0.1
+mantle:route-helpers@0.0.1
 mantle:router@0.0.1
 mantle:styles@0.0.1
 mantle:views@0.0.1

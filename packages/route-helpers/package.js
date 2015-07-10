@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'mantle:path',
+  name: 'mantle:route-helpers',
   version: '0.0.1',
-  summary: 'Utility for generating URL paths',
+  summary: 'Utility for generating URL paths and changing the route',
   git: ''
 });
 
@@ -12,6 +12,7 @@ Package.onUse(function(api) {
   api.use('meteorhacks:flow-router@1.9.0');
   
   api.addFiles('helpers.coffee', 'client');
+  api.export('go', 'client');
 });
 
 Package.onTest(function(api) {

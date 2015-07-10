@@ -17,7 +17,7 @@ if Meteor.isClient
               toastr.error("Error")
             else
               toastr.success("Success")
-              window.location.pathname = "/datasets/#{datasetId}"
+              go "datasetDetail", {_id: datasetId}
 
 
 if Meteor.isServer

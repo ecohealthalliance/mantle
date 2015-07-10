@@ -12,6 +12,7 @@ Package.onUse(function(api) {
   api.use('reactive-var');
   api.use('mantle:models');
   api.use('mantle:views');
+  api.use('mantle:route-helpers');
   api.use('accounts-password');
   api.use('useraccounts:core');
   api.use('chrismbeckett:toastr');

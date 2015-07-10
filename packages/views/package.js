@@ -10,7 +10,7 @@ Package.onUse(function(api) {
   api.use('templating');
   api.use('mquandalle:jade@0.4.1');
   api.use('mantle:styles');
-  api.use('mantle:path');
+  api.use('mantle:route-helpers');
 
   api.addFiles('accounts_modal.jade');
   api.addFiles('accounts_header_buttons.jade')
