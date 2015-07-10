@@ -3,4 +3,11 @@ template(name="datasetForm")
     form
       .row
         .col-sm-12
-          input.upload(type="file")
+          label Name
+            input.form-control(name="name" type="string")
+      .row
+        .col-sm-12
+          input.upload(name="file" type="file")
+      .row
+        .col-sm-12
+          input.btn.btn-primary(type="submit" value="Save")

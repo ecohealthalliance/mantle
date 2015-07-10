@@ -1,7 +1,8 @@
 if Meteor.isClient
   Template.datasetForm.events
-    'change .upload': (event, template) ->
-      file = new FS.File event.target.files[0]
+    'submit form': (event, template) ->
+      event.preventDefault()
+      file = new FS.File event.target.file?.files[0]
       file.owner = Meteor.userId()
       RawFiles.insert file, (error, fileObject) ->
         if error
@@ -9,7 +10,7 @@ if Meteor.isClient
         else
           fields = {
             file: fileObject._id
-            name: fileObject.original.name
+            name: event.target.name?.value
           }
           Meteor.call 'createDataset', fields, (error, datasetId) ->
             if error
