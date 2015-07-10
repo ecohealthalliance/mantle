@@ -1,8 +1,7 @@
 Feature: Organizations
 
   Background:
-    Given I am a new user
-    And there is a test user in the database
+    Given there is a test user in the database
 
   Scenario: Creating a new organization
     When I log in as the test user
