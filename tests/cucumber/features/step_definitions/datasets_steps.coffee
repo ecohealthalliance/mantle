@@ -1,0 +1,39 @@
+do ->
+  'use strict'
+
+  path = require('path')
+  http = require('http')
+  url = require('url')
+
+  module.exports = ->
+
+    @When "I fill out the dataset form", (callback) ->
+      @browser
+        .waitForExist('input[name="name"]')
+        .setValue('input[name="name"]', 'Dataset Name')
+        .call(callback)
+
+    @When "I upload a file", (callback) ->
+      @browser
+        .chooseFile('input[name="file"]', path.join(process.cwd(), "files", "testfile"))
+        .call(callback)
+
+    @When "I submit the dataset form", (callback) ->
+      @browser
+        .submitForm('form')
+        .call(callback)
+
+    @Then /^the downloadable file content should be "([^"]*)"$/, (content, callback) ->
+
+      @browser
+        .waitForExist('.btn')
+        .getAttribute '.btn', 'href', (error, attr) ->
+          assert.ifError error
+          http.get attr, (response) ->
+            assert.equal response.statusCode, 200
+            data = ''
+            response.on 'data', (chunk) ->
+              data += chunk
+            response.on 'end', ->
+              assert.equal data, content
+              callback()
