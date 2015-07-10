@@ -3,8 +3,7 @@ body
   height 100%
 
 body
-  @extend .body-font
-  color $body-text
+  font-family inherit
   > div
     position relative
     min-height 100%
@@ -16,34 +15,16 @@ body
 .content-wrap
   padding-bottom $footer-height-actual+10
 
-h1
 h2
-h3
-h4
-h5
-  @extend .header-font
-  color $primary
-  font-weight 700
-
-h1
-  font-size 3em
-  font-weight 800
-
-h2
-  font-size 2em
   color $primary
 
 h3
-  font-size 1.5em
   color $secondary
 
 h4
   color $body-text
-  font-weight 400
-  font-size 1.5em
 
 h5
-  font-size 1.25em
   font-weight 400
   color $d-gray
 
