@@ -106,11 +106,12 @@ header
   outline 0
 
 .navbar-brand
-  padding 8px 0
+  padding 10px 0
   transition(.2s, color)
   +below(1)
     transition(.2s, color)
     width 75%
+    padding 9px 0
   &:hover
   &:focus
     span
@@ -134,6 +135,10 @@ header
   span
     +below(1)
       font-size 25px
+
+.navbar > .container .navbar-brand
+  +above(3)
+    margin-left 0
 
 .navbar-toggle
   float right
