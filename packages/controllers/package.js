@@ -20,5 +20,7 @@ Package.onUse(function(api) {
   api.addFiles('accounts_header_buttons.coffee', 'client');
   api.addFiles('profile_edit.coffee', ['client', 'server']);
   api.addFiles('profile_detail.coffee', ['client', 'server']);
+  api.addFiles('organizations.coffee', ['client', 'server']);
+  api.addFiles('organization_form.coffee', ['client', 'server']);
 });
 

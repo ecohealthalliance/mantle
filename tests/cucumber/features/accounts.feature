@@ -1,8 +1,5 @@
 Feature: Accounts
 
-  Background:
-    Given I am a new user
-
   Scenario: Creating a new account
     When I navigate to "/"
     And I open the account modal

@@ -17,3 +17,15 @@ FlowRouter.route '/profiles/:_id',
     FlowLayout.render 'layout',
       main: 'profileDetail'
       params: {"profileId": params._id}
+
+FlowRouter.route '/organizations',
+  name: 'organizations'
+  action: () ->
+    FlowLayout.render 'layout',
+      main: 'organizations'
+
+FlowRouter.route '/organizations/new',
+  name: 'newOrganization'
+  action: () ->
+    FlowLayout.render 'layout',
+      main: 'organizationForm'

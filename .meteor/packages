@@ -8,3 +8,4 @@ meteor-platform
 mantle:router
 xolvio:cucumber
 mantle:models
+mantle:fixtures
