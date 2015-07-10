@@ -1,0 +1,94 @@
+html
+body
+  height 100%
+
+.page-wrap
+  position relative
+  min-height 100%
+
+.content-wrap
+  padding-bottom $footer-height-actual+10
+
+h2
+  color $primary
+
+h3
+  color $secondary
+
+h4
+  color $body-text
+
+h5
+  font-weight 400
+  color $d-gray
+
+a
+button
+.btn
+  transition()
+  &:hover
+    transition()
+
+a
+  color $primary-strong
+  &:hover
+  &:focus
+    color $primary
+
+.btn
+  border-width 2px
+  .fa
+    vAlign()
+    padding 0 0 0 5px
+    font-size 110%
+    line-height 0
+
+.btn-primary
+  makeButton($secondary)
+
+.btn-success
+  makeButton($confirm)
+
+.btn-danger
+  makeButton($primary-strong)
+
+.button-default['disabled']
+.btn['disabled']
+  background lighten($secondary-light, 20%)
+  color $body-text
+  text-shadow none
+
+select.form-control
+input.form-control
+textarea.form-control
+  border 2px solid $m-gray
+  &:focus
+    outline 0
+    box-shadow none
+    border-color $secondary
+
+.col-sm-0
+  width 0%
+
+.rm-pad
+  padding 0
+
+.rm-pad-top
+  padding-top 0
+
+.rm-pad-btm
+  padding-bottom 0
+
+for $num in 1 2 3 4 5 6
+  .space-btm-{$num}
+    margin-bottom $num*10px
+
+  .space-top-{$num}
+    margin-top $num*10px
+
+for $num in 1 2 3
+  .border-btm-{$num}
+    addBorder('bottom', $num, $l-gray)
+
+  .border-top-{$num}
+    addBorder('top', $num, $l-gray)
