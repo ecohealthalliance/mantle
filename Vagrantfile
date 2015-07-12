@@ -16,7 +16,7 @@ Vagrant.configure(2) do |config|
 
       #Install dependencies
       sudo apt-get update
-      sudo apt-get -y install python-pip xvfb git libssl-dev
+      sudo apt-get -y install python-pip xvfb git libssl-dev phantomjs
       sudo pip install shyaml
       curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
       source /home/vagrant/.bashrc
