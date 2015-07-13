@@ -8,10 +8,8 @@ template(name="profileDetail")
           i.fa.fa-envelope
           span #{userProfile.emailAddress}
     .row
-      .col-sm-4.space-btm-3
-        .avatar.space-btm-2(style="background-image: url('http://placehold.it/800x800')")
       if userProfile.bio
-        .col-sm-8
+        .col-sm-10
           h3 About
           .bio
             each bioParagraphs userProfile.bio
