@@ -8,5 +8,4 @@ if Meteor.isClient
   
 if Meteor.isServer
   Meteor.publish 'organizationDetail', (id) ->
-    organization = Organizations.findOne(id)
     Organizations.find(id)
