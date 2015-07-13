@@ -1,5 +1,5 @@
 Template.header.onCreated ->
-  @state = new ReactiveVar("signIn")
+  @accountsState = new ReactiveVar("signIn")
 
 Template.header.helpers
-  state: -> Template.instance().state
+  accountsState: -> Template.instance().accountsState
