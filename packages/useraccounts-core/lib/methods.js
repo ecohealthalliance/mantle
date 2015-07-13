@@ -1,3 +1,4 @@
+
 Meteor.methods({
     ATRemoveService: function(service_name){
         var userId = this.userId;
@@ -88,14 +89,8 @@ if (Meteor.isServer) {
                 }).data;
 
                 if (!apiResponse.success) {
-                    try {
-                        var msg = apiResponse['error-codes'].join(", ");
-                    } catch(e) {
-                        console.error('Exception Caught: ',e);
-                        var msg = "Unknown Error.";
-                    }
-
-                    throw new Meteor.Error(403, AccountsTemplates.texts.errors.captchaVerification, msg);
+                    throw new Meteor.Error(403, AccountsTemplates.texts.errors.captchaVerification,
+                      apiResponse['error-codes'] ? apiResponse['error-codes'].join(", ") : "Unknown Error.");
                 }
             }
 
