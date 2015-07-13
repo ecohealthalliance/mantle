@@ -14,7 +14,4 @@ Package.onUse(function(api) {
   api.addFiles('helpers.coffee', 'client');
 });
 
-Package.onTest(function(api) {
-  api.use('tinytest');
-  api.use('mantle:router');
-});
+
