@@ -1,0 +1,7 @@
+{
+  "name": "Your test name",
+  "browsers": [
+    { "browserName": "chrome", "version": "beta", "platform": "Windows 7" },
+    { "browserName": "internet explorer", "version": "11", "platform": "Windows 7" },
+    { "browserName": "safari", "version": "6", "platform": "OS X 10.8" },
+
