@@ -3,13 +3,14 @@ template(name="profileDetail")
     .profile-name-title.space-btm-2
       h1 #{userProfile.fullName}
       p.job-title.rm-margin-btm #{userProfile.jobTitle}
+      if userProfile.emailAddress
+        a(href="mailto:#{userProfile.emailAddress}")
+          i.fa.fa-envelope
+          span #{userProfile.emailAddress}
     .row
       .col-sm-4.space-btm-3
         .avatar.space-btm-2(style="background-image: url('http://placehold.it/800x800')")
-        if userProfile.emailAddress
-          a(href="mailto:#{userProfile.emailAddress}")
-            i.fa.fa-envelope
-            span #{userProfile.emailAddress}
-      .col-sm-8
-        h3 About
-        p.bio #{userProfile.bio}
+      if userProfile.bio
+        .col-sm-8
+          h3 About
+          p.bio #{userProfile.bio}
