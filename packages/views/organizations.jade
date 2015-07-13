@@ -9,13 +9,14 @@ template(name="organizations")
       tbody
         each organizations
           tr
-            .container
-              .row
-                .col-sm-3
-                  td
-                    p.lead= name
-                .col-sm-9
-                  td= description
+            a(href="{{path route='organizationDetail' params=this}}")
+              .container
+                .row
+                  .col-sm-3
+                    td
+                      p.lead= name
+                  .col-sm-9
+                    td= description
   else
     .container
       .row
