@@ -2,8 +2,8 @@ template(name="accountsHeaderButtons")
   if currentUser
     li.dropdown
       a.dropdown-toggle.admin-settings(href='#' data-toggle='dropdown' aria-expanded='false')
-        i.fa.fa-gear
         span Account
+        i.fa.fa-gear
       ul.dropdown-menu(role='menu')
         li
           a(href="{{path route='profileEdit'}}")
@@ -18,4 +18,3 @@ template(name="accountsHeaderButtons")
       a.sign-in.navbar-btn
         i.fa.fa-sign-in
         span Sign In
-  +accountsModal state=state
