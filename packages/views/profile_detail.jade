@@ -13,4 +13,6 @@ template(name="profileDetail")
       if userProfile.bio
         .col-sm-8
           h3 About
-          p.bio #{userProfile.bio}
+          .bio
+            each bioParagraphs userProfile.bio
+              p #{this}

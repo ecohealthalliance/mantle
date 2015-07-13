@@ -1,10 +1,12 @@
 if Meteor.isClient
   Template.profileDetail.onCreated ->
     @subscribe('userProfileDetail', @data.profileId)
-  
+
   Template.profileDetail.helpers
     userProfile: ->
       UserProfiles.findOne(@profileId)
+    bioParagraphs: (bio) ->
+      bio.split(/\r?\n\n/g)
 
 if Meteor.isServer
   Meteor.publish 'userProfileDetail', (id) ->
