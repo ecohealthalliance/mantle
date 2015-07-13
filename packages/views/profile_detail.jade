@@ -1,10 +1,15 @@
 template(name="profileDetail")
-  .container
+  .container.profile-detail
+    .profile-name-title.space-btm-2
+      h1 #{userProfile.fullName}
+      p.job-title.rm-margin-btm #{userProfile.jobTitle}
     .row
-      .col-sm-12
-        .profile-detail
-          p Full Name: #{userProfile.fullName}
-          p Job Title: #{userProfile.jobTitle}
-          p Bio: #{userProfile.bio}
-          if userProfile.emailAddress
-            p Email Address: #{userProfile.emailAddress}
+      .col-sm-4.space-btm-3
+        .avatar.space-btm-2(style="background-image: url('http://placehold.it/800x800')")
+        if userProfile.emailAddress
+          a(href="mailto:#{userProfile.emailAddress}")
+            i.fa.fa-envelope
+            span #{userProfile.emailAddress}
+      .col-sm-8
+        h3 About
+        p.bio #{userProfile.bio}

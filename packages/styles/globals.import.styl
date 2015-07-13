@@ -22,6 +22,13 @@ h5
   font-weight 400
   color $d-gray
 
+.view-header
+  margin-bottom 15px
+  +below(1)
+    margin-bottom 25px
+  h1
+    margin-bottom 0
+
 a
 button
 .btn
@@ -46,6 +53,9 @@ a
 .btn-primary
   makeButton($secondary)
 
+.btn-default
+  makeButton($ll-gray, $body-text, true)
+
 .btn-success
   makeButton($confirm)
 
@@ -62,10 +72,27 @@ select.form-control
 input.form-control
 textarea.form-control
   border 2px solid $m-gray
+  font-size 14px
+  font-weight normal
   &:focus
     outline 0
     box-shadow none
     border-color $secondary
+
+input[type="submit"]
+  +below(4)
+    width 40%
+    font-size inherit
+  +mobile()
+    width 100%
+    padding 12px
+    font-size 110%
+
+
+.checkbox
+  label
+    span
+      font-weight bold
 
 .col-sm-0
   width 0%
@@ -78,6 +105,49 @@ textarea.form-control
 
 .rm-pad-btm
   padding-bottom 0
+
+.rm-margin-top
+  margin-top 0
+
+.rm-margin-btm
+  margin-bottom 0
+
+.inline
+  display inline-block
+  vertical-align middle
+
+.toggleSwitch
+  position relative
+  width 100px
+  height 30px
+  border 2px solid $m-gray
+  border-radius 15px
+  cursor pointer
+  &::hover
+    border-color red
+  &.true
+  &.false
+    padding-top 3px
+    padding-left 30px
+    transition .2s
+    &::before
+      content ''
+      display inline-block
+      border-radius 100%
+      background #CCC
+      height 20px
+      width 20px
+      position absolute
+      top 50%
+      transform translate(0, -50%)
+      left 5px
+      transition .2s
+  &.false
+    padding-right 30px
+    padding-left 15px
+    &::before
+      right 5px
+      left auto
 
 for $num in 1 2 3 4 5 6
   .space-btm-{$num}

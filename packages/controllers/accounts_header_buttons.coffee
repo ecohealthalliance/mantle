@@ -3,6 +3,8 @@ Template.accountsHeaderButtons.onCreated ->
 
 Template.accountsHeaderButtons.helpers
   state: -> Template.instance().state
+  log: (l)->
+    console.log l
 
 Template.accountsHeaderButtons.events
   'click .sign-out' : (evt, instance) ->

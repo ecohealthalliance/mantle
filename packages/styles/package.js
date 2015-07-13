@@ -18,6 +18,7 @@ Package.onUse(function(api) {
   api.addFiles('globals.import.styl');
 
   api.addFiles('accounts.import.styl');
+  api.addFiles('profile.import.styl');
 
   api.addFiles('main.styl');
 });
