@@ -15,7 +15,4 @@ Package.onUse(function(api) {
   api.export('go', 'client');
 });
 
-Package.onTest(function(api) {
-  api.use('tinytest');
-  api.use('mantle:router');
-});
+
