@@ -17,5 +17,8 @@ Package.onUse(function(api) {
   api.addFiles('extends.import.styl');
   api.addFiles('globals.import.styl');
 
+  api.addFiles('header.import.styl');
+  api.addFiles('footer.import.styl');
+
   api.addFiles('main.styl');
 });

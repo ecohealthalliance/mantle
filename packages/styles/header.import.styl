@@ -1,0 +1,174 @@
+header
+  position relative
+  z-index $mid-layer
+  border-bottom 2px solid $primary
+
+.container > .navbar-header
+  +below(3)
+    margin 0
+
+.navbar
+  min-height $header-height
+  margin-bottom 0
+  border 0
+  border-radius 0
+  background $header-footer-BG
+  @extend .dark-shadow
+  .btn
+  .btn-default
+    padding 6px 12px
+    margin-left 5px
+    border 0
+    font-size 13px
+    text-shadow none
+    color $body-text
+    line-height 1.42857143
+    buttonHover($nav-hover, $white-trans)
+    transition()
+    &:focus
+      background white
+      outline $primary
+      transition()
+    +between(1,2)
+      width 20%
+
+.nav
+  float right
+  +below(1)
+    float none
+  li
+    +below(1)
+      border-bottom 1px solid $secondary-light
+      &.account
+        margin-left 0
+        border 0
+      &.main-nav-last
+        margin 0
+      .btn
+        display block
+        float left
+        width 40%
+        margin 15px
+        padding 10px
+      &:last-of-type
+        border 0
+      a
+        &:hover
+          background $primary
+
+.nav .open > a
+.nav .open > a:hover
+  background $primary
+
+.navbar-nav
+  > li > a
+    buttonHover($nav-hover)
+    color white
+    font-size 13px
+    line-height 13px
+    padding 20px 15px
+    &:focus
+      outline 5px auto darken($primary, 10%)
+      background $primary
+    i
+      vAlign()
+      font-size 16px
+    &.navbar-btn
+      margin-top 9px
+      margin-left 15px
+      padding 9px 10px
+      border-radius 5px
+      background $white-trans
+      color #333
+      text-shadow none
+      line-height 100%
+      transition(background-color)
+      &:hover,
+      &:focus
+        transition(background-color)
+        background $primary
+        @extend .dark-shadow
+        color white
+    +below(1)
+      padding 12px 30px
+  +below(1)
+    margin-right 0
+    margin-top 0
+    > li > a.navbar-btn
+      width 50%
+      margin 15px auto 8px auto
+      padding 15px
+      text-align center
+
+.navbar-nav .active a
+.navbar-nav .active a:focus
+  background nav-hover
+  outline 0
+
+.navbar-brand
+  padding 10px 0
+  transition(.2s, color)
+  +below(1)
+    transition(.2s, color)
+    width 75%
+    padding 9px 0
+  &:hover
+  &:focus
+    span
+    h1
+      transition(.2s, color)
+      color lighten($secondary,80%)
+  h1
+    vAlign()
+    margin 0
+    padding-left 3px
+    bg('../../images/mantle-logo', 130px, 32px,'png')
+    transition(.2s, color)
+    color white
+    font-weight 600
+    text-transform uppercase
+    line-height 18px
+    font-size 18px
+    +below(1)
+      font-size 14px
+      line-height 14px
+  span
+    +below(1)
+      font-size 25px
+
+.navbar > .container .navbar-brand
+  +above(3)
+    margin-left 0
+
+.navbar-toggle
+  float right
+  padding 13px 10px
+  margin 10px 0 0 0
+  border 1px solid white
+  border-radius 4px
+  transition()
+  color white
+  font-size 14px
+  line-height 0
+  &:hover
+  &:active
+  &:focus
+    transition()
+    background $white-trans
+    color black
+
+.navbar-collapse
+  +below(1)
+    padding-right 0
+    padding-bottom 15px
+    border-top 4px solid $secondary-dark
+    box-shadow none
+    &.in
+      border-top 4px solid $secondary-dark
+      box-shadow none
+    &.collapse
+    &.collapsing
+      padding 0
+
+.main-nav-last
+  margin-right 0
