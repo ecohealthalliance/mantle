@@ -4,7 +4,9 @@ template(name="profileEdit")
       if Template.subscriptionsReady
         .view-header
           h1.inline Edit Profile
-          a.btn.btn-default.profile-detail-link.inline.header-btn(href= "{{path route='profileDetail' params=userProfile}}") View Public Profile
+          a.btn.btn-default.profile-detail-link.header-btn(href= "{{path route='profileDetail' params=userProfile}}")
+            span View Public Profile
+            i.fa.fa-user
         .row
           .col-md-8
             form#edit-profile-form
@@ -25,6 +27,6 @@ template(name="profileEdit")
                 label
                   input#profile-email-hidden(name="emailHidden" type="checkbox" checked=userProfile.emailHidden)
                   span Hide Email Address?
-              input.btn.btn-success(type="submit" value="Save")
+              input.btn.btn-primary(type="submit" value="Save")
     else
       p Please log in or sign up to continue.

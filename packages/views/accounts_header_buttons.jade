@@ -2,8 +2,8 @@ template(name="accountsHeaderButtons")
   if currentUser
     li.dropdown
       a.dropdown-toggle.admin-settings(href='#' data-toggle='dropdown' aria-expanded='false')
-        span Account
-        i.fa.fa-gear
+        span=currentUserInfo.fullName
+        i.fa.fa-sort-desc
       ul.dropdown-menu(role='menu')
         li
           a(href="{{path route='profileEdit'}}")

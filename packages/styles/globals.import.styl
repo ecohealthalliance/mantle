@@ -48,6 +48,12 @@ a
   &:hover
   &:focus
     color $primary
+  &.with-icon-right
+    .fa
+      margin-left 3px
+  &.with-icon-left
+    .fa
+      margin-right 3px
 
 .btn
   border-width 2px
@@ -74,6 +80,15 @@ a
   background lighten($secondary-light, 20%)
   color $body-text
   text-shadow none
+
+.header-btn
+  display inline-block
+  margin-left 15px
+  +below(1)
+    display block
+    margin 10px 0
+  .fa
+    color $d-gray
 
 select.form-control
 input.form-control
@@ -122,39 +137,6 @@ input[type="submit"]
 .inline
   display inline-block
   vertical-align middle
-
-.toggleSwitch
-  position relative
-  width 100px
-  height 30px
-  border 2px solid $m-gray
-  border-radius 15px
-  cursor pointer
-  &::hover
-    border-color red
-  &.true
-  &.false
-    padding-top 3px
-    padding-left 30px
-    transition .2s
-    &::before
-      content ''
-      display inline-block
-      border-radius 100%
-      background #CCC
-      height 20px
-      width 20px
-      position absolute
-      top 50%
-      transform translate(0, -50%)
-      left 5px
-      transition .2s
-  &.false
-    padding-right 30px
-    padding-left 15px
-    &::before
-      right 5px
-      left auto
 
 for $num in 1 2 3 4 5 6
   .space-btm-{$num}

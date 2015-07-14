@@ -38,8 +38,9 @@ header
     float none
   li
     &.open
-        > a
-          background $primary !important
+      > a
+        &.dropdown-toggle
+          background $primary
     +below(1)
       border-bottom 1px solid $secondary-light
       &.account
@@ -70,13 +71,19 @@ header
     font-size 13px
     line-height 13px
     padding 20px 15px
+    i
+    span
+      vAlign()
+    i
+      font-size 16px
+      line-height 0
+    &.admin-settings
+      .fa
+        margin-top -3px
+        margin-left 3px
     &:focus
       outline 5px auto darken($primary, 10%)
       background $primary
-    i
-      vAlign()
-      font-size 16px
-      line-height 0
     &.navbar-btn
       margin-top 9px
       margin-left 15px
@@ -121,9 +128,6 @@ header
       text-align center
       margin 15px auto 8px auto
       padding 15px
-    .admin-settings
-      span
-        display inline-block
   .dropdown-menu
     padding-top 0
     border-top 2px solid $primary

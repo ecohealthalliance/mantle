@@ -1,16 +1,16 @@
 template(name="profileDetail")
   .container.profile-detail
     .profile-name-title.space-btm-2
-      h1 #{userProfile.fullName}
-      p.job-title.rm-margin-btm #{userProfile.jobTitle}
+      h1= userProfile.fullName
+      p.job-title.rm-margin-btm= userProfile.jobTitle
       if userProfile.emailAddress
-        a(href="mailto:#{userProfile.emailAddress}")
+        a.with-icon-left(href="mailto:#{userProfile.emailAddress}")
           i.fa.fa-envelope
-          span #{userProfile.emailAddress}
+          span= userProfile.emailAddress
     .row
       if userProfile.bio
         .col-sm-10
           h3 About
           .bio
             each bioParagraphs userProfile.bio
-              p #{this}
+              p= this
