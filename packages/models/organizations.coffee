@@ -4,6 +4,21 @@ Organization = Astro.Class
   collection: Organizations
   transform: true
   fields:
-    name: 'string'
-    description: 'string'
-    createdById: 'string'
+    name:
+      type: 'string'
+      validators: [
+        Validators.required()
+        Validators.string()
+      ]
+    description:
+      type: 'string'
+      validators: [
+        Validators.required()
+        Validators.string()
+      ]
+    createdById:
+      type: 'string'
+      validators: [
+        Validators.required()
+        Validators.string()
+      ]
