@@ -2,7 +2,7 @@ template(name="accountsHeaderButtons")
   if currentUser
     li.dropdown
       a.dropdown-toggle.admin-settings(href='#' data-toggle='dropdown' aria-expanded='false')
-        span=currentUserInfo.fullName
+        span=currentUserProfile.fullName
         i.fa.fa-sort-desc
       ul.dropdown-menu(role='menu')
         li

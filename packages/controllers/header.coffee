@@ -5,8 +5,8 @@ if Meteor.isClient
 
   Template.header.helpers
     accountsState: -> Template.instance().accountsState
-    currentUserInfo: -> UserProfiles.findOne({userId: Meteor.userId()})
+    currentUserProfile: -> UserProfiles.findOne({userId: Meteor.userId()})
 
 if Meteor.isServer
-  Meteor.publish 'currentUserInfo', ->
+  Meteor.publish 'currentUserProfile', ->
     UserProfiles.findOne({userId: Meteor.userId()})
