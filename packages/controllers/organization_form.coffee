@@ -20,7 +20,10 @@ if Meteor.isServer
         organization = new Organization()
         organization.set(fields)
         organization.set('createdById', this.userId)
-        organization.save ->
-          organization
+        if organization.validateAll()
+          organization.save ->
+            organization
+        else
+          throw "Validation error"
       else
         throw "Not logged in"
