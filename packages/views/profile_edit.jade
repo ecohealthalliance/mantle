@@ -12,18 +12,18 @@ template(name="profileEdit")
                 .col-md-8
                   label
                     span Full Name
-                    input.profile-fullname.form-control(name="fullName" type="text" value=userProfile.fullName)
+                    input#profile-fullname.form-control(name="fullName" type="text" value=userProfile.fullName)
               .row
                 .col-md-8
                   label
                     span Job Title
-                    input.profile-jobtitle.form-control(name="jobTitle" type="text" value=userProfile.jobTitle)
+                    input#profile-jobtitle.form-control(name="jobTitle" type="text" value=userProfile.jobTitle)
               label
                 span Biography
-                textarea.profile-bio.form-control(name="bio") #{userProfile.bio}
+                textarea#profile-bio.form-control(name="bio") #{userProfile.bio}
               .checkbox
                 label
-                  input.profile-email-hidden(name="emailHidden" type="checkbox" checked=userProfile.emailHidden)
+                  input#profile-email-hidden(name="emailHidden" type="checkbox" checked=userProfile.emailHidden)
                   span Hide Email Address?
               input.btn.btn-success(type="submit" value="Save")
     else
