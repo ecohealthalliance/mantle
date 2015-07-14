@@ -16,7 +16,7 @@ Package.onUse(function(api) {
   api.use('useraccounts:core');
   api.use('chrismbeckett:toastr');
 
-  api.addFiles('header.coffee', 'client');
+  api.addFiles('header.coffee', ['client', 'server']);
   api.addFiles('accounts_modal.coffee', 'client');
   api.addFiles('accounts_header_buttons.coffee', 'client');
   api.addFiles('profile_edit.coffee', ['client', 'server']);
