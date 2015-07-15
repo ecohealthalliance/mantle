@@ -29,8 +29,6 @@ header
       background white
       outline $primary
       transition()
-    +between(1,2)
-      width 20%
 
 .nav
   float right
@@ -65,11 +63,8 @@ header
       font-size 13px
       line-height 13px
       padding 20px 15px
-      &.navbar-btn
-        width 50%
-        margin 15px auto 8px auto
-        padding 15px
-        text-align center
+      +below(1)
+        padding 12px 30px
       i
       span
         vAlign()
@@ -84,11 +79,12 @@ header
         outline 5px auto darken($primary, 10%)
         background $primary
       &.navbar-btn
-        margin-top 9px
+        margin-top 11px
         margin-left 15px
         padding 9px 10px
         border-radius 5px
         background $white-trans
+        text-align center
         color #333
         text-shadow none
         line-height 100%
@@ -99,8 +95,11 @@ header
           background $primary
           @extend .dark-shadow
           color white
-      +below(1)
-        padding 12px 30px
+        +below(1)
+          float none
+          width 50%
+          margin 10px auto
+          padding 12px inherit
   li
     &.open
       +below(1)
@@ -127,10 +126,10 @@ header
               color white
               font-size 12px
               padding 10px 15px 10px 40px
-            &:hover
-              background $primary
-            &.dropdown-toggle
-              background $primary
+              &:hover
+                background $primary
+              &.dropdown-toggle
+                background $primary
   .dropdown-menu
     padding-top 0
     border-top 2px solid $primary

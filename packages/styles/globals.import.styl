@@ -4,7 +4,7 @@ body
 
 body
   font-family inherit
-  > div
+  id['__flow-root']
     position relative
     min-height 100%
 
@@ -110,6 +110,20 @@ input[type="submit"]
     padding 12px
     font-size 110%
 
+.toast-top-right-custom
+  right 15px
+  top $header-height+20
+  +below(2)
+    right 0
+    bottom $footer-height-actual+10
+    top auto
+    width 100%
+    height $header-height
+
+#toast-container
+  > div
+    +below(2)
+      width 100% !important
 
 .checkbox
   label
