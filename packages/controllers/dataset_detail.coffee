@@ -6,9 +6,6 @@ if Meteor.isClient
     dataset: ->
       Datasets.findOne(@datasetId)
 
-    file: (id) ->
-      RawFiles.findOne id
-
 if Meteor.isServer
   Meteor.publish 'datasetDetail', (id) ->
     dataset = Datasets.findOne

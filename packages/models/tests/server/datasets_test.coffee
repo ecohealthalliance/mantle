@@ -10,9 +10,9 @@ describe 'Dataset attributes', ->
     expect(dataset.name).to.eq('Dataset Name')
 
   it 'includes file', ->
-    dataset.set('file', 'fileid')
+    dataset.set('fileId', 'fileid')
     dataset.save
-    expect(dataset.file).to.eq('fileid')
+    expect(dataset.fileId).to.eq('fileid')
 
   it 'includes createdById', ->
     dataset.set('createdById', 'userid')

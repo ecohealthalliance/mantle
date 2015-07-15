@@ -3,9 +3,10 @@ template(name="datasetDetail")
     .row
       .col-sm-12
         .dataset-detail
-          p Name: #{dataset.name}
-          +with file dataset.file
-            if isUploaded
-              a.btn.btn-primary(href="{{this.url download=true}}" target="_blank") Download
-            else
-              p Upload in progress
+          +with dataset
+            p Name: #{name}
+            +with file
+              if isUploaded
+                a.btn.btn-primary(href="{{this.url download=true}}" target="_blank") Download
+              else
+                p Upload in progress

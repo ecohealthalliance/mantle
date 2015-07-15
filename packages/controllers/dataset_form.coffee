@@ -2,21 +2,17 @@ if Meteor.isClient
   Template.datasetForm.events
     'submit form': (event, template) ->
       event.preventDefault()
-      inputFile = event.target.file?.files[0]
-      unless inputFile
+      file = event.target.file?.files[0]
+      unless file
         toastr.error("Error")
       else
-        file = new FS.File inputFile
-        file.owner = Meteor.userId()
-        RawFiles.insert file, (error, fileObject) ->
+        dataset = new Dataset()
+        dataset.set 'name', event.target.name?.value
+        dataset.uploadFile file, (error) ->
           if error
             toastr.error("Error")
           else
-            fields = {
-              file: fileObject._id
-              name: event.target.name?.value
-            }
-            Meteor.call 'createDataset', fields, (error, datasetId) ->
+            Meteor.call "saveDataset", dataset, (error, datasetId) ->
               if error
                 toastr.error("Error")
               else
@@ -26,8 +22,7 @@ if Meteor.isClient
 
 if Meteor.isServer
   Meteor.methods
-    createDataset: (fields) ->
-      dataset = new Dataset()
-      dataset.set(fields)
+    saveDataset: (dataset) ->
       dataset.set('createdById', @userId)
-      dataset.save()
+      dataset.save ->
+        dataset._id
