@@ -3,7 +3,8 @@ if Meteor.isClient
     @subscribe('currentUserName', Meteor.userId())
 
   Template.accountsHeaderButtons.helpers
-    currentUserName: -> UserProfiles.findOne({userId: Meteor.userId()}).fullName
+    currentUserName: ->
+      UserProfiles.findOne({userId: Meteor.userId()})?.fullName
 
   Template.accountsHeaderButtons.events
     'click .sign-out' : (evt, instance) ->
