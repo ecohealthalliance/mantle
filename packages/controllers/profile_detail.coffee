@@ -7,6 +7,9 @@ if Meteor.isClient
       UserProfiles.findOne(@profileId)
     bioParagraphs: (bio) ->
       bio.split(/\r?\n\n/g)
+    editProfile: ->
+      UserProfiles.findOne(@profileId)?.userId is Meteor.userId()
+
 
 if Meteor.isServer
   Meteor.publish 'userProfileDetail', (id) ->
