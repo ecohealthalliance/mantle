@@ -1,18 +1,13 @@
 if Meteor.isClient
   Template.header.onCreated ->
-    @subscribe('currentUserInfo', Meteor.userId())
+    @subscribe('currentUserName', Meteor.userId())
     @accountsState = new ReactiveVar("signIn")
 
   Template.header.helpers
     accountsState: -> Template.instance().accountsState
-    currentUserInfo: -> UserProfiles.findOne({userId: Meteor.userId()})
+    currentUserName: -> UserProfiles.findOne({userId: Meteor.userId()})
 
 if Meteor.isServer
-  Meteor.publish 'currentUserInfo', (id) ->
-    profile = UserProfiles.findOne({userId: id})
-    if profile.emailHidden
-      UserProfiles.find({userId: id}, fields:
-        emailAddress: false
-      )
-    else
-      UserProfiles.find({userId: id})
+  Meteor.publish 'currentUserName', (id) ->
+    UserProfiles.find({userId: id}, {fields: {userId: 1, fullName: 1}})
+
