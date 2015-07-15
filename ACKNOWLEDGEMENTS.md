@@ -12,8 +12,8 @@ https://www.meteor.com/
 NODE.JS  
 https://nodejs.org/
 
-Canonical  
-http://www.canonical.com/
+Ubuntu  
+http://www.ubuntu.com/
 
 Vagrant  
 https://www.vagrantup.com/
