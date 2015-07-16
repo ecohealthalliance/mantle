@@ -1,0 +1,42 @@
+{
+  "name": "Mantle",
+  "description": "The best project ever.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ecohealthalliance/mantle",
+  "author": {
+    "name": "Freddie Rosario",
+    "email": "rosario@ecohealthalliance.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ecohealthalliance/mantle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ecohealthalliance/mantle/issues"
+  },
+  "licenses": [
+    {
+      "type": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "main": "",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "scripts": {
+    "test": "grunt cucumber"
+  },
+  "devDependencies": {
+    "grunt-env": "latest",
+    "grunt-simple-mocha": "latest",
+    "grunt-concurrent": "latest",
+    "wd": "latest",
+    "chai": "latest",
+    "chai-as-promised": "latest",
+    "lodash": "latest",
+    "colors": "latest",
+    "grunt": "~0.4.5"
+  },
+  "keywords": []
+}
