@@ -1,3 +1,6 @@
+if Meteor.isClient
+  FlowLayout.setRoot('body');
+
 FlowRouter.route '/',
   name: 'splashPage'
   action: () ->
