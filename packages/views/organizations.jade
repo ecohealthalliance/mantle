@@ -1,6 +1,6 @@
 template(name="organizations")
   if currentUser
-    .container
+    .container.view-header
       h2.inline Organizations
       a.btn.btn-default.new-organization-link.header-btn(href="{{path route='newOrganization'}}")
         span Create
@@ -8,8 +8,8 @@ template(name="organizations")
     table.table.table-striped.organizations-table
       tbody
         each organizations
-          tr
-            .container.organization
+          tr.organization-wrap
+            .container
               .row
                 .col-sm-3
                   td

@@ -29,108 +29,117 @@ header
       background white
       outline $primary
       transition()
-    +between(1,2)
-      width 20%
 
 .nav
   float right
   +below(1)
     float none
-  li
-    &.open
-      > a
-        &.dropdown-toggle
-          background $primary
-    +below(1)
-      border-bottom 1px solid $secondary-light
-      &.account
-        margin-left 0
-        border 0
-      &.main-nav-last
-        margin 0
-      .btn
-        display block
-        float left
-        width 40%
-        margin 15px
-        padding 10px
-      &:last-of-type
-        border 0
-      a
-        &:hover
-          background $primary
-
-.nav .open > a
-.nav .open > a:hover
-  background $primary
+    border-bottom 1px solid $secondary-light
+    &.account
+      margin-left 0
+      border 0
+    &.main-nav-last
+      margin 0
+    .btn
+      display block
+      float left
+      width 40%
+      margin 15px
+      padding 10px
+    &:last-of-type
+      border 0
+    a
+      &:hover
+        background $primary
 
 .navbar-nav
-  > li > a
-    buttonHover($nav-hover)
-    color white
-    font-size 13px
-    line-height 13px
-    padding 20px 15px
-    i
-    span
-      vAlign()
-    i
-      font-size 16px
-      line-height 0
-    &.admin-settings
-      .fa
-        margin-top -3px
-        margin-left 3px
-    &:focus
-      outline 5px auto darken($primary, 10%)
-      background $primary
-    &.navbar-btn
-      margin-top 9px
-      margin-left 15px
-      padding 9px 10px
-      border-radius 5px
-      background $white-trans
-      color #333
-      text-shadow none
-      line-height 100%
-      transition(background-color)
-      &:hover,
-      &:focus
-        transition(background-color)
-        background $primary
-        @extend .dark-shadow
-        color white
-    +below(1)
-      padding 12px 30px
   +below(1)
     margin-right 0
     margin-top 0
-    > li > a.navbar-btn
-      width 50%
-      margin 15px auto 8px auto
-      padding 15px
-      text-align center
-    .open
+  > li
+    > a
+      buttonHover($nav-hover)
+      color white
+      font-size 13px
+      line-height 13px
+      padding 20px 15px
+      +below(1)
+        padding 12px 30px
+      i
+      span
+        vAlign()
+      i
+        font-size 16px
+        line-height 0
+      &.admin-settings
+        .fa
+          margin-top -3px
+          margin-left 3px
+      &:focus
+        outline 5px auto darken($primary, 10%)
+        background $primary
+      &.navbar-btn
+        margin-top 11px
+        margin-left 15px
+        padding 9px 10px
+        border-radius 5px
+        background $white-trans
+        text-align center
+        color #333
+        text-shadow none
+        line-height 100%
+        transition(background-color)
+        &:hover,
+        &:focus
+          transition(background-color)
+          background $primary
+          @extend .dark-shadow
+          color white
+        +below(1)
+          float none
+          width 50%
+          margin 10px auto
+          padding 12px inherit
+  li
+    &.open
+      +below(1)
+        .dropdown-menu
+          border-top 4px solid $primary-dark
+            > li
+              border-bottom 1px solid $secondary-light
+              &:last-of-type
+                border 0
+              > a
+                color white
+                font-size 12px
+                &:hover
+                  background $primary
+      > a
+        &:hover
+          background $primary
+        &.dropdown-toggle
+          background $primary
       .dropdown-menu
-        border-top 4px solid $primary-dark
-          > li
-            border-bottom 1px solid $secondary-light
-            &:last-of-type
-              border 0
-            > a
+        > li
+          > a
+            +below(1)
               color white
-              padding 10px 15px 10px 45px
               font-size 12px
+              padding 10px 15px 10px 40px
               &:hover
                 background $primary
-    > li > a.navbar-btn
-      width 50%
-      text-align center
-      margin 15px auto 8px auto
-      padding 15px
+              &.dropdown-toggle
+                background $primary
   .dropdown-menu
     padding-top 0
     border-top 2px solid $primary
+    +below(1)
+      padding 0
+      position static
+      min-width 100%
+      background none
+      box-shadow none
+      border 0
     > li
       border-bottom 1px solid $border-gray
       text-shadow none
@@ -141,11 +150,6 @@ header
         position relative
         padding 8px 20px
         text-shadow none
-        +below(1)
-          padding 8px 35px !important
-          color white
-          translate none
-          font-size 12px
         span
           padding-right 5px
         i
@@ -159,13 +163,6 @@ header
             position static
             color white
             centerPosition(0,0)
-    +below(1)
-      padding 0
-      position static
-      min-width 100%
-      background none
-      box-shadow none
-      border 0
 
 .navbar-nav .active a
 .navbar-nav .active a:focus

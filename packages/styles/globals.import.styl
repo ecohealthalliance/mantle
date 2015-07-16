@@ -4,9 +4,6 @@ body
 
 body
   font-family inherit
-  > div
-    position relative
-    min-height 100%
 
 .page-wrap
   position relative
@@ -89,6 +86,21 @@ a
     margin 10px 0
   .fa
     color $d-gray
+
+.toast-top-right-custom
+  right 15px
+  top $header-height+20
+  +below(2)
+    right 0
+    bottom $footer-height-actual+10
+    top auto
+    width 100%
+    height $header-height
+
+#toast-container
+  > div
+    +below(2)
+      width 100% !important
 
 .col-sm-0
   width 0%
