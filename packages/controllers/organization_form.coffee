@@ -1,4 +1,15 @@
 if Meteor.isClient
+  Template.organizationForm.onCreated ->
+    Session.set('organization', new Organization())
+
+  Template.organizationForm.helpers
+    organization: ->
+      Session.get('organization')
+
+    errorForName: ->
+      organization = Session.get('organization')
+      organization.getValidationErrors().name
+
   Template.organizationForm.events
     'submit form': (event) ->
       event.preventDefault()
@@ -7,23 +18,26 @@ if Meteor.isClient
         name: form.name?.value
         description: form.description?.value
       }
-      Meteor.call 'createOrganization', fields, (error, response) ->
+      organization = Session.get('organization')
+      organization.set(fields)
+
+      Meteor.call 'createOrganization', organization, (error, response) =>
         if error
+          organization.catchValidationException(error)
           toastr.error("Error")
         else
           toastr.success("Success")
+        Session.set('organization', organization)
 
 if Meteor.isServer
   Meteor.methods
-    createOrganization: (fields) ->
+    createOrganization: (organization) ->
       if this.userId
-        organization = new Organization()
-        organization.set(fields)
         organization.set('createdById', this.userId)
         if organization.validateAll()
           organization.save ->
             organization
         else
-          throw "Validation error"
+          organization.throwValidationException()
       else
         throw "Not logged in"
