@@ -5,3 +5,19 @@ template(name="organizationDetail")
         .col-sm-12
           p.lead= organization.name
           p= organization.description
+      .row
+        .panel.panel-default
+          .panel-heading Members
+          .panel-body
+            unless userIsMember
+              a.btn.btn-default.join-organization Join
+          table.table
+            thead
+              tr
+                th Name
+                th Email
+            tbody
+              each members
+                tr
+                  td.name=fullName
+                  td.email=emailAddress

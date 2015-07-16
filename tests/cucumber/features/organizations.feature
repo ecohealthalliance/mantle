@@ -14,3 +14,12 @@ Feature: Organizations
     When I click on the organization link
     Then I should be on the "Test Organization" detail page
     And I should see content "Test Organization"
+
+  @new
+  Scenario: Joining an organization
+    Given there is an organization in the database with name "Test Organization"
+    When I log in as the test user
+    And I navigate to "/organizations"
+    And I click on the organization link
+    And I click on "Join"
+    Then I see that I am a member of the organization

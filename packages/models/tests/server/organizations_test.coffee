@@ -18,3 +18,11 @@ describe 'Organization attributes', ->
     organization.set('createdById', 'fakeid')
     organization.save
     expect(organization.createdById).to.eq('fakeid')
+
+  it 'includes members', (test, waitFor) ->
+    organization.set('name', 'Peanuts')
+    organization.set('members', ['Snoopy'])
+    onSave = (err)->
+      test.isNull(err)
+    organization.save(waitFor(onSave))
+    expect(organization.members).to.include('Snoopy')

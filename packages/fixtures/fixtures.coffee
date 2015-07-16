@@ -20,3 +20,10 @@ do ->
       attributes[field] = value
       attributes['_id'] = id
       UserProfiles.insert attributes
+
+    'createTestOrg': (name) ->
+      Organizations.insert
+        name: name
+        createdById: "fakeid"
+        description: "None"
+        members: []

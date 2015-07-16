@@ -24,6 +24,7 @@ do ->
 
     @When /^I click on the organization link$/, (callback) ->
       @browser
+        .pause(1000)
         .waitForVisible('.organizations-table', assert.ifError)
         .click(".organizations-table a", assert.ifError)
         .waitForVisible('.organization-detail', assert.ifError)
@@ -32,4 +33,22 @@ do ->
     @Then /^I should be on the "([^"]*)" detail page$/, (name, callback) ->
       @browser
         .waitForVisible('.organization-detail', assert.ifError)
+        .call(callback)
+
+    @Then /^I see that I am a member of the organization$/, (name, callback) ->
+      @browser
+        .pause(1000)
+        .waitForVisible('td.name', assert.ifError)
+        .getHTML 'td.email', (error, response) ->
+          match = response.toString().match("test@example.com")
+          assert.ok(match)
+        .call(callback)
+
+    @Given 'there is an organization in the database with name "$name"', (name) ->
+      @server.call('createTestOrg', name)
+
+    @When 'I click on "Join"', (callback) ->
+      @browser
+        .waitForVisible('.join-organization', assert.ifError)
+        .click('.join-organization', assert.ifError)
         .call(callback)

@@ -7,3 +7,9 @@ Organization = Astro.Class
     name: 'string'
     description: 'string'
     createdById: 'string'
+    members: 'array'
+  methods:
+    getMemberProfiles: () ->
+      UserProfiles.find({
+        userId: {$in: @members or []}
+      })
