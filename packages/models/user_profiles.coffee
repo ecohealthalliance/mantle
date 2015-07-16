@@ -3,8 +3,11 @@ UserProfile = Astro.Class
   name: 'UserProfile'
   collection: UserProfiles
   transform: true
-  fields: 
-    fullName: 'string'
+  fields:
+    firstName: 'string'
+    lastName: 'string'
+    emailAddress: 'string'
+    organization: 'string'
     jobTitle: 'string'
     bio: 'string'
     emailHidden: 'boolean'
@@ -13,7 +16,7 @@ UserProfile = Astro.Class
 
   methods:
     update: (fields, callback) ->
-      filteredFields = _.pick(fields, 'fullName', 'jobTitle', 'bio', 'emailHidden')
+      filteredFields = _.pick(fields, 'firstName','lastName', 'emailAddress', 'organization', 'jobTitle', 'bio', 'emailHidden')
       this.set(filteredFields)
       this.save ->
         callback?()
@@ -21,6 +24,7 @@ UserProfile = Astro.Class
 if Meteor.isServer
   Accounts.onCreateUser (options, user) ->
     profile = new UserProfile()
-    profile.set({userId: user._id, emailAddress: user.emails[0].address})
+    userInfo = _.extend({userId: user._id}, options?.profile)
+    profile.set(userInfo)
     profile.save(-> {})
     user

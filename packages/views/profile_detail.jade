@@ -1,19 +1,22 @@
 template(name="profileDetail")
   .container.profile-detail
-    if editProfile
-      if Template.subscriptionsReady
-        a(href="{{path route='profileEdit'}}").btn.btn-default Edit Profile
-      .profile-name-title.space-btm-2
-        h1= userProfile.fullName
-        p.job-title.rm-margin-btm= userProfile.jobTitle
-        if userProfile.emailAddress
-          a.with-icon-left(href="mailto:#{userProfile.emailAddress}")
-            i.fa.fa-envelope
-            span= userProfile.emailAddress
-      .row
-        if userProfile.bio
-          .col-sm-10
-            h3 About
-            .bio
-              each bioParagraphs userProfile.bio
-                p= this
+    .profile-name-title.space-btm-2
+      h1.inline #{userProfile.firstName} #{userProfile.lastName}
+      if editProfile
+        if Template.subscriptionsReady
+          a.header-btn(href="{{path route='profileEdit'}}").btn.btn-default.header-btn
+            span Edit Profile
+            i.fa.fa-edit
+      p.user-info.job-title= userProfile.jobTitle
+      p.user-info.organization= userProfile.organization
+      if userProfile.emailAddress
+        a.with-icon-left(href="mailto:#{userProfile.emailAddress}")
+          i.fa.fa-envelope
+          span= userProfile.emailAddress
+    .row
+      if userProfile.bio
+        .col-sm-10
+          h3 About
+          .bio
+            each bioParagraphs userProfile.bio
+              p= this

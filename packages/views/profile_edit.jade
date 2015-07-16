@@ -10,16 +10,28 @@ template(name="profileEdit")
         .row
           .col-md-8
             form#edit-profile-form
-              .row
-                .col-md-8
+              .row.space-btm-1
+                .col-md-6
                   label
-                    span Full Name
-                    input#profile-fullname.form-control(name="fullName" type="text" value=userProfile.fullName)
-              .row
-                .col-md-8
+                    span First Name
+                    input#profile-firstname.form-control(name="firstName" type="text" value=userProfile.firstName)
+                .col-md-6
+                  label
+                    span Last Name
+                    input#profile-lastname.form-control(name="lastName" type="text" value=userProfile.lastName)
+                .col-md-6
+                  label
+                    span Email
+                    input#profile-emailAddress.form-control(name="emailAddress" type="email" value=userProfile.emailAddress)
+              .row.space-btm-1
+                .col-md-6
                   label
                     span Job Title
                     input#profile-jobtitle.form-control(name="jobTitle" type="text" value=userProfile.jobTitle)
+                .col-md-6
+                  label
+                    span Organization
+                    input#profile-organization.form-control(name="organization" type="text" value=userProfile.organization)
               label
                 span Biography
                 textarea#profile-bio.form-control(name="bio") #{userProfile.bio}

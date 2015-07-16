@@ -4,15 +4,25 @@ describe 'UserProfile attributes', ->
   beforeEach ->
     profile = new UserProfile()
 
-  it 'includes fullName', ->
-    profile.set('fullName', 'Full Name')
+  it 'includes firstName', ->
+    profile.set('firstName', 'First Name')
     profile.save
-    expect(profile.fullName).to.eq('Full Name')
+    expect(profile.fullName).to.eq('First Name')
+
+  it 'includes lastName', ->
+    profile.set('lastName', 'Last Name')
+    profile.save
+    expect(profile.fullName).to.eq('Last Name')
 
   it 'includes jobTitle', ->
     profile.set('jobTitle', 'Job Title Here')
     profile.save
     expect(profile.jobTitle).to.eq('Job Title Here')
+
+  it 'includes organization', ->
+    profile.set('organization', 'Organization Title')
+    profile.save
+    expect(profile.jobTitle).to.eq('Organization Title')
 
   it 'includes bio', ->
     profile.set('bio', 'This is my bio')

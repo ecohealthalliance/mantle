@@ -4,3 +4,8 @@ template(name="accountsModal")
       .modal-content
         .modal-body
           +atForm state=state
+
+template(name="accountsTextarea")
+  label Biography (Optional)
+  textarea.form-control(id="at-field-bio" name="at-field-bio")
+

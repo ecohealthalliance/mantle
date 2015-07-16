@@ -11,8 +11,11 @@ if Meteor.isClient
       event.preventDefault()
       form = event.target
       fields = {
-        fullName: form.fullName?.value
+        firstName: form.firstName?.value
+        lastName: form.lastName?.value
+        emailAddress: form.emailAddress?.value
         jobTitle: form.jobTitle?.value
+        organization: form.organization?.value
         bio: form.bio?.value
         emailHidden: form.emailHidden?.checked
       }
@@ -21,12 +24,14 @@ if Meteor.isClient
           toastr.error("Error")
         else
           toastr.success("Success")
+          FlowRouter.go("/profiles/"+UserProfiles.findOne({userId: Meteor.userId()})._id)
 
 if Meteor.isServer
   Meteor.methods
     updateProfile: (fields) ->
-      userProfile = UserProfiles.findOne({userId: this.userId})
+      userProfile = UserProfiles.findOne({userId: @userId})
       userProfile.update(fields)
+      Meteor.users.update({_id: @userId}, {$set:{'emails':[{'address':fields.emailAddress}]}})
 
   Meteor.publish 'currentUserProfile', ->
-    UserProfiles.find({userId: this.userId})
+    UserProfiles.find({userId: @userId})
