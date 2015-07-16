@@ -27,5 +27,4 @@ Package.onTest(function(api) {
   api.use('test-helpers');
   api.addFiles('tests/server/user_profiles_test.coffee', 'server');
   api.addFiles('tests/server/organizations_test.coffee', 'server');
-  api.addFiles('tests/client/organizations_test.coffee', 'client');
 });

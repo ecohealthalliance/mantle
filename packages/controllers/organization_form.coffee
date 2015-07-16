@@ -1,24 +1,21 @@
 if Meteor.isClient
   Template.organizationForm.onCreated ->
-    Session.set('organization', new Organization())
+    organization = new Organization()
+    @organization = new ReactiveVar(organization)
 
   Template.organizationForm.helpers
-    organization: ->
-      Session.get('organization')
-
     errorForName: ->
-      organization = Session.get('organization')
-      organization.getValidationErrors().name
+      Template.instance().organization.get().getValidationErrors().name
 
   Template.organizationForm.events
-    'submit form': (event) ->
+    'submit form': (event, template) ->
       event.preventDefault()
       form = event.target
       fields = {
         name: form.name?.value
         description: form.description?.value
       }
-      organization = Session.get('organization')
+      organization = template.organization.get()
       organization.set(fields)
 
       Meteor.call 'createOrganization', organization, (error, response) =>
@@ -27,7 +24,6 @@ if Meteor.isClient
           toastr.error("Error")
         else
           toastr.success("Success")
-        Session.set('organization', organization)
 
 if Meteor.isServer
   Meteor.methods
