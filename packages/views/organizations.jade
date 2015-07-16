@@ -1,22 +1,21 @@
 template(name="organizations")
   if currentUser
     .container
-      .row
-        .col-sm-12
-          h2 Organizations
-          a.btn.btn-default.new-organization-link(href="{{path route='newOrganization'}}") Create
+      h2.inline Organizations
+      a.btn.btn-default.new-organization-link.header-btn(href="{{path route='newOrganization'}}")
+        span Create
+        i.fa.fa-plus
     table.table.table-striped.organizations-table
       tbody
         each organizations
           tr
-            a(href="{{path route='organizationDetail' params=this}}")
-              .container
-                .row
-                  .col-sm-3
-                    td
-                      p.lead= name
-                  .col-sm-9
-                    td= description
+            .container.organization
+              .row
+                .col-sm-3
+                  td
+                    a.organization-name(href="{{path route='organizationDetail' params=this}}")= name
+                .col-sm-9
+                  td.organization-description {{truncated description}}
   else
     .container
       .row

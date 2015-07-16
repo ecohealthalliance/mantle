@@ -10,6 +10,7 @@ if Meteor.isClient
     'submit form': (event) ->
       event.preventDefault()
       form = event.target
+      console.log form.fullName.value
       fields = {
         fullName: form.fullName?.value
         jobTitle: form.jobTitle?.value
