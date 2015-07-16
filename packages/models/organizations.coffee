@@ -7,18 +7,16 @@ Organization = Astro.Class
     name:
       type: 'string'
       validators: [
-        Validators.required()
+        Validators.unique()
         Validators.string()
       ]
     description:
       type: 'string'
       validators: [
-        Validators.required()
         Validators.string()
       ]
     createdById:
       type: 'string'
       validators: [
-        Validators.required()
         Validators.string()
       ]

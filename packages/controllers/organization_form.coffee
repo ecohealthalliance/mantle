@@ -9,7 +9,10 @@ if Meteor.isClient
       }
       Meteor.call 'createOrganization', fields, (error, response) ->
         if error
-          toastr.error("Error")
+          if error.error == "validation-error"
+            toastr.error()
+          else
+            toastr.error("Error")
         else
           toastr.success("Success")
 
@@ -24,6 +27,6 @@ if Meteor.isServer
           organization.save ->
             organization
         else
-          throw "Validation error"
+          organization.throwValidationException()
       else
         throw "Not logged in"
