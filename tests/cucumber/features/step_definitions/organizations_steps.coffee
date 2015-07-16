@@ -21,3 +21,15 @@ do ->
         .setValue('#organization-description', 'This is an organization.')
         .submitForm('#new-organization-form', assert.ifError)
         .call(callback)
+
+    @When /^I click on the organization link$/, (callback) ->
+      @browser
+        .waitForVisible('.organizations-table', assert.ifError)
+        .click(".organizations-table a", assert.ifError)
+        .waitForVisible('.organization-detail', assert.ifError)
+        .call(callback)
+
+    @Then /^I should be on the "([^"]*)" detail page$/, (name, callback) ->
+      @browser
+        .waitForVisible('.organization-detail', assert.ifError)
+        .call(callback)
