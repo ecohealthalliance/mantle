@@ -1,6 +1,8 @@
 if Meteor.isClient
   Template.accountsHeaderButtons.onCreated ->
-    @subscribe('currentUserName', Meteor.userId())
+    instance = @
+    @autorun ->
+      instance.subscribe('currentUserName', Meteor.userId())
 
   Template.accountsHeaderButtons.helpers
     currentUserName: ->
