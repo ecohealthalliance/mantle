@@ -20,7 +20,6 @@ Package.onUse(function(api) {
   api.addFiles('datasets.coffee', ['client', 'server']);
   api.export(['UserProfile', 'UserProfiles'], ['client', 'server']);
   api.export(['Organization', 'Organizations'], ['client', 'server']);
-  api.export(['RawFiles'], ['client', 'server']);
   api.export(['Dataset', 'Datasets'], ['client', 'server']);
 });
 

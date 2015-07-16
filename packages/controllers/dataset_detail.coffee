@@ -12,6 +12,6 @@ if Meteor.isServer
       _id: id
       createdById: @userId
     if dataset
-      [Datasets.find(dataset._id), RawFiles.find(dataset.file)]
+      [Datasets.find(dataset._id), dataset.getFileCursor()]
     else
       @ready()

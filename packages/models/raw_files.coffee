@@ -8,3 +8,5 @@ RawFiles.allow
     userId is doc.owner
   download: (userId, doc) -> 
     userId is doc.owner
+
+share.RawFiles = RawFiles

@@ -1,3 +1,5 @@
+RawFiles = share.RawFiles
+
 Datasets = new Mongo.Collection("datasets")
 
 Dataset = Astro.Class
@@ -24,3 +26,7 @@ if Meteor.isClient
       else
         @set('fileId', result._id)
         callback()
+
+if Meteor.isServer
+  Dataset.addMethod 'getFileCursor', ->
+    RawFiles.find(@fileId)
