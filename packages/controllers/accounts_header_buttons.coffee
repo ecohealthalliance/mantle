@@ -4,7 +4,7 @@ if Meteor.isClient
 
   Template.accountsHeaderButtons.helpers
     currentUserName: ->
-      UserProfiles.findOne({userId: Meteor.userId()})?.fullName
+      UserProfiles.findOne({userId: Meteor.userId()})?.fullName or 'Account'
 
   Template.accountsHeaderButtons.events
     'click .sign-out' : (evt, instance) ->
