@@ -4,15 +4,13 @@ body
 
 body
   font-family inherit
-  > div
-    position relative
-    min-height 100%
 
 .page-wrap
   position relative
   min-height 100%
 
 .content-wrap
+  padding-top 20px
   padding-bottom $footer-height-actual+10
 
 h2
@@ -28,6 +26,13 @@ h5
   font-weight 400
   color $d-gray
 
+.view-header
+  margin-bottom 15px
+  +below(1)
+    margin-bottom 25px
+  h1
+    margin-bottom 0
+
 a
 button
 .btn
@@ -40,6 +45,12 @@ a
   &:hover
   &:focus
     color $primary
+  &.with-icon-right
+    .fa
+      margin-left 3px
+  &.with-icon-left
+    .fa
+      margin-right 3px
 
 .btn
   border-width 2px
@@ -51,6 +62,9 @@ a
 
 .btn-primary
   makeButton($secondary)
+
+.btn-default
+  makeButton($ll-gray, $body-text, true)
 
 .btn-success
   makeButton($confirm)
@@ -64,14 +78,54 @@ a
   color $body-text
   text-shadow none
 
+.header-btn
+  display inline-block
+  margin-left 15px
+  +below(1)
+    display block
+    margin 10px 0
+  .fa
+    color $d-gray
+
 select.form-control
 input.form-control
 textarea.form-control
   border 2px solid $m-gray
+  font-size 14px
+  font-weight normal
   &:focus
     outline 0
     box-shadow none
     border-color $secondary
+
+input[type="submit"]
+  +below(4)
+    width 40%
+    font-size inherit
+  +mobile()
+    width 100%
+    padding 12px
+    font-size 110%
+
+.toast-top-right-custom
+  right 15px
+  top $header-height+20
+  +below(2)
+    right 0
+    bottom $footer-height-actual+10
+    top auto
+    width 100%
+    height $header-height
+
+#toast-container
+  > div
+    +below(2)
+      width 100% !important
+
+.checkbox
+  label
+    span
+      font-weight bold
 
 .col-sm-0
   width 0%
@@ -84,6 +138,16 @@ textarea.form-control
 
 .rm-pad-btm
   padding-bottom 0
+
+.rm-margin-top
+  margin-top 0
+
+.rm-margin-btm
+  margin-bottom 0
+
+.inline
+  display inline-block
+  vertical-align middle
 
 for $num in 1 2 3 4 5 6
   .space-btm-{$num}

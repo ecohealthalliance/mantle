@@ -1,13 +1,21 @@
 template(name="accountsHeaderButtons")
   if currentUser
-    li
-      a(href="{{path route='profileEdit'}}") Profile
-    li.account
-      a.sign-out.navbar-btn(href="#")
-        i.fa.fa-sign-out
-        span Sign Out
+    if Template.subscriptionsReady
+      li.dropdown
+        a.dropdown-toggle.admin-settings(href='#' data-toggle='dropdown' aria-expanded='false')
+          span=currentUserName
+          i.fa.fa-sort-desc
+        ul.dropdown-menu(role='menu')
+          li
+            a(href="{{path route='profileEdit'}}")
+              span Edit Profile
+              i.fa.fa-user
+          li
+            a.sign-out(href='#')
+              span Sign Out
+              i.fa.fa-sign-out
   else
     li
-      a.sign-in.navbar-btn
-        i.fa.fa-sign-in
+      a.sign-in.btn.navbar-btn
         span Sign In
+        i.fa.fa-sign-in

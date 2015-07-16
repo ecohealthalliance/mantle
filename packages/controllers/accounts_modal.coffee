@@ -1,4 +1,5 @@
 AccountsTemplates.configure
+  showPlaceholders: false
   onSubmitHook: (err)->
     unless err
       $('.accounts-modal').modal('hide')
