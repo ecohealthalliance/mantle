@@ -32,3 +32,10 @@ FlowRouter.route '/organizations/new',
   action: () ->
     FlowLayout.render 'layout',
       main: 'organizationForm'
+
+FlowRouter.route '/organizations/:_id',
+  name: 'organizationDetail'
+  action: (params) ->
+    FlowLayout.render 'layout',
+      main: 'organizationDetail'
+      params: {"organizationId": params._id}

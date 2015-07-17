@@ -5,8 +5,6 @@ if Meteor.isClient
   Template.profileDetail.helpers
     userProfile: ->
       UserProfiles.findOne(@profileId)
-    bioParagraphs: (bio) ->
-      bio.split(/\r?\n\n/g)
 
 if Meteor.isServer
   Meteor.publish 'userProfileDetail', (id) ->

@@ -11,6 +11,5 @@ template(name="profileDetail")
       if userProfile.bio
         .col-sm-10
           h3 About
-          .bio
-            each bioParagraphs userProfile.bio
-              p= this
+          .bio.space-btm-4
+            +paragraphText text=userProfile.bio

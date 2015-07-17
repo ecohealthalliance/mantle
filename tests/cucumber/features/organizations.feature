@@ -11,3 +11,6 @@ Feature: Organizations
     Then I should see a "Success" toast
     When I navigate to "/organizations"
     Then I should see content "Test Organization"
+    When I click on the organization link
+    Then I should be on the "Test Organization" detail page
+    And I should see content "Test Organization"

@@ -1,0 +1,35 @@
+select.form-control
+input.form-control
+textarea.form-control
+  border 2px solid $m-gray
+  font-size 14px
+  font-weight normal
+  &:focus
+    outline 0
+    box-shadow none
+    border-color $secondary
+
+input[type="submit"]
+  margin 20px 0
+  padding 10px
+  +below(4)
+    width 40%
+    font-size inherit
+  +mobile()
+    width 100%
+    padding 12px
+    font-size 110%
+
+label
+  margin-bottom 10px
+  span
+    display block
+    margin-bottom 5px
+
+textarea
+  min-height 200px
+
+.checkbox
+  label
+    span
+      font-weight bold
