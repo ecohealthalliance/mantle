@@ -7,9 +7,9 @@ do ->
 
     url = require('url')
 
-    @Before ->
+    @Before (callback) ->
       @server.call('reset')
-      @client.url(url.resolve(process.env.ROOT_URL, '/'))
+      @client.url(url.resolve(process.env.ROOT_URL, '/'), callback)
 
     _testUser = {email: 'test@example.com', password: 'password'}
 

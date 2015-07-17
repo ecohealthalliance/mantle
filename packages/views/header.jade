@@ -5,14 +5,16 @@ template(name="header")
         .navbar-header
           button.navbar-toggle.collapsed(type="button", data-toggle="collapse" data-target=".navbar-collapse") Menu
           a.navbar-brand(href="/")
-            span Mantle
+            h1 Mantle
         .navbar-collapse.collapse
-          ul.nav.navbar-nav.navbar-right
+          ul.nav.navbar-nav.navbar-left.main-action
             if currentUser
               li
                 a.navbar-btn(href="{{path route='newDataset'}}")
                   span + Add Dataset
+          ul.nav.navbar-nav.navbar-right
             li
-              a.navbar-btn(href="{{path route='organizations'}}")
+              a(href="{{path route='organizations'}}")
                 span Organizations
-            +accountsHeaderButtons
+            +accountsHeaderButtons state=accountsState
+  +accountsModal state=accountsState

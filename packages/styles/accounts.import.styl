@@ -1,0 +1,53 @@
+.modal-dialog
+  +above(1)
+    width 480px
+    margin 100px auto
+  +below(1)
+    width 90%
+
+.modal-body
+  padding 0
+
+.modal-content
+  border-radius 5px
+  box-shadow 0 5px 15px rgba(0,0,0,.3)
+
+.at-form-wrap
+  padding 25px
+
+.at-form
+  margin 0
+
+.at-title
+  display none
+
+.at-pwd-form
+  fieldset
+    border 0
+    padding 0 20px
+
+.at-form
+  padding 0
+  border-radius 5px
+
+.at-pwd-form
+  > form
+    label
+      font-weight bold
+
+.at-signup-link
+  padding 0 20px
+  text-align center
+
+.at-btn
+  makeButton($secondary)
+
+.at-error
+.alert-danger
+  background-color $deny
+  color white
+  font-weight bold
+  border 0
+  border-bottom 2px solid $l-gray
+  border-radius 0
+
