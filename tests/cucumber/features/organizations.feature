@@ -14,3 +14,12 @@ Feature: Organizations
     When I click on the organization link
     Then I should be on the "Test Organization" detail page
     And I should see content "Test Organization"
+
+  Scenario: Organization form errors
+    Given there is an organization in the database with name "Test Organization"
+    When I log in as the test user
+    When I navigate to "/organizations"
+    And I click the new organization link
+    And I fill out the new organization form with name "Test Organization"
+    Then I should see a "Error" toast
+    Then I should see content "value has to be unique"

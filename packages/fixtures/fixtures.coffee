@@ -15,6 +15,9 @@ do ->
         email: attributes.email
         password: attributes.password
 
+    'createTestOrganization': (attributes) ->
+      Organizations.insert attributes
+
     'createProfile': (field, value, id) ->
       attributes = {}
       attributes[field] = value
