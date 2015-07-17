@@ -4,5 +4,4 @@ template(name="organizationDetail")
       h1= organization.name
       .row
         .col-sm-10
-          each format organization.description
-            p= this
+          +paragraphText text=organization.description

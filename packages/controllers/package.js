@@ -16,6 +16,7 @@ Package.onUse(function(api) {
   api.use('useraccounts:core');
   api.use('chrismbeckett:toastr');
 
+  api.addFiles('helpers.coffee', 'client');
   api.addFiles('toastr.coffee', 'client');
   api.addFiles('header.coffee', 'client');
   api.addFiles('accounts_modal.coffee', 'client');

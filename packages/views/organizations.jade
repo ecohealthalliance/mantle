@@ -1,7 +1,7 @@
 template(name="organizations")
   if currentUser
     .container.view-header
-      h2.inline Organizations
+      h1.inline Organizations
       a.btn.btn-default.new-organization-link.header-btn(href="{{path route='newOrganization'}}")
         span Create
         i.fa.fa-plus
@@ -15,7 +15,7 @@ template(name="organizations")
                   td
                     a.organization-name(href="{{path route='organizationDetail' params=this}}")= name
                 .col-sm-9
-                  td.organization-description {{truncated description}}
+                  td.organization-description {{truncateDescription}}
   else
     .container
       .row
