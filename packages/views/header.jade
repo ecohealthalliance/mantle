@@ -10,8 +10,9 @@ template(name="header")
           ul.nav.navbar-nav.navbar-left.main-action
             if currentUser
               li
-                a.navbar-btn(href="{{path route='newDataset'}}")
-                  span + Add Dataset
+                a.navbar-btn.add-dataset(href="{{path route='newDataset'}}")
+                  i.fa.fa-plus
+                  span Add Dataset
           ul.nav.navbar-nav.navbar-right
             li
               a(href="{{path route='organizations'}}")

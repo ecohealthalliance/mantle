@@ -24,6 +24,7 @@ Package.onUse(function(api) {
   api.addFiles('accounts.import.styl');
   api.addFiles('profile.import.styl');
   api.addFiles('organizations.import.styl');
+  api.addFiles('dataset.import.styl');
 
   api.addFiles('main.styl');
 });
