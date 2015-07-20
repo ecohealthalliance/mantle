@@ -7,7 +7,16 @@ before_install:
   - "curl https://install.meteor.com/ | sh"
   - "export DISPLAY=:99.0"
   - "Xvfb :99 -screen 0 1600x1200x16 &"
-  - sleep 10
+  - sleep 10 #Give Xvfb more time to startup
 script:
   - ./travis.sh | grep -v "/.meteor/"
   - if [[ -e FAILURE ]]; then exit 1; fi
+env:
+  global:
+    - secure: sEk/l2WkWJUZ/lZu7FU/CjfEwbGmlkwi5HizHPXPhhpfQ1fzbFPeCBXAlPXS9qB1NWimhFfpT/pFTT4pXlW+rUpMCtEz4IV/9jO2j7U5GzqK7rC2rBUOi+VsTPzb/bkFVq6ihBWA4lhhYOJvMtCk2Q3OOy/lYSm+KTUkpW7ZouAzFNIgisc16eu2Bjc0qBfn+RGQICXrE85bx1eGUx4f7woSPDrSSpg8dwDkf8FymME9C0mvb0iewgHrJd+jxAfdXkiH9pTViitIR/vv/QWAvYxcumrfshzdzwyUzWror6cOm8mQ0ys2GrSuthfyXtrIDkRzjdeVQOUCNXVFJDdV9jiYbtvsJxMjm1E6XHR2CxvQr5/R8c6XtTStee0AIz4LujRD9F70PDsY8cOCBPj3J036c2ZImPfWhSY48E5hEaVfVr+l8lhS75DcDSIysl7N4oNOzfHgh+u2kfWobzjoVNWDdTsOpiZw9rc7f0jGuCGmRTm/tUhkPzfGjkZoZ9teO8w3GjthbQVNb/bqHd2RkrYSyPvWVwJ7r7Gq2xtQOJchQ0rrTz5vlWN3TU/g3ZVgXg9t5GxGKrRBILpEZybBgQPN0+aAoKvYFSfjiSCl1qeFvnZAF117btrz3xIiCpUDEvzq2nHOX2z6nlSj2zLQm4xctLtmMY84SaeDTQYIW4E=
+    - secure: TiTypTH0CnkxSxnbuZ+dX4DeD3A8G8TcmaJd2SrTOMra/ufCgp7fCaeLKGYNAoxBjA/UUbgMHRnF3eKNcBvifLH/m+j0H7rKC0MiWa0UKRvvV/OUqugjKku76j7r3AXZKpdcSxWuixRBjW4uFl4BNFzjoX6gYsk1sdoxTuVWXyq7/+OX4qaJWk2WcGkidBLZyk0HSqqSte8eeyEXluBvbouSlkrkK6WijWZKDy/FUtTxMW3nhweC20o/xErQeOsbg/lNRkg1WPoT0C0ONzXMBbsZ4GltLFU54RffsMHRk9BdzLRuQb57W5l58pu/x/TqZ8UJ/X5XJGNeIlPIXg05nEG24qjGZ3gpi0AM+/rG72nrvSWpForziIg14IbxZaBzKNg104vbY5Cyi8pTMNFbIkOy2td3Ws0V2ufVi8AjA/pRCB8LXHlk9OUhTO7idgcVPHhDCObV7jonvMl4hhv969biOb5hOl8SMFX/6JDCZKai/9DydX3BkEOOEEanfODX3ECsCMf1uSg1SVIgxj7w/gX9OYsN18ie86NRrhyL3u5qXxCHIql0m1872AHbhRCtqh4OT4oCSgKqxU4DIYPmYKakEmpZHd8G8tG6SOHqyLKXSDAMPBq8rB1LrfKeih32rMphExvBNfUhvy13UDbVZkUKYNa/er5GdlQGm5IekMk=
+    - TEST_ON_PHANTOMJS=1
+    - TEST_ON_SAUCELABS=1
+addons:
+  sauce_connect: true
+
