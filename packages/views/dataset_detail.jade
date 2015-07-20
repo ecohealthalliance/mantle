@@ -5,9 +5,12 @@ template(name="datasetDetail")
         .dataset-detail
           +with dataset
             h1.inline
-              span #{name}
+              if name
+                span.dataset-name=name
+              else
+                span.dataset-file-name=file.original.name
             +with file
               if isUploaded
-                a.btn.btn-primary.pull-right(href="{{this.url download=true}}" target="_blank") Download
+                a.btn.btn-primary.pull-right.btn-block-mobile(href="{{this.url download=true}}" target="_blank") Download
               else
                 p Upload in progress

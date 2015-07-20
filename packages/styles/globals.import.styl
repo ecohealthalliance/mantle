@@ -83,9 +83,18 @@ a
   margin-left 15px
   +below(1)
     display block
-    margin 10px 0
+    margin $mobile-btn-margin
+    padding $mobile-btn-padding
   .fa
     color $d-gray
+
+.btn-block-mobile
+  +mobile()
+    display block
+    width 100%
+    padding $mobile-btn-padding
+    margin $mobile-btn-margin
+    font-size $mobile-btn-font-size
 
 .toast-top-right-custom
   right 15px

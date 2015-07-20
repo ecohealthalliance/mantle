@@ -55,16 +55,27 @@ $mid-layer = 100
 $bottom-layer = 10
 $page-layer = 0
 
-//Fonts
-$oswald = 'Oswald', sans-serif
+// Fonts
+$oswald    = 'Oswald', sans-serif
 $open-sans = 'Open Sans', sans-serif
+$mobile-btn-font-size = 14px
+
+// Box-model
+$mobile-btn-padding = 12px
+$mobile-btn-margin  = 10px 0
 
 // =============================
 //  Vendor default overrides
 // =============================
 
 // Rupture Scale (Follows Bootstrap)
-rupture.scale = 0 768px 992px 1200px
+$mobile = 768px
+$tablet = 992px
+$desktop = 1200px
+rupture.scale = 0 $mobile $tablet $desktop
+rupture.enable-em-breakpoints = true
+rupture.mobile-cutoff = $mobile
+rupture.desktop-cutoff = $desktop
 
 // Typographic settings
 $line-height-ratio  = 1.75

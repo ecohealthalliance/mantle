@@ -17,6 +17,7 @@ Package.onUse(function(api) {
   api.addFiles('extends.import.styl');
   api.addFiles('globals.import.styl');
 
+  api.addFiles('file_upload.import.styl');
   api.addFiles('forms.import.styl');
   api.addFiles('header.import.styl');
   api.addFiles('footer.import.styl');

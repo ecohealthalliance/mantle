@@ -8,17 +8,7 @@ template(name="datasetForm")
           form.new-dataset
             label Name
               input.form-control(name="name" type="string")
-            .input-group
-              .input-group-btn
-                label.btn.btn-default.btn-file
-                  span Choose file
-                  i.fa.fa-folder-open
-                  input.upload(name="file" type="file")
-              .file-name-wrap
-                input.form-control.file-name(value="{{fileName}}" class="{{hasFile}}" readonly)
-                if hasFile
-                  span.remove
-                    i.fa.fa-times-circle
+            +fileUpload name='file'
             input.btn.btn-primary(type="submit" value="Save")
   else
     p Please log in or sign up to continue.

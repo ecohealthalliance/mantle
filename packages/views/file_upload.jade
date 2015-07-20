@@ -1,0 +1,12 @@
+template(name="fileUpload")
+  .input-group
+    .input-group-btn
+      label.btn.btn-default.btn-file
+        span Choose file
+        i.fa.fa-folder-open
+        input.upload(name=name type="file")
+    .file-name-wrap
+      input.form-control.file-name(value="{{fileName}}" class="{{hasFile}}" readonly)
+      if hasFile
+        span.remove
+          i.fa.fa-times-circle
