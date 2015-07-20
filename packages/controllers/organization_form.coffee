@@ -23,6 +23,7 @@ if Meteor.isClient
           organization.catchValidationException(error)
           toastr.error("Error")
         else
+          organization.validateAll()
           toastr.success("Success")
 
 if Meteor.isServer
