@@ -15,7 +15,6 @@ Feature: Organizations
     Then I should be on the "Test Organization" detail page
     And I should see content "Test Organization"
 
-  @dev
   Scenario: Editing an organization
     When I log in as the test user
     And I create an organization with name "Test Organization"
