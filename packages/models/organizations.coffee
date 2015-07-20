@@ -7,7 +7,7 @@ Organization = Astro.Class
     name:
       type: 'string'
       validators: [
-        Validators.unique()
+        Validators.unique(null, "There is already an organization with that name")
         Validators.string()
       ]
     description:

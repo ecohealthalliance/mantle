@@ -22,4 +22,4 @@ Feature: Organizations
     And I click the new organization link
     And I fill out the new organization form with name "Test Organization"
     Then I should see a "Error" toast
-    Then I should see content "value has to be unique"
+    Then I should see content "There is already an organization with that name"
