@@ -19,14 +19,20 @@ if Meteor.isClient
       event.preventDefault()
       instance.editingName.set(true)
 
+    'click .cancel-name-button': (event, instance)->
+      instance.editingName.set(false)
+
+    'submit .edit-name': (event, instance) ->
+      event.preventDefault()
+      Meteor.call 'updateName', $('#organization-name').val(), @organizationId, ->
+        instance.editingName.set(false)
+
     'click .edit-description-button': (event, instance) ->
       event.preventDefault()
       instance.editingDescription.set(true)
 
-    'click .save-name-button': (event, instance) ->
-      event.preventDefault()
-      Meteor.call 'updateName', $('#organization-name').val(), @organizationId, ->
-        instance.editingName.set(false)
+    'click .cancel-description-button': (event, instance)->
+      instance.editingDescription.set(false)
 
     'click .save-description-button': (event, instance) ->
       event.preventDefault()

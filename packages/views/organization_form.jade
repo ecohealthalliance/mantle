@@ -1,17 +1,18 @@
 template(name="organizationForm")
   if currentUser
     .container
-      form#new-organization-form
-        .row
-          .col-sm-12
-            label Name
-              input#organization-name.form-control(name="name" type="string")
-        .row
-          .col-sm-12
-            label Description
-              input#organization-description.form-control(name="description" type="string")
-        .row
-          .col-sm-12
+      h1 Add an Organization
+      .row
+        .col-sm-8
+          form#new-organization-form
+            .row
+              .col-sm-8
+                label Name
+                  input#organization-name.form-control(name="name" type="text")
+            .row
+              .col-sm-12
+                label Description
+                  textarea#organization-description.form-control(name="description")
             input.btn.btn-primary(type="submit" value="Save")
   else
     .container

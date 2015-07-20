@@ -7,6 +7,7 @@ before_install:
   - "curl https://install.meteor.com/ | sh"
   - "export DISPLAY=:99.0"
   - "Xvfb :99 -screen 0 1600x1200x16 &"
+  - sleep 10
 script:
   - ./travis.sh | grep -v "/.meteor/"
   - if [[ -e FAILURE ]]; then exit 1; fi

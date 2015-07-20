@@ -1,17 +1,31 @@
 template(name="organizationDetail")
   .organization-detail
-    .container
-      .row
-        .col-sm-12
-          if editingName
-            input#organization-name(type="string" name='name')
-            button.btn.save-name-button Save
-          else
-            p.lead= organization.name
-            button.btn-link.edit-name-button Edit
-          if editingDescription
-            input#organization-description(type="string" name='description')
-            button.btn.save-description-button Save
-          else
-            p= organization.description
-            button.btn-link.edit-description-button Edit
+    section
+      .container
+        if editingName
+          form.edit-name
+            input#organization-name.form-control(type="string" name="name" value=organization.name)
+            .actions.middle
+              button.btn-plain.save.save-name-button(type="submit")
+                i.fa.fa-check-circle
+              button.btn-plain.cancel.cancel-name-button(type="button")
+                i.fa.fa-times-circle
+        else
+          h1= organization.name
+          button.btn-link.edit-inline.edit-name-button
+            span Edit
+            i.fa.fa-edit
+    section.organization-description-wrap.gray
+      .container.organization-description
+        if editingDescription
+          textarea#organization-description.form-control(type="string" name="description")= organization.description
+          .actions.top
+            button.btn-plain.save.save-description-button(type="submit")
+              i.fa.fa-check-circle
+            button.btn-plain.cancel.cancel-description-button(type="button")
+              i.fa.fa-times-circle
+        else
+          +paragraphText text=organization.description
+          button.btn-link.edit-inline.edit-description-button
+            span Edit
+            i.fa.fa-edit

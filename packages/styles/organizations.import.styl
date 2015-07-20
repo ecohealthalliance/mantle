@@ -1,0 +1,89 @@
+.organizations-table
+  border-top 1px solid $l-gray
+  .organization-wrap
+    border-bottom 1px solid $l-gray
+    .container
+        padding 20px 0
+
+.organization-name
+  font-size 1.4em
+  font-weight 600
+  +below(1)
+    font-size 1.25em
+
+.organization-detail
+  .edit-inline
+  h1
+    display inline-block
+  .edit-inline
+    vertical-align top
+    margin-left 10px
+    color lighten($d-gray, 20%)
+    &:hover
+      color $body-text
+      text-decoration none
+    .fa
+      margin-left 2px
+      font-size 95%
+  .btn-link
+    padding 0
+    font-size 14px
+  input[name=name]
+    @extend h1
+    min-height 80px
+    padding 6px 12px
+    +below(2)
+      min-height 55px
+      margin-bottom 20px
+  textarea
+    padding-right 50px
+    +below(2)
+      padding-right 70px
+
+.edit-name
+  position relative
+
+.actions
+  position absolute
+  right 25px
+  z-index $bottom-layer
+  &.middle
+    centerVertically()
+    right 10px
+  &.top
+    top 10px
+  button
+    width 25px
+    font-size 25px
+    line-height 100%
+    cursor pointer
+    +below(2)
+      display inline-block
+    &.save
+      color $confirm
+      &:hover
+        color darken(@color, 20%)
+    &.cancel
+      color $m-gray
+      &:hover
+        color darken(@color, 20%)
+
+.organization-description-wrap
+  margin 15px 0
+
+.organization-description
+  position relative
+  p
+    padding-right 5%
+    +below(2)
+      padding-right 0
+    &:last-of-type
+      margin-bottom 0
+
+.edit-description-button
+  position absolute
+  top -5px
+  right 15px
+  +below(2)
+    top -40px
+    right 15px

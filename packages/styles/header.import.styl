@@ -1,0 +1,244 @@
+header
+  position relative
+  z-index $mid-layer
+  border-bottom 2px solid $primary
+
+.container > .navbar-header
+  +below(3)
+    margin 0
+
+.navbar
+  min-height $header-height
+  margin-bottom 0
+  border 0
+  border-radius 0
+  background $header-footer-BG
+  @extend .dark-shadow
+  .btn
+  .btn-default
+    padding 6px 12px
+    margin-left 5px
+    border 0
+    font-size 13px
+    text-shadow none
+    color $body-text
+    line-height 1.42857143
+    buttonHover($nav-hover, $white-trans)
+    transition()
+    &:focus
+      background white
+      outline $primary
+      transition()
+
+.nav
+  float right
+  +below(1)
+    float none
+    border-bottom 1px solid $secondary-light
+    &.account
+      margin-left 0
+      border 0
+    &.main-nav-last
+      margin 0
+    .btn
+      display block
+      float left
+      width 40%
+      margin 15px
+      padding 10px
+    &:last-of-type
+      border 0
+    a
+      &:hover
+        background $primary
+
+.navbar-nav
+  +below(1)
+    margin-right 0
+    margin-top 0
+  > li
+    > a
+      buttonHover($nav-hover)
+      color white
+      font-size 13px
+      line-height 13px
+      padding 20px 15px
+      +below(1)
+        padding 12px 30px
+      i
+      span
+        vAlign()
+      i
+        font-size 16px
+        line-height 0
+      &.admin-settings
+        .fa
+          margin-top -3px
+          margin-left 3px
+      &:focus
+        outline 5px auto darken($primary, 10%)
+        background $primary
+      &.navbar-btn
+        margin-top 11px
+        margin-left 15px
+        padding 9px 10px
+        border-radius 5px
+        background $white-trans
+        text-align center
+        color #333
+        text-shadow none
+        line-height 100%
+        transition(background-color)
+        &:hover,
+        &:focus
+          transition(background-color)
+          background $primary
+          @extend .dark-shadow
+          color white
+        +below(1)
+          float none
+          width 50%
+          margin 10px auto
+          padding 12px inherit
+  li
+    &.open
+      +below(1)
+        .dropdown-menu
+          border-top 4px solid $primary-dark
+            > li
+              border-bottom 1px solid $secondary-light
+              &:last-of-type
+                border 0
+              > a
+                color white
+                font-size 12px
+                &:hover
+                  background $primary
+      > a
+        &:hover
+          background $primary
+        &.dropdown-toggle
+          background $primary
+      .dropdown-menu
+        > li
+          > a
+            +below(1)
+              color white
+              font-size 12px
+              padding 10px 15px 10px 40px
+              &:hover
+                background $primary
+              &.dropdown-toggle
+                background $primary
+  .dropdown-menu
+    padding-top 0
+    border-top 2px solid $primary
+    +below(1)
+      padding 0
+      position static
+      min-width 100%
+      background none
+      box-shadow none
+      border 0
+    > li
+      border-bottom 1px solid $border-gray
+      text-shadow none
+      &:last-of-type
+        border 0
+      > a
+        clearFix()
+        position relative
+        padding 8px 20px
+        text-shadow none
+        span
+          padding-right 5px
+        i
+          centerPosition(0, -50%)
+          position absolute
+          right 5px
+          top 50%
+          width 20px
+          color $d-gray
+          +below(1)
+            position static
+            color white
+            centerPosition(0,0)
+
+.navbar-nav .active a
+.navbar-nav .active a:focus
+  background nav-hover
+  outline 0
+
+.navbar-brand
+  padding 10px 0
+  transition(.2s, color)
+  +below(1)
+    transition(.2s, color)
+    width 75%
+    padding 9px 0
+  &:hover
+  &:focus
+    span
+    h1
+      transition(.2s, color)
+      color lighten($secondary,80%)
+  h1
+    vAlign()
+    margin 0
+    padding-left 3px
+    bg('../../images/mantle-logo', 130px, 32px,'png')
+    transition(.2s, color)
+    color white
+    font-weight 600
+    text-transform uppercase
+    line-height 18px
+    font-size 18px
+    +below(1)
+      font-size 14px
+      line-height 14px
+  span
+    +below(1)
+      font-size 25px
+
+.navbar > .container .navbar-brand
+  +above(3)
+    margin-left 0
+
+.navbar-toggle
+  float right
+  padding 13px 10px
+  margin 10px 0 0 0
+  border 1px solid white
+  border-radius 4px
+  transition()
+  color white
+  font-size 14px
+  line-height 0
+  &:hover
+  &:active
+  &:focus
+    transition()
+    background $white-trans
+    color black
+
+.navbar-collapse
+  +below(1)
+    padding-right 0
+    padding-bottom 15px
+    border-top 4px solid $secondary-dark
+    box-shadow none
+    &.in
+      border-top 4px solid $secondary-dark
+      box-shadow none
+    &.collapse
+    &.collapsing
+      padding 0
+
+.main-nav-last
+  margin-right 0
+
+.dropdown
+  .dropdown-toggle
+    span
+      +below(1)
+        display inline-block

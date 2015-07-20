@@ -5,6 +5,8 @@ head
   link(href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css')
 
 template(name='layout')
-  +header
-  +Template.dynamic template=main data=params
-  +footer
+  .page-wrap
+    +header
+    .content-wrap
+      +Template.dynamic template=main data=params
+    +footer

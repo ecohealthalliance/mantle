@@ -1,3 +1,9 @@
+clearFix()
+  &::after
+    clear both
+    display block
+    content ''
+
 addFont($fontTitle, $allTypes = true, type = '')
   @font-face
     if $allTypes
@@ -15,7 +21,7 @@ vAlign()
   vertical-align middle
 
 makeButton($color, $text = white, $dark = false, $noOutline = false, $hoverColor = white)
-  border 2px solid darken($color, 10%)
+  border 1px solid darken($color, 10%)
   background $color
   if $dark
     @extend .light-shadow
@@ -26,7 +32,7 @@ makeButton($color, $text = white, $dark = false, $noOutline = false, $hoverColor
   color $text
   &:hover
   &:focus
-    border-color darken($color, 50%)
+    border-color darken($color, 30%)
     background darken($color, 20%)
     color $text
   &:active
@@ -44,7 +50,7 @@ loading($positioned=false)
     position absolute
     top 50%
     left 45%
-    z-index 100
+    z-index $top-layer
   opacity 1
   font-size 200px
 
@@ -109,13 +115,18 @@ buttonHover($hoverBG, $bg=none)
 centerPosition($h=-50%, $v=-50%)
   transform translate($h, $v)
 
+centerVertically()
+  position absolute
+  top 50%
+  transform translate(0, -50%)
+
 cover()
   position absolute
   top 0
   bottom 0
   left 0
   right 0
-  z-index 500
+  z-index $mid-layer
 
 addBorder($w=false, $h, $color)
   if $w
