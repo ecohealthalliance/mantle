@@ -4,4 +4,10 @@ template(name="organizationDetail")
       .row
         .col-sm-12
           p.lead= organization.name
+          button.btn.edit-name-button Edit
+          input#organization-name(type="string" name='name')
+          button.btn.save-name-button Save
           p= organization.description
+          button.btn.edit-description-button Edit
+          input#organization-description(type="string" name='name')
+          button.btn.save-description-button Save

@@ -14,3 +14,19 @@ Feature: Organizations
     When I click on the organization link
     Then I should be on the "Test Organization" detail page
     And I should see content "Test Organization"
+
+  @dev
+  Scenario: Editing an organization
+    When I log in as the test user
+    And I create an organization with name "Test Organization"
+    And I navigate to "/organizations"
+    Then I should not see content "Better Name"
+    And I should not see content "Better Description"
+
+    When I click on the organization link
+    And I change the organization name to "Better Name"
+    And I change the organization description to "Better Description"
+    And I navigate to "/organizations"
+    Then I should see content "Better Name"
+    And I should see content "Better Description"
+    And I should not see content "Test Organization"
