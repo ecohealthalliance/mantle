@@ -1,10 +1,10 @@
 template(name="organizationDetail")
   .organization-detail
     .container
+      h1= organization.name
       .row
-        .col-sm-12
-          p.lead= organization.name
-          p= organization.description
+        .col-sm-10
+          +paragraphText text=organization.description
       .row
         .panel.panel-default
           .panel-heading Members
@@ -21,3 +21,4 @@ template(name="organizationDetail")
                 tr
                   td.name=fullName
                   td.email=emailAddress
+

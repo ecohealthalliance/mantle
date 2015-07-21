@@ -7,7 +7,7 @@ if Meteor.isClient
       Organizations.findOne(@organizationId)
     userIsMember: ->
       UserProfiles.findOne({
-        _id: Metoer.userId(),
+        userId: Meteor.userId(),
         memberOfOrgs: @organizationId
       })
     members: ->

@@ -1,10 +1,15 @@
 template(name="profileDetail")
-  .container
+  .container.profile-detail
+    .profile-name-title.space-btm-2
+      h1= userProfile.fullName
+      p.job-title.rm-margin-btm= userProfile.jobTitle
+      if userProfile.emailAddress
+        a.with-icon-left(href="mailto:#{userProfile.emailAddress}")
+          i.fa.fa-envelope
+          span= userProfile.emailAddress
     .row
-      .col-sm-12
-        .profile-detail
-          p Full Name: #{userProfile.fullName}
-          p Job Title: #{userProfile.jobTitle}
-          p Bio: #{userProfile.bio}
-          if userProfile.emailAddress
-            p Email Address: #{userProfile.emailAddress}
+      if userProfile.bio
+        .col-sm-10
+          h3 About
+          .bio.space-btm-4
+            +paragraphText text=userProfile.bio

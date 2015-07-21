@@ -1,0 +1,41 @@
+footer
+  position absolute
+  bottom 0
+  width 100%
+  height $footer-height
+  z-index $mid-layer
+  border-top 2px solid $primary
+  background $header-footer-BG
+  +below(1)
+    height $footer-height - 20
+  h1
+  h2
+    margin 0
+
+.footer
+  +below(1)
+    width 100%
+    padding-top 10px
+
+.logos
+  text-align center
+
+.logo
+  p
+    display inline-block
+    color $l-gray
+    font-size 11px
+  +below(1)
+    padding 0
+
+.eha
+  margin-top $footer-padding+8px
+  +below(1)
+    margin-top 0
+  h2
+    bg('../../images/eha-logo', 220px, 54px,'png')
+    display inline-block
+    +below(1)
+      changeBGSize(150px, 38px)
+      margin 0
+

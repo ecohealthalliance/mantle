@@ -14,3 +14,10 @@ Organization = Astro.Class
       })
     getMemberProfiles: () ->
       UserProfiles.find(memberOfOrgs: @_id)
+    truncateDescription: ->
+      splitDescription = @description?.split(' ')
+      wordCount = 50
+      if splitDescription.length > wordCount
+        splitDescription.slice(0,wordCount).join(' ')+'...'
+      else
+        @description

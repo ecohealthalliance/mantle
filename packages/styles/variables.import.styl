@@ -49,16 +49,21 @@ $footer-positioning-space        = $footer-height
 $header-positioning-space-mobile = $header-height-mobile
 $footer-positioning-space-mobile = $footer-height-mobile
 
+// Z-index layers
+$top-layer = 1000
+$mid-layer = 100
+$bottom-layer = 10
+$page-layer = 0
+
 //Fonts
 $oswald = 'Oswald', sans-serif
 $open-sans = 'Open Sans', sans-serif
-
 
 // =============================
 //  Vendor default overrides
 // =============================
 
-// Rupture Scale (Follows Boostrap)
+// Rupture Scale (Follows Bootstrap)
 rupture.scale = 0 768px 992px 1200px
 
 // Typographic settings
@@ -74,5 +79,5 @@ $min-font           = 12px
 $max-font           = 20px
 $min-width          = 768px
 $max-width          = 1200px
-$vertical-rhythm    = true
+$vertical-rhythm    = false
 typographic()
