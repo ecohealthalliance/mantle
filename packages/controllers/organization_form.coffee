@@ -6,6 +6,9 @@ if Meteor.isClient
   Template.organizationForm.helpers
     errorForName: ->
       Template.instance().organization.get().getValidationErrors().name
+    errorClass: ->
+      if Template.instance().organization.get().getValidationErrors().name
+        'error'
 
   Template.organizationForm.events
     'submit form': (event, template) ->
