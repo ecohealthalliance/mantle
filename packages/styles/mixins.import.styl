@@ -4,6 +4,12 @@ clearFix()
     display block
     content ''
 
+bodyFont()
+  font-family $body-font
+
+headerFont()
+  font-family $header-font
+
 addFont($fontTitle, $allTypes = true, type = '')
   @font-face
     if $allTypes

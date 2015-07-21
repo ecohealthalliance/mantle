@@ -1,24 +1,29 @@
 template(name="organizationDetail")
   .organization-detail
     .container
-      h1= organization.name
-      .row
-        .col-sm-10
-          +paragraphText text=organization.description
-      .row
-        .panel.panel-default
-          .panel-heading Members
-          .panel-body
-            unless userIsMember
-              a.btn.btn-default.join-organization Join
-          table.table
-            thead
-              tr
-                th Name
-                th Email
-            tbody
-              each members
+      .view-header
+        h1.inline= organization.name
+        if currentUser
+          unless userIsMember
+            a.btn.btn-default.header-btn.join-organization
+              span Join
+              i.fa.fa-users
+      unless memberCount
+        +paragraphText text=organization.description
+      else
+        .row
+          .col-sm-7
+            +paragraphText text=organization.description
+          .col-sm-5
+            h2 Members
+              span.member-count (#{memberCount})
+            table.table
+              thead
                 tr
-                  td.name=fullName
-                  td.email=emailAddress
-
+                  th Name
+                  th Email
+              tbody
+                each members
+                  tr
+                    td.name=fullName
+                    td.email=emailAddress

@@ -10,6 +10,8 @@ if Meteor.isClient
         userId: Meteor.userId(),
         memberOfOrgs: @organizationId
       })
+    memberCount: ->
+      Organizations.findOne(@organizationId)?.getMemberProfiles().fetch().length
     members: ->
       Organizations.findOne(@organizationId)?.getMemberProfiles()
 
