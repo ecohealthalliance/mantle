@@ -26,4 +26,3 @@ do ->
         name: name
         createdById: "fakeid"
         description: "None"
-        members: []

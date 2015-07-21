@@ -3,6 +3,7 @@ Feature: Organizations
   Background:
     Given there is a test user in the database
 
+  @organizations
   Scenario: Creating a new organization
     When I log in as the test user
     When I navigate to "/organizations"
@@ -15,7 +16,7 @@ Feature: Organizations
     Then I should be on the "Test Organization" detail page
     And I should see content "Test Organization"
 
-  @new
+  @organizations
   Scenario: Joining an organization
     Given there is an organization in the database with name "Test Organization"
     When I log in as the test user

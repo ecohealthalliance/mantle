@@ -10,6 +10,12 @@ UserProfile = Astro.Class
     emailHidden: 'boolean'
     userId: 'string'
     emailAddress: 'string'
+    # Organization membership is tracked in the user profile because it
+    # makes it possible to subscribe to all the profiles used by an org
+    # using only the org id.
+    memberOfOrgs:
+      type: 'array'
+      'default': []
 
   methods:
     update: (fields, callback) ->

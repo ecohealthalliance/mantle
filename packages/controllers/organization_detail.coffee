@@ -6,9 +6,9 @@ if Meteor.isClient
     organization: ->
       Organizations.findOne(@organizationId)
     userIsMember: ->
-      Organizations.findOne({
-        _id: @organizationId
-        members: Meteor.userId()
+      UserProfiles.findOne({
+        _id: Metoer.userId(),
+        memberOfOrgs: @organizationId
       })
     members: ->
       Organizations.findOne(@organizationId)?.getMemberProfiles()
@@ -25,20 +25,14 @@ if Meteor.isClient
 if Meteor.isServer
 
   Meteor.publish('organizationDetail', (id) ->
-    # I think there is a bug here where the user profiles subscription
-    # won't update when the user joins the organization because the query
-    # goes out of date.
-    myMembers = Organizations.findOne(id)?.members or []
     [
       Organizations.find(id)
       UserProfiles.find({
-        userId: {$in: myMembers}
+        memberOfOrgs: id
       })
     ]
   )
 
   Meteor.methods
     joinOrganization: (orgId) ->
-      Organizations.update(orgId, {
-        $addToSet: {members: @userId}
-      })
+      Organizations.findOne(orgId).addMember(@userId)

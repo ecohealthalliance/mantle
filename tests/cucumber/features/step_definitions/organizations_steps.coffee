@@ -35,11 +35,12 @@ do ->
         .waitForVisible('.organization-detail', assert.ifError)
         .call(callback)
 
-    @Then /^I see that I am a member of the organization$/, (name, callback) ->
+    @Then /^I see that I am a member of the organization$/, (callback) ->
       @browser
         .pause(1000)
         .waitForVisible('td.name', assert.ifError)
         .getHTML 'td.email', (error, response) ->
+          assert.ifError(error)
           match = response.toString().match("test@example.com")
           assert.ok(match)
         .call(callback)

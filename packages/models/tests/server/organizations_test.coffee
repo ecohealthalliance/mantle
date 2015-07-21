@@ -19,10 +19,19 @@ describe 'Organization attributes', ->
     organization.save
     expect(organization.createdById).to.eq('fakeid')
 
-  it 'includes members', (test, waitFor) ->
+  it 'can have members', (test, waitFor) ->
+    userId = 'snoopyId'
+    memberProfile = new UserProfile()
+    memberProfile.set(fullName: 'Snoopy', userId: userId)
+    memberProfile.save()
     organization.set('name', 'Peanuts')
-    organization.set('members', ['Snoopy'])
-    onSave = (err)->
+    # Checking for errors in the save callback can catch problems with the model.
+    # mUnit only allows one async function per test, so this in not done for
+    # memberProfile.save()
+    organization.save(waitFor((err)->
       test.isNull(err)
-    organization.save(waitFor(onSave))
-    expect(organization.members).to.include('Snoopy')
+      organization.addMember(userId)
+      expect(
+        organization.getMemberProfiles().map((x)-> x.fullName)
+      ).to.include('Snoopy')
+   ))

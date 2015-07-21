@@ -20,7 +20,6 @@ if Meteor.isServer
         organization = new Organization()
         organization.set(fields)
         organization.set('createdById', this.userId)
-        organization.set('members', [this.userId])
         organization.save()
       else
         throw "Not logged in"

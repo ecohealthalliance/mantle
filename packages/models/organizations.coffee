@@ -7,9 +7,10 @@ Organization = Astro.Class
     name: 'string'
     description: 'string'
     createdById: 'string'
-    members: 'array'
   methods:
-    getMemberProfiles: () ->
-      UserProfiles.find({
-        userId: {$in: @members or []}
+    addMember: (userId) ->
+      UserProfiles.update({userId: userId}, {
+        $addToSet: {memberOfOrgs: @_id}
       })
+    getMemberProfiles: () ->
+      UserProfiles.find(memberOfOrgs: @_id)
