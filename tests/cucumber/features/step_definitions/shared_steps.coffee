@@ -31,6 +31,12 @@ do ->
         .url(url.resolve(process.env.ROOT_URL, relativePath))
         .call(callback)
 
+    @When /^I log out$/, (callback) ->
+      @client
+        .click('.admin-settings', assert.ifError)
+        .click('.sign-out', assert.ifError)
+        .call(callback)
+
     @Then /^I should( not)? see a "([^"]*)" toast$/, (noToast, message, callback) ->
       @browser
         .waitForVisible('body *')

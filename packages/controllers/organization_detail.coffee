@@ -8,6 +8,10 @@ if Meteor.isClient
     organization: ->
       Organizations.findOne(@organizationId)
 
+    userCanEdit: ->
+      organization = Organizations.findOne(@organizationId)
+      Meteor.userId() == organization.createdById
+
     editingName: ->
       Template.instance().editingName.get()
 

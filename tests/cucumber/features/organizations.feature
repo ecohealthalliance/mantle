@@ -29,3 +29,12 @@ Feature: Organizations
     Then I should see content "Better Name"
     And I should see content "Better Description"
     And I should not see content "Test Organization"
+
+  Scenario: Trying to edit an organization as unauthorized user
+    When I log in as the test user
+    And I create an organization with name "Test Organization"
+    And I navigate to "/organizations"
+    When I click on the organization link
+    Then I should see content "Edit"
+    When I log out
+    Then I should not see content "Edit"

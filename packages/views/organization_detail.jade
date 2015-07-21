@@ -12,9 +12,10 @@ template(name="organizationDetail")
                 i.fa.fa-times-circle
         else
           h1= organization.name
-          button.btn-link.edit-inline.edit-name-button
-            span Edit
-            i.fa.fa-edit
+          if userCanEdit
+            button.btn-link.edit-inline.edit-name-button
+              span Edit
+              i.fa.fa-edit
     section.organization-description-wrap.gray
       .container.organization-description
         if editingDescription
@@ -26,6 +27,7 @@ template(name="organizationDetail")
               i.fa.fa-times-circle
         else
           +paragraphText text=organization.description
-          button.btn-link.edit-inline.edit-description-button
-            span Edit
-            i.fa.fa-edit
+          if userCanEdit
+            button.btn-link.edit-inline.edit-description-button
+              span Edit
+              i.fa.fa-edit
