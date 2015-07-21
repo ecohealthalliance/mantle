@@ -15,12 +15,13 @@ Feature: Organizations
     When I click on the organization link
     Then I should be on the "Test Organization" detail page
     And I should see content "Test Organization"
+    And I see that "test@example.com" is a member of the organization
 
   @organizations
   Scenario: Joining an organization
-    Given there is an organization in the database with name "Test Organization"
-    When I log in as the test user
+    Given there is an organization in the database created by the test user
+    When I register an account with email address "user@example.com"
     And I navigate to "/organizations"
     And I click on the organization link
     And I click on "Join"
-    Then I see that I am a member of the organization
+    Then I see that "user@example.com" is a member of the organization

@@ -21,8 +21,8 @@ do ->
       attributes['_id'] = id
       UserProfiles.insert attributes
 
-    'createTestOrg': (name) ->
+    'createTestOrg': ->
       Organizations.insert
-        name: name
+        name: "Test Organization"
         createdById: "fakeid"
         description: "None"
