@@ -12,7 +12,7 @@ Package.onUse(function(api) {
   api.use('mantle:styles');
   api.use('mantle:route-helpers');
 
-  api.addFiles('file_upload.jade', 'client');
+  api.addFiles('file_input.jade', 'client');
   api.addFiles('accounts_modal.jade');
   api.addFiles('accounts_header_buttons.jade')
   api.addFiles('splash_page.jade', 'client');

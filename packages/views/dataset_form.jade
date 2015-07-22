@@ -8,7 +8,7 @@ template(name="datasetForm")
           form.new-dataset
             label Name
               input.form-control(name="name" type="string")
-            +fileUpload name='file'
+            +fileInput name='file'
             input.btn.btn-primary(type="submit" value="Save")
   else
     p Please log in or sign up to continue.

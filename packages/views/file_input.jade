@@ -1,4 +1,4 @@
-template(name="fileUpload")
+template(name="fileInput")
   .input-group
     .input-group-btn
       label.btn.btn-default.btn-file
@@ -6,7 +6,7 @@ template(name="fileUpload")
         i.fa.fa-folder-open
         input.upload(name=name type="file")
     .file-name-wrap
-      input.form-control.file-name(value="{{fileName}}" class="{{hasFile}}" readonly)
-      if hasFile
+      input.form-control.file-name(value=fileName placeholder="No file selected" readonly)
+      if fileName
         span.remove
           i.fa.fa-times-circle

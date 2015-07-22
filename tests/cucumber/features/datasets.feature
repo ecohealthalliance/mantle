@@ -8,7 +8,8 @@ Feature: Datasets
     When I log in as the test user
     And I navigate to "/datasets/new"
     And I fill out the dataset form
-    And I upload a file
+    And I choose a file
+    Then I should see the filename
     And I submit the dataset form
     Then I should see a "Success" toast
     And I should see content "Dataset Name"
@@ -18,6 +19,16 @@ Feature: Datasets
     When I log in as the test user
     And I navigate to "/datasets/new"
     And I fill out the dataset form
+    And I submit the dataset form
+    Then I should see an "Error" toast
+
+  Scenario: Clear file before submitting
+    When I log in as the test user
+    And I navigate to "/datasets/new"
+    And I fill out the dataset form
+    And I choose a file
+    And I clear the file
+    Then I should not see the filename
     And I submit the dataset form
     Then I should see an "Error" toast
 

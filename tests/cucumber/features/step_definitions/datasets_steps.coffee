@@ -13,10 +13,19 @@ do ->
         .setValue('input[name="name"]', 'Dataset Name')
         .call(callback)
 
-    @When "I upload a file", (callback) ->
+    @When "I choose a file", (callback) ->
       @browser
         .chooseFile('input[name="file"]', path.join(process.cwd(), "files", "testfile"))
         .call(callback)
+
+    @Then /^I should( not)? see the filename$/, (shouldNot, callback) ->
+      @browser
+        .getValue '.file-name', (err, value) ->
+          if shouldNot
+            assert.equal value, ''
+          else
+            assert.equal value, 'testfile'
+          callback()
 
     @When "I submit the dataset form", (callback) ->
       @browser
@@ -24,7 +33,6 @@ do ->
         .call(callback)
 
     @Then /^the downloadable file content should be "([^"]*)"$/, (content, callback) ->
-
       @browser
         .waitForExist('.btn')
         .getAttribute '.btn', 'href', (error, attr) ->
@@ -37,3 +45,9 @@ do ->
             response.on 'end', ->
               assert.equal data, content
               callback()
+
+    @When "I clear the file", (callback) ->
+      @browser
+        .waitForExist('.remove')
+        .click('.remove', assert.ifError)
+        .call(callback)

@@ -18,7 +18,7 @@ Package.onUse(function(api) {
   api.use('chrismbeckett:toastr');
 
   api.addFiles('toastr.coffee', 'client');
-  api.addFiles('file_upload.coffee', 'client');
+  api.addFiles('file_input.coffee', 'client');
   api.addFiles('header.coffee', 'client');
   api.addFiles('accounts_modal.coffee', 'client');
   api.addFiles('accounts_header_buttons.coffee', ['client', 'server']);
