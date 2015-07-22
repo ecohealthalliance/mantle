@@ -28,15 +28,14 @@ describe 'Organization', ->
     userId = 'snoopyId'
     memberProfile = new UserProfile()
     memberProfile.set(fullName: 'Snoopy', userId: userId)
-    memberProfile.save()
-    organization.set('name', 'Peanuts')
-    # Checking for errors in the save callback can catch problems with the model.
-    # mUnit only allows one async function per test, so this in not done for
-    # memberProfile.save()
-    organization.save(waitFor((err)->
+    callback = waitFor((err)->
       test.isNull(err)
       organization.addMember(userId)
       expect(
         organization.getMemberProfiles().map((x)-> x.fullName)
       ).to.include('Snoopy')
-   ))
+    )
+    memberProfile.save (err)->
+      test.isNull(err)
+      organization.set('name', 'Peanuts')
+      organization.save(callback)

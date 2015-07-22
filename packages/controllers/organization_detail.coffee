@@ -11,7 +11,7 @@ if Meteor.isClient
         memberOfOrgs: @organizationId
       })
     memberCount: ->
-      Organizations.findOne(@organizationId)?.getMemberProfiles().fetch().length
+      Organizations.findOne(@organizationId)?.getMemberProfiles().count()
     members: ->
       Organizations.findOne(@organizationId)?.getMemberProfiles()
 
