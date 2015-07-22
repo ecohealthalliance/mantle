@@ -28,6 +28,7 @@ if Meteor.isClient
         else
           organization.validateAll()
           toastr.success("Success")
+          go "organizationDetail", {_id: response}
 
 if Meteor.isServer
   Meteor.methods

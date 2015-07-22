@@ -8,7 +8,8 @@ Feature: Organizations
     When I navigate to "/organizations"
     And I click the new organization link
     And I fill out the new organization form with name "Test Organization"
-    Then I should see a "Success" toast
+    Then I should be on the "Test Organization" detail page
+    And I should see a "Success" toast
     When I navigate to "/organizations"
     Then I should see content "Test Organization"
     When I click on the organization link
