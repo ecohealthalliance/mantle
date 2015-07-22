@@ -1,7 +1,7 @@
 Feature: Organizations
 
   Background:
-    Given there is a test user in the database
+    Given there is a test user in the database with a profile
 
   @organizations
   Scenario: Creating a new organization

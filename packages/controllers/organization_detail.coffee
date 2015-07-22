@@ -31,6 +31,9 @@ if Meteor.isServer
       Organizations.find(id)
       UserProfiles.find({
         memberOfOrgs: id
+      }, {
+        fields:
+          emailAddress: false
       })
     ]
   )

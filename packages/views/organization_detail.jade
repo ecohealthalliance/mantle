@@ -21,9 +21,11 @@ template(name="organizationDetail")
               thead
                 tr
                   th Name
-                  th Email
               tbody
                 each members
                   tr
-                    td.name=fullName
-                    td.email=emailAddress
+                    td.name
+                      if fullName
+                        | #{fullName}
+                      else
+                        i Name unknown

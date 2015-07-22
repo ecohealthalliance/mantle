@@ -16,6 +16,12 @@ do ->
     @Given /^there is a test user in the database/, ->
       @server.call('createTestUser', _testUser)
 
+    @Given "there is a test user in the database with a profile", (callback)->
+      @server.call('createTestUserWithProfile', _testUser,
+        fullName: "Micky Mouse"
+      ).then =>
+        @client.call(callback)
+
     @When "I log in as the test user", (callback) ->
       @client
         .url(url.resolve(process.env.ROOT_URL, '/'))

@@ -24,7 +24,7 @@ do ->
 
     @When /^I click on the organization link$/, (callback) ->
       @browser
-        .waitForVisible('.organizations-table', 3000, assert.ifError)
+        .waitForVisible('.organizations-table', 8000, assert.ifError)
         .click(".organizations-table a", assert.ifError)
         .waitForVisible('.organization-detail', assert.ifError)
         .call(callback)
@@ -36,10 +36,10 @@ do ->
 
     @Then /^I see that I am a member of the organization$/, (callback) ->
       @browser
-        .waitForVisible('td.name', 3000, assert.ifError)
-        .getHTML 'td.email', (error, response) ->
+        .waitForVisible('td.name', 4000, assert.ifError)
+        .getHTML 'td.name', (error, response) ->
           assert.ifError(error)
-          match = response.toString().match("test@example.com")
+          match = response.toString().match("Micky Mouse")
           assert.ok(match)
         .call(callback)
 
