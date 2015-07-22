@@ -2,22 +2,19 @@ template(name="organizationDetail")
   .organization-detail
     .container
       .view-header
-        h1.inline= organization.name
+        h1= organization.name
         if currentUser
           unless userIsMember
             a.btn.btn-default.header-btn.join-organization
               span Join
               i.fa.fa-users
-      unless memberCount
-        +paragraphText text=organization.description
-      else
-        .row
+      +paragraphText text=organization.description
+      .row
+        if memberCount
           .col-sm-7
-            +paragraphText text=organization.description
-          .col-sm-5
             h2 Members
               span.member-count (#{memberCount})
-            table.table
+            table.table.member-table
               thead
                 tr
                   th Name
@@ -26,6 +23,6 @@ template(name="organizationDetail")
                   tr
                     td.name
                       if fullName
-                        | #{fullName}
+                        a(href="{{path route='profileDetail' params=this}}")=fullName
                       else
                         i Name unknown
