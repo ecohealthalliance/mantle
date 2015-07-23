@@ -25,6 +25,7 @@ do ->
     @When "I log in as the test user", (callback) ->
       @client
         .url(url.resolve(process.env.ROOT_URL, '/'))
+        .waitForExist('.sign-in')
         .click('.sign-in', assert.ifError)
         .setValue('#at-field-email', _testUser.email)
         .setValue('#at-field-password', _testUser.password)

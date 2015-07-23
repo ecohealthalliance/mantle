@@ -1,4 +1,11 @@
 Organizations = new Mongo.Collection('organizations')
+Organizations.allow
+  insert: (userId, doc)  ->
+    false
+  update: (userId, doc, fields, modifier) ->
+    false
+  remove: (userId, doc) ->
+    false
 Organization = Astro.Class
   name: 'Organization'
   collection: Organizations
@@ -8,10 +15,6 @@ Organization = Astro.Class
     description: 'string'
     createdById: 'string'
   methods:
-    addMember: (userId) ->
-      UserProfiles.update({userId: userId}, {
-        $addToSet: {memberOfOrgs: @_id}
-      })
     getMemberProfiles: () ->
       UserProfiles.find(memberOfOrgs: @_id)
     truncateDescription: ->
@@ -21,3 +24,9 @@ Organization = Astro.Class
         splitDescription.slice(0,wordCount).join(' ')+'...'
       else
         @description
+
+if Meteor.isServer
+  Organization.addMethod 'addMember', (userId)->
+    UserProfiles.update({userId: userId}, {
+      $addToSet: {memberOfOrgs: @_id}
+    })
