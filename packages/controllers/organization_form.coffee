@@ -22,5 +22,6 @@ if Meteor.isServer
         organization.set('createdById', this.userId)
         organization.save =>
           organization.addMember(this.userId)
+          organization.addAdmin(this.userId)
       else
         throw "Not logged in"

@@ -11,7 +11,7 @@ if Meteor.isClient
         memberOfOrgs: @organizationId
       })
     members: ->
-      Organizations.findOne(@organizationId)?.getMemberProfiles()
+      Organizations.findOne(@organizationId)?.getNonAdminProfiles()
     admins: ->
       Organizations.findOne(@organizationId)?.getAdminProfiles()
 

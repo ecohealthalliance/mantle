@@ -2,6 +2,7 @@ describe 'Organization', ->
   organization = null
 
   beforeEach ->
+    UserProfiles.remove({})
     organization = new Organization()
 
   it 'includes name', ->
@@ -44,13 +45,13 @@ describe 'Organization', ->
   it 'can have admins', (test, waitFor) ->
     userId = 'snoopyId'
     memberProfile = new UserProfile()
-    memberProfile.set(fullName: 'Snoopy', userId: userId)
+    memberProfile.set(fullName: 'TestUser', userId: userId)
     memberProfile.save()
-    organization.set('name', 'Peanuts')
+    organization.set('name', 'TestOrg')
     organization.save(waitFor((err)->
       test.isNull(err)
       organization.addAdmin(userId)
       expect(
         organization.getAdminProfiles().map((x)-> x.fullName)
-      ).to.include('Snoopy')
+      ).to.include('TestUser')
     ))

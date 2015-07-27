@@ -18,6 +18,8 @@ Organization = Astro.Class
       })
     getMemberProfiles: () ->
       UserProfiles.find(memberOfOrgs: @_id)
+    getNonAdminProfiles: () ->
+      UserProfiles.find({memberOfOrgs: @_id, adminOfOrgs: { $nin: [@_id]}})
     getAdminProfiles: () ->
       UserProfiles.find(adminOfOrgs: @_id)
 
