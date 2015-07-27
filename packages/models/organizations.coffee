@@ -12,8 +12,15 @@ Organization = Astro.Class
       UserProfiles.update({userId: userId}, {
         $addToSet: {memberOfOrgs: @_id}
       })
+    addAdmin: (userId) ->
+      UserProfiles.update({userId: userId}, {
+        $addToSet: {adminOfOrgs: @_id}
+      })
     getMemberProfiles: () ->
       UserProfiles.find(memberOfOrgs: @_id)
+    getAdminProfiles: () ->
+      UserProfiles.find(adminOfOrgs: @_id)
+
     truncateDescription: ->
       splitDescription = @description?.split(' ')
       wordCount = 50

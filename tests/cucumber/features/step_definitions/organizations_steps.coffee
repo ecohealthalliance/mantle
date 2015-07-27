@@ -7,6 +7,9 @@ do ->
 
     url = require('url')
 
+    @Given "there is a user with full name $name who belongs to the test organization", (name) ->
+      @server.call('createProfile', {fullName: name})
+
     @When "I click the new organization link", (callback) ->
       @browser
         .waitForExist('.organizations-table')
@@ -35,18 +38,30 @@ do ->
         .waitForVisible('.organization-detail', assert.ifError)
         .call(callback)
 
-    @Then /^I see that "([^"]*)" is a member of the organization$/, (email, callback) ->
-      @browser
+    checkMembership = (browser, emailOrName, role, callback) ->
+      browser
         .pause(1000)
         .waitForVisible('td.name', assert.ifError)
-        .getHTML 'td.email', (error, response) ->
+        .getHTML 'tr', (error, response) ->
           assert.ifError(error)
-          match = response.toString().match(email)
+          match = _.any response, (row) =>
+            identifierMatch = row.toString().match(emailOrName)
+            roleMatch = row.toString().match(role)
+            identifierMatch and roleMatch
           assert.ok(match)
         .call(callback)
 
+    @Then /^I see that "([^"]*)" is a member of the organization$/, (emailOrName, callback) ->
+      checkMembership(@browser, emailOrName, "Member", callback)
+
+    @Then /^I see that "([^"]*)" is an admin of the organization$/, (emailOrName, callback) ->
+      checkMembership(@browser, emailOrName, "Admin", callback)
+
     @Given 'there is an organization in the database created by the test user', ->
       @server.call('createTestOrg')
+
+    @Given /^there is a profile with full name "([^"]*)" that belongs to the test organization$/, (fullName) ->
+      @server.call('createProfile', {fullName: fullName, memberOfOrgs: ['fakeorgid']})
 
     @When 'I click on "Join"', (callback) ->
       @browser

@@ -18,7 +18,7 @@ Feature: Accounts
     And I should see content "Test Name"
 
   Scenario: Viewing a public profile
-    Given there is a profile with ID 'fakeid' where "fullName" is "Test Title"
+    Given there is a profile with ID 'fakeid' where full name is "Test Title"
     When I navigate to "/profiles/fakeid"
     Then I should see content "Test Title"
 

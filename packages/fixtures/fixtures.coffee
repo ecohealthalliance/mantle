@@ -15,10 +15,7 @@ do ->
         email: attributes.email
         password: attributes.password
 
-    'createProfile': (field, value, id) ->
-      attributes = {}
-      attributes[field] = value
-      attributes['_id'] = id
+    'createProfile': (attributes) ->
       UserProfiles.insert attributes
 
     'createTestOrg': ->
@@ -26,3 +23,4 @@ do ->
         name: "Test Organization"
         createdById: "fakeid"
         description: "None"
+        _id: 'fakeorgid'

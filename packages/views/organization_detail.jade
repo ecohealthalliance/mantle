@@ -17,8 +17,13 @@ template(name="organizationDetail")
                 th Name
                 th Email
             tbody
+              each admins
+                tr
+                  td.name=fullName
+                  td.email=emailAddress
+                  td.role Admin
               each members
                 tr
                   td.name=fullName
                   td.email=emailAddress
-
+                  td.role Member

@@ -12,6 +12,8 @@ if Meteor.isClient
       })
     members: ->
       Organizations.findOne(@organizationId)?.getMemberProfiles()
+    admins: ->
+      Organizations.findOne(@organizationId)?.getAdminProfiles()
 
   Template.organizationDetail.events
     'click .join-organization' : (event, instance) ->

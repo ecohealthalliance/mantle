@@ -16,6 +16,9 @@ UserProfile = Astro.Class
     memberOfOrgs:
       type: 'array'
       'default': []
+    adminOfOrgs:
+      type: 'array'
+      'default': []
 
   methods:
     update: (fields, callback) ->
