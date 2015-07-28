@@ -16,7 +16,7 @@ do ->
         password: attributes.password
 
     'createProfile': (attributes) ->
-      UserProfiles.insert attributes
+      UserProfiles.insert(attributes)
 
     'createTestOrg': ->
       Organizations.insert

@@ -7,7 +7,7 @@ do ->
 
     url = require('url')
 
-    @Given /^there is a profile with ID 'fakeid' where full name is "([^"]*)"$/, (name, value)->
+    @Given /^there is a profile with ID 'fakeid' where full name is "([^"]*)"$/, (name)->
       @server.call('createProfile', {_id: 'fakeid', fullName: name})
 
     registerAccount = (browser, email, callback) ->

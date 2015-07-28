@@ -19,9 +19,10 @@ if Meteor.isServer
       if this.userId
         organization = new Organization()
         organization.set(fields)
-        organization.set('createdById', this.userId)
+        organization.set('createdById', @userId)
         organization.save =>
-          organization.addMember(this.userId)
-          organization.addAdmin(this.userId)
+          organization.addMember(@userId)
+          profile = UserProfiles.findOne({userId: @userId})
+          organization.addAdmin(profile._id)
       else
         throw "Not logged in"
