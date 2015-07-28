@@ -12,8 +12,13 @@ if Meteor.isClient
       })
     userIsAdmin: ->
       UserProfiles.findOne({
-        userId: Meteor.userId(),
-        adminOfOrgs: @organizationId
+        userId: Meteor.userId()},
+        $in: {adminOfOrgs: [@organizationId]}
+      )
+    hideButtonsForProfile: (profileId) ->
+      UserProfiles.findOne({
+        _id: profileId
+        userId: Meteor.userId()
       })
     members: ->
       Organizations.findOne(@organizationId)?.getNonAdminProfiles()
