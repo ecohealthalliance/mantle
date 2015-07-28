@@ -26,7 +26,7 @@ Feature: Organizations
     And I click on "Join"
     Then I see that "user@example.com" is a member of the organization
 
-  @dev
+  @organizations
   Scenario: Making another member an admin
     Given there is an organization in the database created by the test user
     And there is a profile with full name "Test Name" that belongs to the test organization
@@ -36,3 +36,5 @@ Feature: Organizations
     Then I see that "Test Name" is a member of the organization
     When I make "Test Name" an admin
     Then I see that "Test Name" is an admin of the organization
+    When I remove "Test Name" from the admin role
+    Then I see that "Test Name" is a member of the organization

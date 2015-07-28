@@ -24,6 +24,14 @@ if Meteor.isClient
         else
           toastr.success("Success")
 
+    'click .make-admin' : (event, instance) ->
+      profileId = event.target.getAttribute('data-profileId')
+      Meteor.call 'makeAdmin', instance.data.organizationId, profileId
+
+    'click .remove-admin' : (event, instance) ->
+      profileId = event.target.getAttribute('data-profileId')
+      Meteor.call 'removeAdmin', instance.data.organizationId, profileId
+
 if Meteor.isServer
 
   Meteor.publish('organizationDetail', (id) ->
@@ -38,3 +46,9 @@ if Meteor.isServer
   Meteor.methods
     joinOrganization: (orgId) ->
       Organizations.findOne(orgId).addMember(@userId)
+
+    makeAdmin: (orgId, profileId) ->
+      Organizations.findOne(orgId).addAdmin(profileId)
+
+    removeAdmin: (orgId, profileId) ->
+      Organizations.findOne(orgId).removeAdmin(profileId)

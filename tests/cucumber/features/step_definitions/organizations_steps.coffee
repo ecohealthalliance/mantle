@@ -38,24 +38,21 @@ do ->
         .waitForVisible('.organization-detail', assert.ifError)
         .call(callback)
 
-    checkMembership = (browser, emailOrName, role, callback) ->
-      browser
+    @Then /^I see that "([^"]*)" is a member of the organization$/, (emailOrName, callback) ->
+      @browser
         .pause(1000)
         .waitForVisible('td.name', assert.ifError)
-        .getHTML 'tr', (error, response) ->
-          assert.ifError(error)
-          match = _.any response, (row) =>
-            identifierMatch = row.toString().match(emailOrName)
-            roleMatch = row.toString().match(role)
-            identifierMatch and roleMatch
-          assert.ok(match)
+        .getHTML 'tr.member-row', (error, response) ->
+          assert.ok(response?.match(emailOrName))
         .call(callback)
 
-    @Then /^I see that "([^"]*)" is a member of the organization$/, (emailOrName, callback) ->
-      checkMembership(@browser, emailOrName, "Member", callback)
-
     @Then /^I see that "([^"]*)" is an admin of the organization$/, (emailOrName, callback) ->
-      checkMembership(@browser, emailOrName, "Admin", callback)
+      @browser
+        .pause(1000)
+        .waitForVisible('td.name', assert.ifError)
+        .getHTML 'tr.admin-row', (error, response) ->
+          assert.ok(response?.match(emailOrName))
+        .call(callback)
 
     @Given 'there is an organization in the database created by the test user', ->
       @server.call('createTestOrg')
@@ -67,4 +64,16 @@ do ->
       @browser
         .waitForVisible('.join-organization', assert.ifError)
         .click('.join-organization', assert.ifError)
+        .call(callback)
+
+    @When 'I make $name an admin', (name, callback) ->
+      @browser
+        .waitForVisible('td.name', assert.ifError)
+        .click('tr .make-admin', assert.ifError)
+        .call(callback)
+
+    @When 'I remove $name from the admin role', (name, callback) ->
+      @browser
+        .waitForVisible('td.name', assert.ifError)
+        .click('tr .remove-admin', assert.ifError)
         .call(callback)

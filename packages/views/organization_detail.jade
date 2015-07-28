@@ -18,12 +18,16 @@ template(name="organizationDetail")
                 th Email
             tbody
               each admins
-                tr
+                tr.admin-row
                   td.name=fullName
                   td.email=emailAddress
                   td.role Admin
+                  td
+                    a.btn.btn-default.remove-admin(data-profileId=_id) Remove admin
               each members
-                tr
+                tr.member-row
                   td.name=fullName
                   td.email=emailAddress
                   td.role Member
+                  td
+                    a.btn.btn-default.make-admin(data-profileId=_id) Make admin

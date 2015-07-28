@@ -43,15 +43,17 @@ describe 'Organization', ->
     ))
 
   it 'can have admins', (test, waitFor) ->
-    userId = 'snoopyId'
     memberProfile = new UserProfile()
-    memberProfile.set(fullName: 'TestUser', userId: userId)
+    memberProfile.set(fullName: 'TestUser')
     memberProfile.save()
     organization.set('name', 'TestOrg')
-    organization.save(waitFor((err)->
-      test.isNull(err)
-      organization.addAdmin(userId)
-      expect(
-        organization.getAdminProfiles().map((x)-> x.fullName)
-      ).to.include('TestUser')
-    ))
+    organization.save()
+    organization.addAdmin(memberProfile._id)
+    expect(
+      organization.getAdminProfiles().map((x)-> x.fullName)
+    ).to.include('TestUser')
+
+    organization.removeAdmin(memberProfile._id)
+    expect(
+      organization.getAdminProfiles().map((x)-> x.fullName)
+    ).not.to.include('TestUser')

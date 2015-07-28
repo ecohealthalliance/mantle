@@ -12,9 +12,13 @@ Organization = Astro.Class
       UserProfiles.update({userId: userId}, {
         $addToSet: {memberOfOrgs: @_id}
       })
-    addAdmin: (userId) ->
-      UserProfiles.update({userId: userId}, {
+    addAdmin: (profileId) ->
+      UserProfiles.update({_id: profileId}, {
         $addToSet: {adminOfOrgs: @_id}
+      })
+    removeAdmin: (profileId) ->
+      UserProfiles.update({_id: profileId}, {
+        $pull: {adminOfOrgs: @_id}
       })
     getMemberProfiles: () ->
       UserProfiles.find(memberOfOrgs: @_id)
