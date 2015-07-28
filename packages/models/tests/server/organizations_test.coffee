@@ -57,3 +57,17 @@ describe 'Organization', ->
     expect(
       organization.getAdminProfiles().map((x)-> x.fullName)
     ).not.to.include('TestUser')
+
+  it 'automatically makes its creator an admin', (test, waitFor) ->
+    userId = 'userId'
+    memberProfile = new UserProfile()
+    memberProfile.set(fullName: 'TestUser', userId: userId)
+    memberProfile.save()
+    organization.set({name: 'TestOrg', createdById: userId})
+    organization.save()
+    expect(
+      organization.getMemberProfiles().map((x)-> x.fullName)
+    ).to.include('TestUser')
+    expect(
+      organization.getAdminProfiles().map((x)-> x.fullName)
+    ).to.include('TestUser')

@@ -19,8 +19,11 @@ do ->
       UserProfiles.insert(attributes)
 
     'createTestOrg': ->
-      Organizations.insert
+      organization = new Organization()
+      user = Meteor.users.findOne()
+      organization.set
         name: "Test Organization"
-        createdById: "fakeid"
+        createdById: user._id
         description: "None"
-        _id: 'fakeorgid'
+        _id: "fakeorgid"
+      organization.save()

@@ -51,7 +51,7 @@ do ->
         .pause(1000)
         .waitForVisible('td.name', assert.ifError)
         .getHTML 'tr.admin-row', (error, response) ->
-          assert.ok(response?.match(emailOrName))
+          assert.ok(response?.toString().match(emailOrName))
         .call(callback)
 
     @Given 'there is an organization in the database created by the test user', ->

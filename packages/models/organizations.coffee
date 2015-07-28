@@ -7,6 +7,14 @@ Organization = Astro.Class
     name: 'string'
     description: 'string'
     createdById: 'string'
+
+  events:
+    aftersave: ->
+      if @createdById
+        @addMember(@createdById)
+        profile = UserProfiles.findOne({userId: @createdById})
+        @addAdmin(profile._id)
+
   methods:
     addMember: (userId) ->
       UserProfiles.update({userId: userId}, {

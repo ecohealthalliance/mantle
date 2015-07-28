@@ -10,6 +10,11 @@ if Meteor.isClient
         userId: Meteor.userId(),
         memberOfOrgs: @organizationId
       })
+    userIsAdmin: ->
+      UserProfiles.findOne({
+        userId: Meteor.userId(),
+        adminOfOrgs: @organizationId
+      })
     members: ->
       Organizations.findOne(@organizationId)?.getNonAdminProfiles()
     admins: ->

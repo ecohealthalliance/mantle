@@ -6,28 +6,31 @@ template(name="organizationDetail")
         .col-sm-10
           +paragraphText text=organization.description
       .row
-        .panel.panel-default
-          .panel-heading Members
-          .panel-body
-            unless userIsMember
-              a.btn.btn-default.join-organization Join
-          table.table
-            thead
-              tr
-                th Name
-                th Email
-            tbody
-              each admins
-                tr.admin-row
-                  td.name=fullName
-                  td.email=emailAddress
-                  td.role Admin
-                  td
-                    a.btn.btn-default.remove-admin(data-profileId=_id) Remove admin
-              each members
-                tr.member-row
-                  td.name=fullName
-                  td.email=emailAddress
-                  td.role Member
-                  td
-                    a.btn.btn-default.make-admin(data-profileId=_id) Make admin
+        if userIsAdmin
+          .panel.panel-default
+            .panel-heading Members
+            .panel-body
+              unless userIsMember
+                a.btn.btn-default.join-organization Join
+            table.table
+              thead
+                tr
+                  th Name
+                  th Email
+                  th Role
+                  th
+              tbody
+                each admins
+                  tr.admin-row
+                    td.name=fullName
+                    td.email=emailAddress
+                    td.role Admin
+                    td
+                      a.btn.btn-default.remove-admin(data-profileId=_id) Remove admin
+                each members
+                  tr.member-row
+                    td.name=fullName
+                    td.email=emailAddress
+                    td.role Member
+                    td
+                      a.btn.btn-default.make-admin(data-profileId=_id) Make admin
