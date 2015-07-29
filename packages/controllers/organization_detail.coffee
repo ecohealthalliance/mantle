@@ -20,6 +20,8 @@ if Meteor.isClient
         _id: profileId
         userId: Meteor.userId()
       })
+    memberCount: ->
+      Organizations.findOne(@organizationId)?.getMemberProfiles().count()
     members: ->
       Organizations.findOne(@organizationId)?.getNonAdminProfiles()
     admins: ->
@@ -49,6 +51,9 @@ if Meteor.isServer
       Organizations.find(id)
       UserProfiles.find({
         memberOfOrgs: id
+      }, {
+        fields:
+          emailAddress: false
       })
     ]
   )

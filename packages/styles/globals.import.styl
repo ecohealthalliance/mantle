@@ -13,20 +13,24 @@ body
   padding-top 20px
   padding-bottom $footer-height-actual+10
 
+.content-container
+  margin-bottom 50px
+
 h2
-  color $primary
+  color $secondary
 
 h3
   color $secondary
 
 h4
-  color $body-text
+  color $d-gray
 
 h5
   font-weight 400
   color $d-gray
 
 .view-header
+  position relative
   margin-bottom 15px
   +below(1)
     margin-bottom 25px
@@ -65,6 +69,7 @@ a
 
 .btn-default
   makeButton($ll-gray, $body-text, true)
+  font-weight bold
 
 .btn-success
   makeButton($confirm)
@@ -81,7 +86,14 @@ a
 .header-btn
   display inline-block
   margin-left 15px
+  position absolute
+  right 30px
+  top 50%
+  padding 6px 20px
+  centerPosition(0, -50%)
   +below(1)
+    position static
+    centerPosition(0,0)
     display block
     margin 10px 0
   .fa

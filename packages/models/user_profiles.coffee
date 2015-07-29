@@ -1,4 +1,11 @@
 UserProfiles = new Mongo.Collection('userProfile')
+UserProfiles.allow
+  insert: (userId, doc)  ->
+    doc.userId == userId
+  update: (userId, doc, fields, modifier) ->
+    doc.userId == userId
+  remove: (userId, doc) ->
+    doc.userId == userId
 UserProfile = Astro.Class
   name: 'UserProfile'
   collection: UserProfiles
