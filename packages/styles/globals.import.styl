@@ -97,12 +97,14 @@ a
     width 100%
 
 #toast-container
-  > div
+  .toast
     +below(2)
-      width 100% !important
-      height $footer-height-actual - 10
-      margin 0 !important
-      opacity 1 !important
+      width 100%
+      height $footer-height - 20
+      margin 0
+      opacity 1
+    +at(2)
+      height $footer-height
 
 .col-sm-0
   width 0%
