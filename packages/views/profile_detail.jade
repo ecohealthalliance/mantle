@@ -1,7 +1,11 @@
 template(name="profileDetail")
   .container.profile-detail
     .profile-name-title.space-btm-2
-      h1= userProfile.fullName
+      .view-header
+        h1.inline= userProfile.fullName
+        a.btn.btn-default.profile-edit-link.header-btn(href= "{{path route='profileEdit'}}")
+          span Edit Profile
+          i.fa.fa-edit
       p.job-title.rm-margin-btm= userProfile.jobTitle
       if userProfile.emailAddress
         a.with-icon-left(href="mailto:#{userProfile.emailAddress}")
