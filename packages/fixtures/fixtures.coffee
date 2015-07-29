@@ -15,8 +15,15 @@ do ->
         email: attributes.email
         password: attributes.password
 
-    'createProfile': (field, value, id) ->
-      attributes = {}
-      attributes[field] = value
-      attributes['_id'] = id
-      UserProfiles.insert attributes
+    'createProfile': (attributes) ->
+      UserProfiles.insert(attributes)
+
+    'createTestOrg': ->
+      organization = new Organization()
+      user = Meteor.users.findOne()
+      organization.set
+        name: "Test Organization"
+        createdById: user._id
+        description: "None"
+        _id: "fakeorgid"
+      organization.save()

@@ -2,6 +2,7 @@ describe 'Organization', ->
   organization = null
 
   beforeEach ->
+    UserProfiles.remove({})
     organization = new Organization()
 
   it 'includes name', ->
@@ -23,3 +24,50 @@ describe 'Organization', ->
     organization.set('createdById', 'fakeid')
     organization.save
     expect(organization.createdById).to.eq('fakeid')
+
+  it 'can have members', (test, waitFor) ->
+    userId = 'snoopyId'
+    memberProfile = new UserProfile()
+    memberProfile.set(fullName: 'Snoopy', userId: userId)
+    memberProfile.save()
+    organization.set('name', 'Peanuts')
+    # Checking for errors in the save callback can catch problems with the model.
+    # mUnit only allows one async function per test, so this in not done for
+    # memberProfile.save()
+    organization.save(waitFor((err)->
+      test.isNull(err)
+      organization.addMember(userId)
+      expect(
+        organization.getMemberProfiles().map((x)-> x.fullName)
+      ).to.include('Snoopy')
+    ))
+
+  it 'can have admins', (test, waitFor) ->
+    memberProfile = new UserProfile()
+    memberProfile.set(fullName: 'TestUser')
+    memberProfile.save()
+    organization.set('name', 'TestOrg')
+    organization.save()
+    organization.addAdmin(memberProfile._id)
+    expect(
+      organization.getAdminProfiles().map((x)-> x.fullName)
+    ).to.include('TestUser')
+
+    organization.removeAdmin(memberProfile._id)
+    expect(
+      organization.getAdminProfiles().map((x)-> x.fullName)
+    ).not.to.include('TestUser')
+
+  it 'automatically makes its creator an admin', (test, waitFor) ->
+    userId = 'userId'
+    memberProfile = new UserProfile()
+    memberProfile.set(fullName: 'TestUser', userId: userId)
+    memberProfile.save()
+    organization.set({name: 'TestOrg', createdById: userId})
+    organization.save()
+    expect(
+      organization.getMemberProfiles().map((x)-> x.fullName)
+    ).to.include('TestUser')
+    expect(
+      organization.getAdminProfiles().map((x)-> x.fullName)
+    ).to.include('TestUser')
