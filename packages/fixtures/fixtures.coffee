@@ -16,8 +16,8 @@ do ->
         password: attributes.password
 
     'createTestUserWithProfile': (attributes, profileAttributes) ->
-      Meteor.users.remove({})
       UserProfiles.remove({})
+      Meteor.users.remove({})
       userId = Accounts.createUser
         email: attributes.email
         password: attributes.password
@@ -30,6 +30,7 @@ do ->
       UserProfiles.insert attributes
 
     'createTestOrg': (name) ->
+      Organizations.remove({})
       Organizations.insert
         name: name
         createdById: "fakeid"

@@ -19,8 +19,14 @@ Feature: Organizations
   @organizations
   Scenario: Joining an organization
     Given there is an organization in the database with name "Test Organization"
+    And I am not logged in
     When I log in as the test user
     And I navigate to "/organizations"
-    And I click on the organization link
+    Given I am logged in
+    # The next step randomly fails by timing out while waiting for the org
+    # table to be visible. Increasing the timeout doesn't seem to help.
+    # Screenshots taken prior to the visibility check show that the user appears
+    # to be logged out when this happens.
+    When I click on the organization link
     And I click on "Join"
     Then I see that I am a member of the organization

@@ -24,7 +24,7 @@ do ->
 
     @When /^I click on the organization link$/, (callback) ->
       @browser
-        .waitForVisible('.organizations-table', 8000, assert.ifError)
+        .waitForVisible('.organizations-table', assert.ifError)
         .click(".organizations-table a", assert.ifError)
         .waitForVisible('.organization-detail', assert.ifError)
         .call(callback)

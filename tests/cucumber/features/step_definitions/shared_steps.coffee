@@ -30,7 +30,7 @@ do ->
         .setValue('#at-field-email', _testUser.email)
         .setValue('#at-field-password', _testUser.password)
         .submitForm('#at-field-email', assert.ifError)
-        .waitForExist('.sign-out')
+        .waitForExist('.sign-out', assert.ifError)
         .call(callback)
 
     @When /^I navigate to "([^"]*)"$/, (relativePath, callback) ->
