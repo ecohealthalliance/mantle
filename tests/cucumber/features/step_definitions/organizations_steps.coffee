@@ -33,3 +33,21 @@ do ->
       @browser
         .waitForVisible('.organization-detail', assert.ifError)
         .call(callback)
+
+    @Then /^I see that I am a member of the organization$/, (callback) ->
+      @browser
+        .waitForVisible('td.name', 4000, assert.ifError)
+        .getHTML 'td.name', (error, response) ->
+          assert.ifError(error)
+          match = response.toString().match("Micky Mouse")
+          assert.ok(match)
+        .call(callback)
+
+    @Given 'there is an organization in the database with name "$name"', (name) ->
+      @server.call('createTestOrg', name)
+
+    @When 'I click on "Join"', (callback) ->
+      @browser
+        .waitForVisible('.join-organization', assert.ifError)
+        .click('.join-organization', assert.ifError)
+        .call(callback)

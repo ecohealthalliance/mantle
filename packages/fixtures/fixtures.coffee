@@ -15,8 +15,23 @@ do ->
         email: attributes.email
         password: attributes.password
 
+    'createTestUserWithProfile': (attributes, profileAttributes) ->
+      UserProfiles.remove({})
+      Meteor.users.remove({})
+      userId = Accounts.createUser
+        email: attributes.email
+        password: attributes.password
+      UserProfiles.update({'userId': userId}, {$set: profileAttributes})
+
     'createProfile': (field, value, id) ->
       attributes = {}
       attributes[field] = value
       attributes['_id'] = id
       UserProfiles.insert attributes
+
+    'createTestOrg': (name) ->
+      Organizations.remove({})
+      Organizations.insert
+        name: name
+        createdById: "fakeid"
+        description: "None"

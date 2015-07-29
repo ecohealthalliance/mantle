@@ -1,7 +1,28 @@
 template(name="organizationDetail")
   .organization-detail
     .container
-      h1= organization.name
+      .view-header
+        h1= organization.name
+        if currentUser
+          unless userIsMember
+            a.btn.btn-default.header-btn.join-organization
+              span Join
+              i.fa.fa-users
+      +paragraphText text=organization.description
       .row
-        .col-sm-10
-          +paragraphText text=organization.description
+        if memberCount
+          .col-sm-7
+            h2 Members
+              span.member-count (#{memberCount})
+            table.table.member-table
+              thead
+                tr
+                  th Name
+              tbody
+                each members
+                  tr
+                    td.name
+                      if fullName
+                        a(href="{{path route='profileDetail' params=this}}")=fullName
+                      else
+                        i Name unknown

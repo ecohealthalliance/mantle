@@ -8,5 +8,6 @@ template(name='layout')
   .page-wrap
     +header
     .content-wrap
-      +Template.dynamic template=main data=params
+      .content-container
+        +Template.dynamic template=main data=params
     +footer

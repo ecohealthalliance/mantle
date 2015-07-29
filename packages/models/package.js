@@ -8,7 +8,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
   api.use('coffeescript');
-  api.use('jagi:astronomy');
+  api.use('jagi:astronomy@0.10.0');
   api.use('accounts-password');
   api.use('useraccounts:core@1.7.0');
   api.use('mongo');
