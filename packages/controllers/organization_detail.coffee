@@ -27,6 +27,17 @@ if Meteor.isClient
     admins: ->
       Organizations.findOne(@organizationId)?.getAdminProfiles()
 
+    userCanEdit: ->
+      organization = Organizations.findOne(@organizationId)
+      Meteor.userId() == organization.createdById
+
+    editingName: ->
+      Template.instance().editingName.get()
+
+    editingDescription: ->
+      Template.instance().editingDescription.get()
+
+
   Template.organizationDetail.events
     'click .join-organization' : (event, instance) ->
       orgId = instance.data.organizationId
@@ -44,17 +55,6 @@ if Meteor.isClient
       profileId = event.target.getAttribute('data-profileId')
       Meteor.call 'removeAdmin', instance.data.organizationId, profileId
 
-    userCanEdit: ->
-      organization = Organizations.findOne(@organizationId)
-      Meteor.userId() == organization.createdById
-
-    editingName: ->
-      Template.instance().editingName.get()
-
-    editingDescription: ->
-      Template.instance().editingDescription.get()
-
-  Template.organizationDetail.events
     'click .edit-name-button': (event, instance) ->
       event.preventDefault()
       instance.editingName.set(true)

@@ -17,6 +17,7 @@ Feature: Organizations
     And I should see content "Test Organization"
     And I see that "test@example.com" is an admin of the organization
 
+  @organizations
   Scenario: Editing an organization
     When I log in as the test user
     And I create an organization with name "Test Organization"
@@ -32,6 +33,7 @@ Feature: Organizations
     And I should see content "Better Description"
     And I should not see content "Test Organization"
 
+  @organizations
   Scenario: Trying to edit an organization as unauthorized user
     When I log in as the test user
     And I create an organization with name "Test Organization"

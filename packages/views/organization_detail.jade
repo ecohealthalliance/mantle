@@ -12,7 +12,7 @@ template(name="organizationDetail")
                 i.fa.fa-times-circle
         else
           h1= organization.name
-          if userCanEdit
+          if userIsAdmin
             button.btn-link.edit-inline.edit-name-button
               span Edit
               i.fa.fa-edit
@@ -27,38 +27,39 @@ template(name="organizationDetail")
               i.fa.fa-times-circle
         else
           +paragraphText text=organization.description
-          if userCanEdit
+          if userIsAdmin
             button.btn-link.edit-inline.edit-description-button
               span Edit
               i.fa.fa-edit
-      .row
-        .panel.panel-default
-          .panel-heading Members
-          .panel-body
-            unless userIsMember
-              a.btn.btn-default.join-organization Join
-          table.table
-            thead
-              tr
-                th Name
-                th Email
-                th Role
-                th
-            tbody
-              each admins
-                tr.admin-row
-                  td.name=fullName
-                  td.email=emailAddress
-                  td.role Admin
-                  if userIsAdmin
-                    unless hideButtonsForProfile _id
+      .container
+        .row
+          .panel.panel-default
+            .panel-heading Members
+            .panel-body
+              unless userIsMember
+                a.btn.btn-default.join-organization Join
+            table.table
+              thead
+                tr
+                  th Name
+                  th Email
+                  th Role
+                  th
+              tbody
+                each admins
+                  tr.admin-row
+                    td.name=fullName
+                    td.email=emailAddress
+                    td.role Admin
+                    if userIsAdmin
+                      unless hideButtonsForProfile _id
+                        td
+                          a.btn.btn-default.remove-admin(data-profileId=_id) Remove admin
+                each members
+                  tr.member-row
+                    td.name=fullName
+                    td.email=emailAddress
+                    td.role Member
+                    if userIsAdmin
                       td
-                        a.btn.btn-default.remove-admin(data-profileId=_id) Remove admin
-              each members
-                tr.member-row
-                  td.name=fullName
-                  td.email=emailAddress
-                  td.role Member
-                  if userIsAdmin
-                    td
-                      a.btn.btn-default.make-admin(data-profileId=_id) Make admin
+                        a.btn.btn-default.make-admin(data-profileId=_id) Make admin
