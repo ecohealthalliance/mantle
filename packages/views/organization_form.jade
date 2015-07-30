@@ -2,17 +2,23 @@ template(name="organizationForm")
   if currentUser
     .container
       h1 Add an Organization
+      p.required-text
+        span *
+        | Indicates required field
       .row
         .col-sm-8
           form#new-organization-form
             .row
               .col-sm-8
-                label Name
-                  input#organization-name.form-control(name="name" type="text")
+                label.required
+                  span Name
+                  input#organization-name.form-control(name="name" type="string" required="true" class=errorClass)
+                  .help-inline= errorForName
             .row
               .col-sm-12
-                label Description
-                  textarea#organization-description.form-control(name="description")
+                label.required
+                  span Description
+                  textarea#organization-description.form-control(name="description" type="string" required="true")
             input.btn.btn-primary(type="submit" value="Save")
   else
     .container
