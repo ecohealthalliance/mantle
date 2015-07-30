@@ -11,15 +11,12 @@ if Meteor.isClient
         memberOfOrgs: @organizationId
       })
     userIsAdmin: ->
-      UserProfiles.findOne({
-        userId: Meteor.userId()},
-        $in: {adminOfOrgs: [@organizationId]}
-      )
+      organization = Organizations.findOne(Template.instance().data.organizationId)
+      organization.userIsAdmin(Meteor.userId())
+
     hideButtonsForProfile: (profileId) ->
-      UserProfiles.findOne({
-        _id: profileId
-        userId: Meteor.userId()
-      })
+      @userId == Meteor.userId()
+
     memberCount: ->
       Organizations.findOne(@organizationId)?.getMemberProfiles().count()
     members: ->
@@ -60,7 +57,8 @@ if Meteor.isServer
 
   Meteor.methods
     joinOrganization: (orgId) ->
-      Organizations.findOne(orgId).addMember(@userId)
+      profile = UserProfiles.findOne({userId: @userId})
+      Organizations.findOne(orgId).addMember(profile._id)
 
     makeAdmin: (orgId, profileId) ->
       organization = Organizations.findOne(orgId)

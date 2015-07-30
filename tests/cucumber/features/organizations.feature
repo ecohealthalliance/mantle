@@ -21,10 +21,12 @@ Feature: Organizations
   Scenario: Joining an organization
     Given there is an organization in the database created by the test user
     When I register an account with email address "user@example.com"
+    And I fill out the profile edit form with fullName "Another Test"
     And I navigate to "/organizations"
     And I click on the organization link
     And I click on "Join"
     Then I see that "Test User" is an admin of the organization
+    And I see that "Another Test" is a member of the organization
 
   @organizations
   Scenario: Making another member an admin

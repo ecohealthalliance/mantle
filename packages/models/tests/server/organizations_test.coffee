@@ -26,20 +26,14 @@ describe 'Organization', ->
     expect(organization.createdById).to.eq('fakeid')
 
   it 'can have members', (test, waitFor) ->
-    userId = 'snoopyId'
     memberProfile = new UserProfile()
-    memberProfile.set(fullName: 'Snoopy', userId: userId)
-    callback = waitFor((err)->
-      test.isNull(err)
-      organization.addMember(userId)
-      expect(
-        organization.getMemberProfiles().map((x)-> x.fullName)
-      ).to.include('Snoopy')
-    )
-    memberProfile.save (err)->
-      test.isNull(err)
-      organization.set('name', 'Peanuts')
-      organization.save(callback)
+    memberProfile.set(fullName: 'Snoopy')
+    id = memberProfile.save()
+    organization.save()
+    organization.addMember(id)
+    expect(
+      organization.getMemberProfiles().map((x)-> x.fullName)
+    ).to.include('Snoopy')
 
   it 'can have admins', (test, waitFor) ->
     memberProfile = new UserProfile()

@@ -18,8 +18,8 @@ Organization = Astro.Class
   events:
     aftersave: ->
       if @createdById
-        @addMember(@createdById)
         profile = UserProfiles.findOne({userId: @createdById})
+        @addMember(profile._id)
         @addAdmin(profile._id)
 
   methods:
@@ -42,8 +42,8 @@ Organization = Astro.Class
         @description
 
 if Meteor.isServer
-  Organization.addMethod 'addMember', (userId)->
-    UserProfiles.update({userId: userId}, {
+  Organization.addMethod 'addMember', (profileId)->
+    UserProfiles.update({_id: profileId}, {
       $addToSet: {memberOfOrgs: @_id}
     })
   Organization.addMethod 'addAdmin', (profileId) ->
