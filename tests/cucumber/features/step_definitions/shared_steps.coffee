@@ -16,6 +16,31 @@ do ->
     @Given /^there is a test user in the database/, ->
       @server.call('createTestUser', _testUser)
 
+    @Given '"$name" is an user', (name)->
+      @server.call('addUserWithProfile', {
+        email: name.split(" ").join(".") + "@email"
+        password: name
+      }, {
+        fullName: name
+      })
+
+    @When 'I log out', ->
+      @client
+        .waitForVisible('.dropdown')
+        .click('.dropdown')
+        .waitForVisible('.sign-out')
+        .click('.sign-out')
+
+    @When 'I log in as "$name"', (name) ->
+      @client
+        .url(url.resolve(process.env.ROOT_URL, '/'))
+        .waitForExist('.sign-in')
+        .click('.sign-in')
+        .setValue('#at-field-email', name.split(" ").join(".") + "@email")
+        .setValue('#at-field-password', name)
+        .submitForm('#at-field-email')
+        .waitForExist('.sign-out')
+
     @When "I log in as the test user", (callback) ->
       @client
         .url(url.resolve(process.env.ROOT_URL, '/'))

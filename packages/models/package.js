@@ -21,6 +21,7 @@ Package.onUse(function(api) {
   api.export(['UserProfile', 'UserProfiles'], ['client', 'server']);
   api.export(['Organization', 'Organizations'], ['client', 'server']);
   api.export(['Dataset', 'Datasets'], ['client', 'server']);
+  api.export(['RawFile', 'RawFiles'], ['client', 'server']);
 });
 
 Package.onTest(function(api) {

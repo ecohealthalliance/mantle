@@ -51,3 +51,15 @@ do ->
         .waitForExist('.remove')
         .click('.remove', assert.ifError)
         .call(callback)
+
+    @When 'the current user has a dataset called "$name"', (name)->
+      @browser
+        .execute((->
+          Meteor.userId()
+        ), ((err, ret) =>
+          assert.ifError(err)
+          @server.call('addDataset', {
+            name: name,
+            userId: ret.value
+          })
+        ))
