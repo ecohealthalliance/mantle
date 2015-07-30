@@ -19,11 +19,25 @@ do ->
       UserProfiles.insert(attributes)
 
     'createTestOrg': ->
+      Organizations.remove({})
       organization = new Organization()
       user = Meteor.users.findOne()
       organization.set
         name: "Test Organization"
+        description: "Test Description"
         createdById: user._id
-        description: "None"
-        _id: "fakeorgid"
       organization.save()
+
+    'createUserWithProfile': (attributes, profileAttributes) ->
+      userId = Accounts.createUser
+        email: attributes.email
+        password: attributes.password
+      UserProfiles.update({'userId': userId}, {$set: profileAttributes})
+
+    'createUserInTestOrg': (attributes, profileAttributes) ->
+      testOrg = Organizations.findOne()
+      profileAttributes['memberOfOrgs'] = testOrg._id
+      userId = Accounts.createUser
+        email: attributes.email
+        password: attributes.password
+      UserProfiles.update({'userId': userId}, {$set: profileAttributes})

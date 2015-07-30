@@ -14,13 +14,7 @@ do ->
     _testUser = {email: 'test@example.com', password: 'password'}
 
     @Given /^there is a test user in the database/, ->
-      @server.call('createTestUser', _testUser)
-
-    @Given "there is a test user in the database with a profile", (callback)->
-      @server.call('createTestUserWithProfile', _testUser,
-        fullName: "Micky Mouse"
-      ).then =>
-        @client.call(callback)
+      @server.call('createUserWithProfile', _testUser, {fullName: 'Test User'})
 
     @When "I log in as the test user", (callback) ->
       @client

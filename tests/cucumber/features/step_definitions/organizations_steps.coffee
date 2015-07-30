@@ -8,7 +8,10 @@ do ->
     url = require('url')
 
     @Given "there is a user with full name $name who belongs to the test organization", (name) ->
-      @server.call('createProfile', {fullName: name})
+      @server.call('createUserInTestOrg',
+        {email: "#{name}@example.com", password: 'password'},
+        {fullName: name, memberOfOrgs: ['fakeorgid']}
+      )
 
     @When "I click the new organization link", (callback) ->
       @browser
@@ -27,6 +30,7 @@ do ->
 
     @When /^I click on the organization link$/, (callback) ->
       @browser
+        .pause(1000)
         .waitForVisible('.organizations-table', assert.ifError)
         .click(".organizations-table a", assert.ifError)
         .waitForVisible('.organization-detail', assert.ifError)
@@ -48,7 +52,7 @@ do ->
     @Then /^I see that "([^"]*)" is an admin of the organization$/, (emailOrName, callback) ->
       @browser
         .pause(1000)
-        .waitForVisible('td.name', assert.ifError)
+        .waitForVisible('td.name', 4000, assert.ifError)
         .getHTML 'tr.admin-row', (error, response) ->
           assert.ok(response?.toString().match(emailOrName))
         .call(callback)
