@@ -23,24 +23,15 @@ Organization = Astro.Class
         @addAdmin(profile._id)
 
   methods:
-    addMember: (userId) ->
-      UserProfiles.update({userId: userId}, {
-        $addToSet: {memberOfOrgs: @_id}
-      })
-    addAdmin: (profileId) ->
-      UserProfiles.update({_id: profileId}, {
-        $addToSet: {adminOfOrgs: @_id}
-      })
-    removeAdmin: (profileId) ->
-      UserProfiles.update({_id: profileId}, {
-        $pull: {adminOfOrgs: @_id}
-      })
     getMemberProfiles: () ->
       UserProfiles.find(memberOfOrgs: @_id)
     getNonAdminProfiles: () ->
       UserProfiles.find({memberOfOrgs: @_id, adminOfOrgs: { $nin: [@_id]}})
     getAdminProfiles: () ->
       UserProfiles.find(adminOfOrgs: @_id)
+
+    userIsAdmin: (userId) ->
+      UserProfiles.findOne({userId: userId, adminOfOrgs: @_id})
 
     truncateDescription: ->
       splitDescription = @description?.split(' ')
@@ -54,4 +45,12 @@ if Meteor.isServer
   Organization.addMethod 'addMember', (userId)->
     UserProfiles.update({userId: userId}, {
       $addToSet: {memberOfOrgs: @_id}
+    })
+  Organization.addMethod 'addAdmin', (profileId) ->
+    UserProfiles.update({_id: profileId}, {
+      $addToSet: {adminOfOrgs: @_id}
+    })
+  Organization.addMethod 'removeAdmin', (profileId) ->
+    UserProfiles.update({_id: profileId}, {
+      $pull: {adminOfOrgs: @_id}
     })

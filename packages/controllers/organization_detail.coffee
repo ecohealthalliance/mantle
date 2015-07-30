@@ -63,7 +63,11 @@ if Meteor.isServer
       Organizations.findOne(orgId).addMember(@userId)
 
     makeAdmin: (orgId, profileId) ->
-      Organizations.findOne(orgId).addAdmin(profileId)
+      organization = Organizations.findOne(orgId)
+      if organization.userIsAdmin(@userId)
+        organization.addAdmin(profileId)
 
     removeAdmin: (orgId, profileId) ->
-      Organizations.findOne(orgId).removeAdmin(profileId)
+      organization = Organizations.findOne(orgId)
+      if organization.userIsAdmin(@userId)
+        organization.removeAdmin(profileId)
