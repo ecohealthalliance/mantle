@@ -14,3 +14,4 @@ mantle:fixtures
 # CollectionFS security requires this to be global
 # https://github.com/CollectionFS/Meteor-CollectionFS/issues/711
 accounts-base
+aslagle:reactive-table@0.8.11

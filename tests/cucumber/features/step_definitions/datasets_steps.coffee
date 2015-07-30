@@ -60,6 +60,18 @@ do ->
           assert.ifError(err)
           @server.call('addDataset', {
             name: name,
-            userId: ret.value
+            createdById: ret.value
           })
         ))
+
+    @When 'I go to the datasets page', ->
+      @browser
+        .waitForExist('.my-datasets-link')
+        .click('.my-datasets-link')
+        .waitForVisible(".my-datasets-header")
+
+    @When '"$name" should be listed under my datasets', (name)->
+      @browser
+        .pause(10000)
+        .waitForVisible(".dataset-link")
+        .getText(".dataset-link").should.become(name)

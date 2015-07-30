@@ -10,7 +10,9 @@ UserProfile = Astro.Class
     emailHidden: 'boolean'
     userId: 'string'
     emailAddress: 'string'
-
+    adminOfDatasets:
+      type: 'array'
+      'default': []
   methods:
     update: (fields, callback) ->
       filteredFields = _.pick(fields, 'fullName', 'jobTitle', 'bio', 'emailHidden')

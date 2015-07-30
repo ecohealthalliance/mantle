@@ -36,7 +36,13 @@ Feature: Datasets
     When I navigate to "/datasets/new"
     Then I should see content "Please log in"
 
-  @dev
+  Scenario: Viewing datasets administered
+    When I log in as the test user
+    And the current user has a dataset called "Frog data"
+    And I go to the datasets page
+    Then "Frog data" should be listed under my datasets
+
+  @ignore
   Scenario: Inviting an user to a dataset
     Given "Marie Curie" is an user
     When I log in as the test user

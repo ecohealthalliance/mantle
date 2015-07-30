@@ -40,6 +40,12 @@ FlowRouter.route '/organizations/:_id',
       main: 'organizationDetail'
       params: {"organizationId": params._id}
 
+FlowRouter.route '/myDatasets',
+  name: 'myDatasets'
+  action: (params) ->
+    FlowLayout.render 'layout',
+      main: 'myDatasets'
+
 FlowRouter.route '/datasets/new',
   name: 'newDataset'
   action: () ->
