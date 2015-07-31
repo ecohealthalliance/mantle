@@ -31,9 +31,8 @@ template(name="organizationDetail")
                     td.role Admin
                     td
                       if userIsAdmin
-                        unless hideButtonsForProfile _id
-                          td
-                            a.btn.btn-default.remove-admin(data-profileId=_id) Remove admin
+                        unless currentUserProfileRow
+                          a.btn.btn-default.remove-admin(data-profileId=_id) Remove admin
                 each members
                   tr.member-row
                     td.name
@@ -42,7 +41,7 @@ template(name="organizationDetail")
                       else
                         i Name unknown
                     td.role Member
-                    if userIsAdmin
-                      unless hideButtonsForProfile _id
-                        td
+                    td
+                      if userIsAdmin
+                        unless currentUserProfileRow
                           a.btn.btn-default.make-admin(data-profileId=_id) Make admin

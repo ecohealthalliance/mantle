@@ -6,15 +6,13 @@ if Meteor.isClient
     organization: ->
       Organizations.findOne(@organizationId)
     userIsMember: ->
-      UserProfiles.findOne({
-        userId: Meteor.userId(),
-        memberOfOrgs: @organizationId
-      })
+      organization = Organizations.findOne(Template.instance().data.organizationId)
+      organization.userIsMember(Meteor.userId())
     userIsAdmin: ->
       organization = Organizations.findOne(Template.instance().data.organizationId)
       organization.userIsAdmin(Meteor.userId())
 
-    hideButtonsForProfile: (profileId) ->
+    currentUserProfileRow: ->
       @userId == Meteor.userId()
 
     memberCount: ->

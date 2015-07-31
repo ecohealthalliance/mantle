@@ -43,6 +43,8 @@ Organization = Astro.Class
     getAdminProfiles: () ->
       UserProfiles.find(adminOfOrgs: @_id)
 
+    userIsMember: (userId) ->
+      UserProfiles.findOne({userId: userId, memberOfOrgs: @_id})
     userIsAdmin: (userId) ->
       UserProfiles.findOne({userId: userId, adminOfOrgs: @_id})
 

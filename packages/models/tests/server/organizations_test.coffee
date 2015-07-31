@@ -74,6 +74,21 @@ describe 'Organization', ->
       organization.getAdminProfiles().map((x)-> x.fullName)
     ).to.include('TestUser')
 
+  describe '#userIsMember', ->
+    it 'returns true if the user is an admin of the organization', ->
+      organization.save()
+      profile = new UserProfile()
+      profile.set({userId: 'userId', memberOfOrgs: [organization._id]})
+      profile.save()
+      expect(organization.userIsMember('userId')).to.be.ok
+
+    it 'returns false if the user is not an admin of the organization', ->
+      organization.save()
+      profile = new UserProfile()
+      profile.set({userId: 'userId'})
+      profile.save()
+      expect(organization.userIsMember('userId')).not.to.be.ok
+
   describe '#userIsAdmin', ->
     it 'returns true if the user is an admin of the organization', ->
       organization.save()
