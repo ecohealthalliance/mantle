@@ -46,7 +46,6 @@ do ->
 
     @Then /^I see that "([^"]*)" is a member of the organization$/, (emailOrName, callback) ->
       @browser
-        .pause(1000)
         .waitForVisible('td.name', assert.ifError)
         .getHTML 'tr.member-row', (error, response) ->
           assert.ok(response?.match(emailOrName))
@@ -54,8 +53,7 @@ do ->
 
     @Then /^I see that "([^"]*)" is an admin of the organization$/, (emailOrName, callback) ->
       @browser
-        .pause(1000)
-        .waitForVisible('td.name', 4000, assert.ifError)
+        .waitForVisible('td.name', assert.ifError)
         .getHTML 'tr.admin-row', (error, response) ->
           assert.ok(response?.toString().match(emailOrName))
         .call(callback)

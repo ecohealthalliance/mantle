@@ -50,6 +50,7 @@ describe 'Organization', ->
     memberProfile.save()
     organization.set('name', 'TestOrg')
     organization.save()
+    organization.addMember(memberProfile._id)
     organization.addAdmin(memberProfile._id)
     expect(
       organization.getAdminProfiles().map((x)-> x.fullName)
@@ -74,11 +75,28 @@ describe 'Organization', ->
       organization.getAdminProfiles().map((x)-> x.fullName)
     ).to.include('TestUser')
 
+  describe '#addAdmin', ->
+    it 'throws an exception if the user is not a member of the organization', ->
+      memberProfile = new UserProfile()
+      memberProfile.set(fullName: 'TestUser')
+      memberProfile.save()
+      organization.save()
+      expect( ->
+        organization.addAdmin(memberProfile._id)
+      ).to.throw(/Only organization members can be made admins/)
+
   describe '#userIsMember', ->
-    it 'returns true if the user is an admin of the organization', ->
+    it 'returns true if the user is a member of the organization', ->
       organization.save()
       profile = new UserProfile()
       profile.set({userId: 'userId', memberOfOrgs: [organization._id]})
+      profile.save()
+      expect(organization.userIsMember('userId')).to.be.ok
+
+    it 'returns true if the user is an admin of the organization', ->
+      organization.save()
+      profile = new UserProfile()
+      profile.set({userId: 'userId', memberOfOrgs: [organization._id], adminOfOrgs: [organization._id]})
       profile.save()
       expect(organization.userIsMember('userId')).to.be.ok
 

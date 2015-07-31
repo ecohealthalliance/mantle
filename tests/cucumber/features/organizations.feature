@@ -42,6 +42,7 @@ Feature: Organizations
     When I remove "Test Name" from the admin role
     Then I see that "Test Name" is a member of the organization
 
+  @organizations
   Scenario: Organization form errors
     Given there is an organization in the database with name "Test Organization"
     When I log in as the test user

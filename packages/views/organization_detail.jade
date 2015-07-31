@@ -27,7 +27,7 @@ template(name="organizationDetail")
                       if fullName
                         a(href="{{path route='profileDetail' params=this}}")=fullName
                       else
-                        i Name unknown
+                        a(href="{{path route='profileDetail' params=this}}") Name unknown
                     td.role Admin
                     td
                       if userIsAdmin
@@ -39,7 +39,7 @@ template(name="organizationDetail")
                       if fullName
                         a(href="{{path route='profileDetail' params=this}}")=fullName
                       else
-                        i Name unknown
+                        a(href="{{path route='profileDetail' params=this}}") Name unknown
                     td.role Member
                     td
                       if userIsAdmin

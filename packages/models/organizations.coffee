@@ -54,10 +54,16 @@ if Meteor.isServer
     UserProfiles.update({_id: profileId}, {
       $addToSet: {memberOfOrgs: @_id}
     })
+
   Organization.addMethod 'addAdmin', (profileId) ->
-    UserProfiles.update({_id: profileId}, {
-      $addToSet: {adminOfOrgs: @_id}
-    })
+    profile = UserProfiles.findOne(profileId)
+    if @userIsMember(profile.userId)
+      UserProfiles.update({_id: profileId}, {
+        $addToSet: {adminOfOrgs: @_id}
+      })
+    else
+      throw 'Only organization members can be made admins'
+
   Organization.addMethod 'removeAdmin', (profileId) ->
     UserProfiles.update({_id: profileId}, {
       $pull: {adminOfOrgs: @_id}
