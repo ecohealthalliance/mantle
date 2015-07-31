@@ -13,6 +13,7 @@ if Meteor.isClient
 
     myDatasetsTableSettings: ->
       noDataTmpl: Template.noDatasets
+      showRowCount: true
       fields: [
         {
           key: 'name'
