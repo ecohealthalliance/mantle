@@ -12,7 +12,7 @@ if Meteor.isClient
       organization = Organizations.findOne(Template.instance().data.organizationId)
       organization.userIsAdmin(Meteor.userId())
 
-    currentUserProfileRow: ->
+    isCurrentUser: ->
       @userId == Meteor.userId()
 
     memberCount: ->

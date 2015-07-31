@@ -1,11 +1,4 @@
 Organizations = new Mongo.Collection('organizations')
-Organizations.allow
-  insert: (userId, doc)  ->
-    false
-  update: (userId, doc, fields, modifier) ->
-    false
-  remove: (userId, doc) ->
-    false
 Organization = Astro.Class
   name: 'Organization'
   collection: Organizations
