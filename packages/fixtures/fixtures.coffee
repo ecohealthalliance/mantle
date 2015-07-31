@@ -41,3 +41,6 @@ do ->
         email: attributes.email
         password: attributes.password
       UserProfiles.update({'userId': userId}, {$set: profileAttributes})
+
+    'createOrg': (attributes) ->
+      Organizations.insert attributes

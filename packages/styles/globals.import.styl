@@ -104,15 +104,19 @@ a
   top $header-height+20
   +below(2)
     right 0
-    bottom $footer-height-actual+10
+    bottom 0
     top auto
     width 100%
-    height $header-height
 
 #toast-container
-  > div
+  .toast
     +below(2)
-      width 100% !important
+      width 100%
+      height $footer-height - 20
+      margin 0
+      opacity 1
+    +at(2)
+      height $footer-height
 
 .col-sm-0
   width 0%

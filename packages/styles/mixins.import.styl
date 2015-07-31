@@ -142,3 +142,10 @@ linkColor($color, $hover = darken($color, 35%))
   color $color
   &:hover
     color $hover
+
+afterAsterisk($color=$primary-strong)
+  &::after
+    padding-left 2px
+    content '*'
+    color $color
+    font-size 95%

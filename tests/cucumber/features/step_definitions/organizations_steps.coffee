@@ -20,6 +20,9 @@ do ->
         .waitForExist('#new-organization-form')
         .call(callback)
 
+    @Given /^there is an organization in the database with name "([^"]*)"$/, (name) ->
+      @server.call('createOrg', {name: name})
+
     @When /^I fill out the new organization form with name "([^"]*)"$/, (name, callback) ->
       @browser
         .waitForExist('#new-organization-form')

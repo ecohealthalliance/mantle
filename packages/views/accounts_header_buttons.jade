@@ -7,8 +7,8 @@ template(name="accountsHeaderButtons")
           i.fa.fa-sort-desc
         ul.dropdown-menu(role='menu')
           li
-            a(href="{{path route='profileEdit'}}")
-              span Edit Profile
+            a.profile-detail-link(href="{{path route='profileDetail' params=currentUserProfile}}")
+              span View Profile
               i.fa.fa-user
           li
             a.sign-out(href='#')

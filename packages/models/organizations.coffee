@@ -11,9 +11,22 @@ Organization = Astro.Class
   collection: Organizations
   transform: true
   fields:
-    name: 'string'
-    description: 'string'
-    createdById: 'string'
+    name:
+      type: 'string'
+      validators: [
+        Validators.unique(null, "There is already an organization with that name")
+        Validators.string()
+      ]
+    description:
+      type: 'string'
+      validators: [
+        Validators.string()
+      ]
+    createdById:
+      type: 'string'
+      validators: [
+        Validators.string()
+      ]
 
   events:
     aftersave: ->

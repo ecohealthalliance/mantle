@@ -25,6 +25,15 @@ describe 'Organization', ->
     organization.save
     expect(organization.createdById).to.eq('fakeid')
 
+  it 'requires name to be unique', ->
+    existingOrg = new Organization()
+    existingOrg.set('name', 'Organization Name')
+    existingOrg.save ->
+      organization.set('name', 'Organization Name')
+      expect(organization.validate("name")).not.to.be.ok
+      organization.set('name', 'Test')
+      expect(organization.validate("name")).to.be.ok
+
   it 'can have members', (test, waitFor) ->
     memberProfile = new UserProfile()
     memberProfile.set(fullName: 'Snoopy')
