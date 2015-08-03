@@ -15,8 +15,32 @@ do ->
         email: attributes.email
         password: attributes.password
 
-    'createProfile': (field, value, id) ->
-      attributes = {}
-      attributes[field] = value
-      attributes['_id'] = id
-      UserProfiles.insert attributes
+    'createProfile': (attributes) ->
+      UserProfiles.insert(attributes)
+
+    'createTestOrg': ->
+      Organizations.remove({})
+      organization = new Organization()
+      user = Meteor.users.findOne()
+      organization.set
+        name: "Test Organization"
+        description: "Test Description"
+        createdById: user._id
+      organization.save()
+
+    'createUserWithProfile': (attributes, profileAttributes) ->
+      userId = Accounts.createUser
+        email: attributes.email
+        password: attributes.password
+      UserProfiles.update({'userId': userId}, {$set: profileAttributes})
+
+    'createUserInTestOrg': (attributes, profileAttributes) ->
+      testOrg = Organizations.findOne()
+      profileAttributes['memberOfOrgs'] = testOrg._id
+      userId = Accounts.createUser
+        email: attributes.email
+        password: attributes.password
+      UserProfiles.update({'userId': userId}, {$set: profileAttributes})
+
+    'createOrg': (attributes) ->
+      Organizations.insert attributes
