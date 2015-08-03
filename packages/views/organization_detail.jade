@@ -48,18 +48,25 @@ template(name="organizationDetail")
               tbody
                 each admins
                   tr.admin-row
-                    td.name=fullName
-                    td.email=emailAddress
+                    td.name
+                      if fullName
+                        a(href="{{path route='profileDetail' params=this}}")=fullName
+                      else
+                        a(href="{{path route='profileDetail' params=this}}") Name unknown
                     td.role Admin
-                    if userIsAdmin
-                      unless hideButtonsForProfile _id
-                        td
+                    td
+                      if userIsAdmin
+                        unless isCurrentUser
                           a.btn.btn-default.remove-admin(data-profileId=_id) Remove admin
                 each members
                   tr.member-row
-                    td.name=fullName
-                    td.email=emailAddress
+                    td.name
+                      if fullName
+                        a(href="{{path route='profileDetail' params=this}}")=fullName
+                      else
+                        a(href="{{path route='profileDetail' params=this}}") Name unknown
                     td.role Member
-                    if userIsAdmin
-                      td
-                        a.btn.btn-default.make-admin(data-profileId=_id) Make admin
+                    td
+                      if userIsAdmin
+                        unless isCurrentUser
+                          a.btn.btn-default.make-admin(data-profileId=_id) Make admin

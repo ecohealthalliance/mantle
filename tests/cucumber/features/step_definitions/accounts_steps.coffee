@@ -71,10 +71,27 @@ do ->
 
     @When /^I view my public profile$/, (callback) ->
       @browser
-        .url(url.resolve(process.env.ROOT_URL, '/profile/edit'))
-        .waitForExist('#profile-edit-form')
-        .click('.profile-detail-link')
+        .waitForExist('.dropdown-toggle')
+        .click('.dropdown-toggle')
+        .waitForVisible('.navbar .profile-detail-link')
+        .click('.navbar .profile-detail-link')
         .waitForExist('.profile-detail')
+        .call(callback)
+
+    @Then /^I should be on my profile page$/, (callback) ->
+      @browser
+        .waitForVisible('.profile-detail', assert.ifError)
+        .call(callback)
+
+    @When /^I click the edit profile link$/, (callback) ->
+      @browser
+        .waitForVisible('.profile-edit-link')
+        .click('.profile-edit-link')
+        .call(callback)
+
+    @Then /^I should be on my edit profile page$/, (callback) ->
+      @browser
+        .waitForVisible('.profile-edit')
         .call(callback)
 
     @Then /I am( not)? logged in/, (amNot, callback) ->

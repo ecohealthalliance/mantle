@@ -4,6 +4,12 @@ clearFix()
     display block
     content ''
 
+bodyFont()
+  font-family $body-font
+
+headerFont()
+  font-family $header-font
+
 addFont($fontTitle, $allTypes = true, type = '')
   @font-face
     if $allTypes
@@ -141,3 +147,10 @@ linkColor($color, $hover = darken($color, 35%))
   color $color
   &:hover
     color $hover
+
+afterAsterisk($color=$primary-strong)
+  &::after
+    padding-left 2px
+    content '*'
+    color $color
+    font-size 95%

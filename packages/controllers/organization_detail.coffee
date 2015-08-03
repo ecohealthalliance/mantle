@@ -8,20 +8,17 @@ if Meteor.isClient
     organization: ->
       Organizations.findOne(@organizationId)
     userIsMember: ->
-      UserProfiles.findOne({
-        userId: Meteor.userId(),
-        memberOfOrgs: @organizationId
-      })
+      organization = Organizations.findOne(Template.instance().data.organizationId)
+      organization.userIsMember(Meteor.userId())
     userIsAdmin: ->
-      UserProfiles.findOne({
-        userId: Meteor.userId()},
-        $in: {adminOfOrgs: [@organizationId]}
-      )
-    hideButtonsForProfile: (profileId) ->
-      UserProfiles.findOne({
-        _id: profileId
-        userId: Meteor.userId()
-      })
+      organization = Organizations.findOne(Template.instance().data.organizationId)
+      organization.userIsAdmin(Meteor.userId())
+
+    isCurrentUser: ->
+      @userId == Meteor.userId()
+
+    memberCount: ->
+      Organizations.findOne(@organizationId)?.getMemberProfiles().count()
     members: ->
       Organizations.findOne(@organizationId)?.getNonAdminProfiles()
     admins: ->
@@ -85,19 +82,27 @@ if Meteor.isServer
       Organizations.find(id)
       UserProfiles.find({
         memberOfOrgs: id
+      }, {
+        fields:
+          emailAddress: false
       })
     ]
   )
 
   Meteor.methods
     joinOrganization: (orgId) ->
-      Organizations.findOne(orgId).addMember(@userId)
+      profile = UserProfiles.findOne({userId: @userId})
+      Organizations.findOne(orgId).addMember(profile._id)
 
     makeAdmin: (orgId, profileId) ->
-      Organizations.findOne(orgId).addAdmin(profileId)
+      organization = Organizations.findOne(orgId)
+      if organization.userIsAdmin(@userId)
+        organization.addAdmin(profileId)
 
     removeAdmin: (orgId, profileId) ->
-      Organizations.findOne(orgId).removeAdmin(profileId)
+      organization = Organizations.findOne(orgId)
+      if organization.userIsAdmin(@userId)
+        organization.removeAdmin(profileId)
 
     updateName: (name, id) ->
       organization = Organizations.findOne({_id: id, createdById: this.userId})
