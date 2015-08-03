@@ -118,6 +118,13 @@ describe 'Organization', ->
     it 'returns false if the user is not an admin of the organization', ->
       organization.save()
       profile = new UserProfile()
+      profile.set({userId: 'userId', memberOfOrgs: [organization._id]})
+      profile.save()
+      expect(organization.userIsAdmin('userId')).not.to.be.ok
+
+    it 'returns false if the user is not a member of the organization', ->
+      organization.save()
+      profile = new UserProfile()
       profile.set({userId: 'userId'})
       profile.save()
       expect(organization.userIsAdmin('userId')).not.to.be.ok
