@@ -21,7 +21,26 @@ Organization = Astro.Class
         Validators.string()
       ]
 
+  events:
+    aftersave: ->
+      if @createdById
+        profile = UserProfiles.findOne({userId: @createdById})
+        @addMember(profile._id)
+        @addAdmin(profile._id)
+
   methods:
+    getMemberProfiles: () ->
+      UserProfiles.find(memberOfOrgs: @_id)
+    getNonAdminProfiles: () ->
+      UserProfiles.find({memberOfOrgs: @_id, adminOfOrgs: { $nin: [@_id]}})
+    getAdminProfiles: () ->
+      UserProfiles.find(adminOfOrgs: @_id)
+
+    userIsMember: (userId) ->
+      UserProfiles.findOne({userId: userId, memberOfOrgs: @_id})
+    userIsAdmin: (userId) ->
+      UserProfiles.findOne({userId: userId, adminOfOrgs: @_id})
+
     truncateDescription: ->
       splitDescription = @description?.split(' ')
       wordCount = 50
@@ -29,3 +48,23 @@ Organization = Astro.Class
         splitDescription.slice(0,wordCount).join(' ')+'...'
       else
         @description
+
+if Meteor.isServer
+  Organization.addMethod 'addMember', (profileId)->
+    UserProfiles.update({_id: profileId}, {
+      $addToSet: {memberOfOrgs: @_id}
+    })
+
+  Organization.addMethod 'addAdmin', (profileId) ->
+    profile = UserProfiles.findOne(profileId)
+    if @userIsMember(profile.userId)
+      UserProfiles.update({_id: profileId}, {
+        $addToSet: {adminOfOrgs: @_id}
+      })
+    else
+      throw 'Only organization members can be made admins'
+
+  Organization.addMethod 'removeAdmin', (profileId) ->
+    UserProfiles.update({_id: profileId}, {
+      $pull: {adminOfOrgs: @_id}
+    })

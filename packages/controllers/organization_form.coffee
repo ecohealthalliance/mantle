@@ -34,7 +34,7 @@ if Meteor.isServer
   Meteor.methods
     createOrganization: (organization) ->
       if this.userId
-        organization.set('createdById', this.userId)
+        organization.set('createdById', @userId)
         if organization.validateAll()
           organization.save ->
             organization
