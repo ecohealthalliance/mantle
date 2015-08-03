@@ -51,6 +51,8 @@ header
     a
       &:hover
         background $primary
+  &.main-action
+    margin-left 30px
 
 .navbar-nav
   +below(1)
@@ -100,6 +102,12 @@ header
           width 50%
           margin 10px auto
           padding 12px inherit
+      &.add-dataset
+        background rgba(255,255,255,.6)
+        .fa
+          font-size 95%
+          padding-top 3px
+
   li
     &.open
       +below(1)

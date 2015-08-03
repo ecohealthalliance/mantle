@@ -32,7 +32,7 @@ do ->
         .url(url.resolve(process.env.ROOT_URL, relativePath))
         .call(callback)
 
-    @Then /^I should( not)? see a "([^"]*)" toast$/, (noToast, message, callback) ->
+    @Then /^I should( not)? see an? "([^"]*)" toast$/, (noToast, message, callback) ->
       @browser
         .waitForVisible('body *')
         .getHTML('.toast', (error, response) ->

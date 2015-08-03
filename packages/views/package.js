@@ -12,6 +12,7 @@ Package.onUse(function(api) {
   api.use('mantle:styles');
   api.use('mantle:route-helpers');
 
+  api.addFiles('file_input.jade', 'client');
   api.addFiles('accounts_modal.jade');
   api.addFiles('accounts_header_buttons.jade')
   api.addFiles('splash_page.jade', 'client');
@@ -20,6 +21,8 @@ Package.onUse(function(api) {
   api.addFiles('organizations.jade', 'client');
   api.addFiles('organization_form.jade', 'client');
   api.addFiles('organization_detail.jade', 'client');
+  api.addFiles('dataset_form.jade', 'client');
+  api.addFiles('dataset_detail.jade', 'client');
   api.addFiles('header.jade', 'client');
   api.addFiles('footer.jade', 'client');
   api.addFiles('layout.jade', 'client');

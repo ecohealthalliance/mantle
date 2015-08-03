@@ -1,0 +1,14 @@
+template(name="datasetForm")
+  if currentUser
+    .container
+      .view-header
+        h1 Add a new dataset
+      .row
+        .col-md-6
+          form.new-dataset
+            label Name
+              input.form-control(name="name" type="string")
+            +fileInput name='file'
+            input.btn.btn-primary(type="submit" value="Save")
+  else
+    p Please log in or sign up to continue.

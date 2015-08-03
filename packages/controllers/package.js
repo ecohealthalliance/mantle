@@ -18,6 +18,7 @@ Package.onUse(function(api) {
   api.use('chrismbeckett:toastr');
 
   api.addFiles('toastr.coffee', 'client');
+  api.addFiles('file_input.coffee', 'client');
   api.addFiles('header.coffee', 'client');
   api.addFiles('accounts_modal.coffee', 'client');
   api.addFiles('accounts_header_buttons.coffee', ['client', 'server']);
@@ -26,6 +27,8 @@ Package.onUse(function(api) {
   api.addFiles('organizations.coffee', ['client', 'server']);
   api.addFiles('organization_form.coffee', ['client', 'server']);
   api.addFiles('organization_detail.coffee', ['client', 'server']);
+  api.addFiles('dataset_form.coffee', ['client', 'server']);
+  api.addFiles('dataset_detail.coffee', ['client', 'server']);
   api.addFiles('paragraph_text.coffee', 'client');
 });
 
