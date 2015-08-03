@@ -17,7 +17,6 @@ export HUB_PORT=4444
 export HUB_USER=$SAUCE_USERNAME
 export HUB_KEY=$SAUCE_ACCESS_KEY 
 export HUB_PLATFORM='Windows 7'
-export HUB_VERSION=35
 export VELOCITY_DEBUG=1
 export VELOCITY_CI=1
 meteor --test || touch FAILURE
