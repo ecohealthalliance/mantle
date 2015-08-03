@@ -8,6 +8,9 @@ if Meteor.isClient
     currentUserName: ->
       UserProfiles.findOne({userId: Meteor.userId()})?.fullName or 'Account'
 
+    currentUserProfile: ->
+      UserProfiles.findOne({userId: Meteor.userId()})
+
   Template.accountsHeaderButtons.events
     'click .sign-out' : (evt, instance) ->
       Meteor.logout()

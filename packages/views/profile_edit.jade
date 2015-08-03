@@ -3,10 +3,7 @@ template(name="profileEdit")
     if currentUser
       if Template.subscriptionsReady
         .view-header
-          h1.inline Edit Profile
-          a.btn.btn-default.profile-detail-link.header-btn(href= "{{path route='profileDetail' params=userProfile}}")
-            span View Public Profile
-            i.fa.fa-user
+          h1 Edit Profile
         .row
           .col-md-8
             form#edit-profile-form

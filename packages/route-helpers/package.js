@@ -10,7 +10,7 @@ Package.onUse(function(api) {
   api.use('coffeescript');
   api.use('templating');
   api.use('meteorhacks:flow-router@1.9.0');
-  
+
   api.addFiles('helpers.coffee', 'client');
   api.export('go', 'client');
 });
