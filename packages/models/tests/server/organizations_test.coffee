@@ -2,6 +2,7 @@ describe 'Organization', ->
   organization = null
 
   beforeEach ->
+    UserProfiles.remove({})
     organization = new Organization()
 
   it 'includes name', ->
@@ -23,3 +24,107 @@ describe 'Organization', ->
     organization.set('createdById', 'fakeid')
     organization.save
     expect(organization.createdById).to.eq('fakeid')
+
+  it 'requires name to be unique', ->
+    existingOrg = new Organization()
+    existingOrg.set('name', 'Organization Name')
+    existingOrg.save ->
+      organization.set('name', 'Organization Name')
+      expect(organization.validate("name")).not.to.be.ok
+      organization.set('name', 'Test')
+      expect(organization.validate("name")).to.be.ok
+
+  it 'can have members', (test, waitFor) ->
+    memberProfile = new UserProfile()
+    memberProfile.set(fullName: 'Snoopy')
+    id = memberProfile.save()
+    organization.save()
+    organization.addMember(id)
+    expect(
+      organization.getMemberProfiles().map((x)-> x.fullName)
+    ).to.include('Snoopy')
+
+  it 'can have admins', (test, waitFor) ->
+    memberProfile = new UserProfile()
+    memberProfile.set(fullName: 'TestUser')
+    memberProfile.save()
+    organization.set('name', 'TestOrg')
+    organization.save()
+    organization.addMember(memberProfile._id)
+    organization.addAdmin(memberProfile._id)
+    expect(
+      organization.getAdminProfiles().map((x)-> x.fullName)
+    ).to.include('TestUser')
+
+    organization.removeAdmin(memberProfile._id)
+    expect(
+      organization.getAdminProfiles().map((x)-> x.fullName)
+    ).not.to.include('TestUser')
+
+  it 'automatically makes its creator an admin', (test, waitFor) ->
+    userId = 'userId'
+    memberProfile = new UserProfile()
+    memberProfile.set(fullName: 'TestUser', userId: userId)
+    memberProfile.save()
+    organization.set({name: 'TestOrg', createdById: userId})
+    organization.save()
+    expect(
+      organization.getMemberProfiles().map((x)-> x.fullName)
+    ).to.include('TestUser')
+    expect(
+      organization.getAdminProfiles().map((x)-> x.fullName)
+    ).to.include('TestUser')
+
+  describe '#addAdmin', ->
+    it 'throws an exception if the user is not a member of the organization', ->
+      memberProfile = new UserProfile()
+      memberProfile.set(fullName: 'TestUser')
+      memberProfile.save()
+      organization.save()
+      expect( ->
+        organization.addAdmin(memberProfile._id)
+      ).to.throw(/Only organization members can be made admins/)
+
+  describe '#userIsMember', ->
+    it 'returns true if the user is a member of the organization', ->
+      organization.save()
+      profile = new UserProfile()
+      profile.set({userId: 'userId', memberOfOrgs: [organization._id]})
+      profile.save()
+      expect(organization.userIsMember('userId')).to.be.ok
+
+    it 'returns true if the user is an admin of the organization', ->
+      organization.save()
+      profile = new UserProfile()
+      profile.set({userId: 'userId', memberOfOrgs: [organization._id], adminOfOrgs: [organization._id]})
+      profile.save()
+      expect(organization.userIsMember('userId')).to.be.ok
+
+    it 'returns false if the user is not an admin of the organization', ->
+      organization.save()
+      profile = new UserProfile()
+      profile.set({userId: 'userId'})
+      profile.save()
+      expect(organization.userIsMember('userId')).not.to.be.ok
+
+  describe '#userIsAdmin', ->
+    it 'returns true if the user is an admin of the organization', ->
+      organization.save()
+      profile = new UserProfile()
+      profile.set({userId: 'userId', adminOfOrgs: [organization._id]})
+      profile.save()
+      expect(organization.userIsAdmin('userId')).to.be.ok
+
+    it 'returns false if the user is not an admin of the organization', ->
+      organization.save()
+      profile = new UserProfile()
+      profile.set({userId: 'userId', memberOfOrgs: [organization._id]})
+      profile.save()
+      expect(organization.userIsAdmin('userId')).not.to.be.ok
+
+    it 'returns false if the user is not a member of the organization', ->
+      organization.save()
+      profile = new UserProfile()
+      profile.set({userId: 'userId'})
+      profile.save()
+      expect(organization.userIsAdmin('userId')).not.to.be.ok

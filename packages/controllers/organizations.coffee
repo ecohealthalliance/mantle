@@ -1,12 +1,12 @@
 if Meteor.isClient
   Template.organizations.onCreated ->
-    @subscribe('currentUserOrganizations')
+    @subscribe('organizations')
 
   Template.organizations.helpers
     organizations: ->
       if Meteor.userId()
-        Organizations.find({createdById: Meteor.userId()})
+        Organizations.find()
 
 if Meteor.isServer
-  Meteor.publish 'currentUserOrganizations', ->
-    Organizations.find({createdById: this.userId})
+  Meteor.publish 'organizations', ->
+    Organizations.find()

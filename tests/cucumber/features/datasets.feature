@@ -22,6 +22,7 @@ Feature: Datasets
     And I submit the dataset form
     Then I should see an "Error" toast
 
+  @chrome
   Scenario: Clear file before submitting
     When I log in as the test user
     And I navigate to "/datasets/new"

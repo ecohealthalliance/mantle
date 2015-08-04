@@ -17,8 +17,17 @@ Feature: Accounts
     When I view my public profile
     And I should see content "Test Name"
 
+  Scenario: Navigating to profile
+    Given there is a test user in the database
+    When I log in as the test user
+    Then I should see content "View Profile"
+    When I view my public profile
+    Then I should be on my profile page
+    When I click the edit profile link
+    Then I should be on my edit profile page
+
   Scenario: Viewing a public profile
-    Given there is a profile with ID 'fakeid' where "fullName" is "Test Title"
+    Given there is a profile with ID 'fakeid' where full name is "Test Title"
     When I navigate to "/profiles/fakeid"
     Then I should see content "Test Title"
 

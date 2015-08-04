@@ -14,10 +14,10 @@ do ->
     _testUser = {email: 'test@example.com', password: 'password'}
 
     @Given /^there is a test user in the database/, ->
-      @server.call('createTestUser', _testUser)
+      @server.call('createUserWithProfile', _testUser, {fullName: 'Test User'})
 
     @Given '"$name" is an user', (name)->
-      @server.call('addUserWithProfile', {
+      @server.call('createUserWithProfile', {
         email: name.split(" ").join(".") + "@email"
         password: name
       }, {
@@ -44,11 +44,12 @@ do ->
     @When "I log in as the test user", (callback) ->
       @client
         .url(url.resolve(process.env.ROOT_URL, '/'))
+        .waitForExist('.sign-in')
         .click('.sign-in', assert.ifError)
         .setValue('#at-field-email', _testUser.email)
         .setValue('#at-field-password', _testUser.password)
         .submitForm('#at-field-email', assert.ifError)
-        .waitForExist('.sign-out')
+        .waitForExist('.sign-out', assert.ifError)
         .call(callback)
 
     @When /^I navigate to "([^"]*)"$/, (relativePath, callback) ->

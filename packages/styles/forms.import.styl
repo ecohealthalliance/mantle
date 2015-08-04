@@ -11,10 +11,15 @@ textarea.form-control
   border 2px solid $m-gray
   font-size 14px
   font-weight normal
+  transition .2s
   &:focus
     outline 0
     box-shadow none
     border-color $secondary
+  &.error
+    border-color $primary-strong
+    background lighten($primary, 95%)
+    transition .2s
 
 input[type="submit"]
   margin 20px 0
@@ -23,6 +28,22 @@ input[type="submit"]
     width 40%
     font-size inherit
   @extend .btn-block-mobile
+
+label
+  margin-bottom 10px
+  span
+    display block
+    margin-bottom 5px
+  &.required
+    > span
+      afterAsterisk()
+
+.required-text
+  margin-bottom 15px
+  color $d-gray
+  > span
+    color $primary-strong
+    font-weight bold
 
 textarea
   min-height 200px
@@ -35,3 +56,15 @@ textarea
 .form-inline
   .form-control
     vertical-align initial
+
+.help-inline
+  margin 5px 0
+  font-weight 600
+  color $primary-strong
+  &:not(:empty)
+    &::before
+      display inline-block
+      margin-right 3px
+      @extend .icon
+      content '\f06a'
+      font-weight normal
