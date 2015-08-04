@@ -42,21 +42,3 @@ Feature: Datasets
     And the current user has a dataset called "Frog data"
     And I go to the datasets page
     Then "Frog data" should be listed under my datasets
-
-  @ignore
-  Scenario: Inviting an user to a dataset
-    Given "Marie Curie" is an user
-    When I log in as the test user
-    And the current user has a dataset called "radioactivity experiments"
-    When I navigate to "/datasets"
-    Then "radioactivity experiments" should be listed under my datasets
-    When I click on the "radioactivity experiments" dataset
-    And I click on "Invite collaborators"
-    And I search for "Curie"
-    Then I should see "Marie Curie" in the search results
-    When I click the invite button for "Marie Curie"
-    Then I should see "Marie Curie" in the list of collaborators
-    When I log out
-    And I log in as "Marie Curie"
-    And I navigate to "/datasets"
-    Then "radioactivity experiments" should be listed under my shared datasets
