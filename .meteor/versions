@@ -102,12 +102,12 @@ url@1.0.4
 useraccounts:bootstrap@1.0.1
 useraccounts:core@1.10.0
 velocity:chokidar@1.0.3_1
-velocity:core@0.9.1
+velocity:core@0.9.3
 velocity:html-reporter@0.7.3
 velocity:meteor-internals@1.1.0_7
 velocity:shim@0.1.0
 velocity:source-map-support@0.3.2_1
 webapp@1.2.0
 webapp-hashing@1.0.3
-xolvio:cucumber@0.13.3
+xolvio:cucumber@0.13.7
 xolvio:env-set@0.0.2
