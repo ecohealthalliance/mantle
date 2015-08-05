@@ -1,22 +1,20 @@
 do ->
   'use strict'
 
-  _ = require('underscore')
-
   module.exports = ->
 
     url = require('url')
 
-    @Before (callback) ->
+    @Before () ->
       @server.call('reset')
-      @client.url(url.resolve(process.env.ROOT_URL, '/'), callback)
+      @client.url(url.resolve(process.env.ROOT_URL, '/'))
 
     _testUser = {email: 'test@example.com', password: 'password'}
 
     @Given /^there is a test user in the database/, ->
       @server.call('createTestUser', _testUser)
 
-    @When "I log in as the test user", (callback) ->
+    @When "I log in as the test user", () ->
       @client
         .url(url.resolve(process.env.ROOT_URL, '/'))
         .click('.sign-in', assert.ifError)
@@ -24,32 +22,30 @@ do ->
         .setValue('#at-field-password', _testUser.password)
         .submitForm('#at-field-email', assert.ifError)
         .waitForExist('.sign-out')
-        .call(callback)
 
-    @When /^I navigate to "([^"]*)"$/, (relativePath, callback) ->
+    @When /^I navigate to "([^"]*)"$/, (relativePath) ->
       @client
         .url(url.resolve(process.env.ROOT_URL, relativePath))
-        .call(callback)
 
-    @Then /^I should( not)? see a "([^"]*)" toast$/, (noToast, message, callback) ->
+    @Then /^I should( not)? see a "([^"]*)" toast$/, (noToast, message) ->
       @browser
-        .waitForVisible('body *')
-        .getHTML('.toast', (error, response) ->
+        .waitForExist('body *')
+        .getHTML '.toast', (error, response) ->
           match = response?.toString().match(message)
           if noToast
             assert.ok(error or not match)
           else
             assert.ifError(error)
             assert.ok(match)
-        ).call(callback)
+        
 
-    @Then /^I should( not)? see content "([^"]*)"$/, (shouldNot, text, callback) ->
+    @Then /^I should( not)? see content "([^"]*)"$/, (shouldNot, text) ->
       @client
-        .waitForVisible('body *')
+        .waitForExist('body *')
         .getHTML 'body', (error, response) ->
           match = response.toString().match(text)
           if shouldNot
             assert.notOk(match)
           else
             assert.ok(match)
-        .call(callback)
+        

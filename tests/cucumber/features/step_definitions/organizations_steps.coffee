@@ -7,29 +7,25 @@ do ->
 
     url = require('url')
 
-    @When "I click the new organization link", (callback) ->
+    @When "I click the new organization link", () ->
       @browser
         .waitForExist('.organizations-table')
         .click('.new-organization-link', assert.ifError)
         .waitForExist('#new-organization-form')
-        .call(callback)
 
-    @When /^I fill out the new organization form with name "([^"]*)"$/, (name, callback) ->
+    @When /^I fill out the new organization form with name "([^"]*)"$/, (name) ->
       @browser
         .waitForExist('#new-organization-form')
         .setValue('#organization-name', name)
         .setValue('#organization-description', 'This is an organization.')
         .submitForm('#new-organization-form', assert.ifError)
-        .call(callback)
 
-    @When /^I click on the organization link$/, (callback) ->
+    @When /^I click on the organization link$/, () ->
       @browser
         .waitForVisible('.organizations-table', assert.ifError)
         .click(".organizations-table a", assert.ifError)
         .waitForVisible('.organization-detail', assert.ifError)
-        .call(callback)
 
-    @Then /^I should be on the "([^"]*)" detail page$/, (name, callback) ->
+    @Then /^I should be on the "([^"]*)" detail page$/, (name) ->
       @browser
         .waitForVisible('.organization-detail', assert.ifError)
-        .call(callback)

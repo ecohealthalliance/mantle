@@ -10,7 +10,7 @@ do ->
     @Given /^there is a profile with ID 'fakeid' where "([^"]*)" is "([^"]*)"$/, (field, value)->
       @server.call('createProfile', field, value, 'fakeid')
 
-    registerAccount = (browser, email, callback) ->
+    registerAccount = (browser, email) ->
       browser
         .url(url.resolve(process.env.ROOT_URL, '/'))
         .click('.sign-in', assert.ifError)
@@ -22,24 +22,23 @@ do ->
         .setValue('#at-field-password_again', 'testuser')
         .submitForm('#at-field-email', assert.ifError)
         .waitForExist('.sign-out')
-        .call(callback)
 
-    @Given /^I have registered an account$/, (callback) ->
-      registerAccount(@browser, "test@user.com", callback)
+    @Given /^I have registered an account$/, () ->
+      registerAccount(@browser, "test@user.com")
 
-    @When "I register an account", (callback) ->
-      registerAccount(@browser, "test@user.com", callback)
+    @When "I register an account", () ->
+      registerAccount(@browser, "test@user.com")
 
-    @When /^I register an account with email address "([^"]*)"$/, (email, callback) ->
-      registerAccount(@browser, email, callback)
+    @When /^I register an account with email address "([^"]*)"$/, (email) ->
+      registerAccount(@browser, email)
 
-    @When 'I open the account modal', (callback) ->
+    @When 'I open the account modal', () ->
       @browser
+        .waitForExist('.sign-in')
         .click('.sign-in', assert.ifError)
         .waitForExist('.accounts-modal.modal.in')
-        .call(callback)
 
-    @When 'I fill out the new account form', (callback) ->
+    @When 'I fill out the new account form', () ->
       @browser
         .click('#at-signUp')
         .waitForExist('#at-field-password_again')
@@ -48,36 +47,32 @@ do ->
         .setValue('#at-field-password_again', 'testuser')
         .submitForm('#at-field-email', assert.ifError)
         .waitForExist('.sign-out')
-        .call(callback)
 
-    @When "I hide my email address from my profile", (callback) ->
+    @When "I hide my email address from my profile", () ->
       @browser
         .url(url.resolve(process.env.ROOT_URL, '/profile/edit'))
-        .waitForExist('#profile-edit-form')
+        .waitForExist('#edit-profile-form')
         .click("#profile-email-hidden")
         .submitForm('#profile-fullname', assert.ifError)
-        .call(callback)
 
-    @When /^I fill out the profile edit form with fullName "([^"]*)"$/, (fullName, callback) ->
+    @When /^I fill out the profile edit form with fullName "([^"]*)"$/, (fullName) ->
       @browser
         .url(url.resolve(process.env.ROOT_URL, '/profile/edit'))
-        .waitForExist('#profile-edit-form')
+        .waitForExist('#edit-profile-form')
         .setValue('#profile-fullname', fullName)
         .setValue('#profile-jobtitle', 'User Tester')
         .setValue('#profile-bio', 'I am a test user')
         .click("#profile-email-hidden")
         .submitForm('#profile-fullname', assert.ifError)
-        .call(callback)
 
-    @When /^I view my public profile$/, (callback) ->
+    @When /^I view my public profile$/, () ->
       @browser
         .url(url.resolve(process.env.ROOT_URL, '/profile/edit'))
-        .waitForExist('#profile-edit-form')
+        .waitForExist('#edit-profile-form')
         .click('.profile-detail-link')
         .waitForExist('.profile-detail')
-        .call(callback)
 
-    @Then /I am( not)? logged in/, (amNot, callback) ->
+    @Then /I am( not)? logged in/, (amNot) ->
       @browser
         .execute((->
           Meteor.userId()
@@ -87,4 +82,4 @@ do ->
             assert.equal(ret.value, null, 'Authenticated')
           else
             assert(ret.value, 'Not authenticated')
-        ).call(callback)
+        )

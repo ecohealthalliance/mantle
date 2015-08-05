@@ -67,6 +67,7 @@ sanjo:meteor-version@1.0.0
 service-configuration@1.0.4
 session@1.1.0
 sha@1.0.3
+simple:json-routes@1.0.3
 softwarerero:accounts-t9n@1.0.9
 spacebars@1.0.6
 spacebars-compiler@1.0.6
@@ -80,10 +81,11 @@ url@1.0.4
 useraccounts:bootstrap@1.0.1
 useraccounts:core@1.10.0
 velocity:chokidar@1.0.3_1
-velocity:core@0.7.1
-velocity:html-reporter@0.7.0
+velocity:core@0.9.1
+velocity:html-reporter@0.7.3
 velocity:meteor-internals@1.1.0_7
 velocity:shim@0.1.0
+velocity:source-map-support@0.3.2_1
 webapp@1.2.0
 webapp-hashing@1.0.3
-xolvio:cucumber@0.12.0
+xolvio:cucumber@0.13.8

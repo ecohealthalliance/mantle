@@ -13,12 +13,14 @@ spacejam test-packages packages/* || touch FAILURE
 # Saucelabs #################################################
 echo "Run cucumber tests on saucelabs ******************************************"
 export HUB_HOST=ondemand.saucelabs.com
-export HUB_PORT=4444 
+export HUB_PORT=4444
 export HUB_USER=$SAUCE_USERNAME
-export HUB_KEY=$SAUCE_ACCESS_KEY 
+export HUB_KEY=$SAUCE_ACCESS_KEY
 export HUB_PLATFORM='Windows 7'
-export VELOCITY_DEBUG=1
+export HUB_VERSION='35'
+#export VELOCITY_DEBUG=1
 export VELOCITY_CI=1
+export CUCUMBER_TAIL=1
+
 meteor --test || touch FAILURE
-cat .meteor/local/log/cucumber.log
 
