@@ -5,12 +5,9 @@ do ->
 
     url = require('url')
 
-#    @Before () ->
-#      @server.call('reset')
-#      @client.url(url.resolve(process.env.ROOT_URL, '/'))
-
-    @When /^I visit "([^"]*)"$/, (site) ->
-      @client.url(site)
+    @Before () ->
+      @server.call('reset')
+      @client.url(url.resolve(process.env.ROOT_URL, '/'))
 
     _testUser = {email: 'test@example.com', password: 'password'}
 
