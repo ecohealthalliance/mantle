@@ -21,6 +21,7 @@ if Meteor.isClient
           toastr.error("Error")
         else
           toastr.success("Success")
+          go 'profileDetail', {_id:  UserProfiles.findOne(Meteor.userId)._id }
 
 if Meteor.isServer
   Meteor.methods
