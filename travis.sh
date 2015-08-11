@@ -17,9 +17,8 @@ export HUB_PORT=4444
 export HUB_USER=$SAUCE_USERNAME
 export HUB_KEY=$SAUCE_ACCESS_KEY
 export HUB_PLATFORM='Linux'
-#export HUB_VERSION='35'
 export VELOCITY_CI=1
 export CUCUMBER_TAIL=1
+export CHIMP_OPTIONS="--serverHost $(hostname)"
 
 meteor --test || touch FAILURE
-
