@@ -52,3 +52,13 @@ FlowRouter.route '/datasets/:_id',
     FlowLayout.render 'layout',
       main: 'datasetDetail'
       params: {"datasetId": params._id}
+
+FlowRouter.notFound =
+  name: 'notFound'
+  action: () ->
+    FlowLayout.render 'layout',
+      main: 'pageNotFound'
+
+
+
+
