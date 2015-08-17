@@ -21,6 +21,7 @@ Package.onUse(function(api) {
   api.addFiles('forms.import.styl');
   api.addFiles('header.import.styl');
   api.addFiles('footer.import.styl');
+  api.addFiles('not_found.import.styl');
 
   api.addFiles('accounts.import.styl');
   api.addFiles('profile.import.styl');
