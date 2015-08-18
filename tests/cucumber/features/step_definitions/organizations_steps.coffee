@@ -40,7 +40,7 @@ do ->
 
     @Then /^I should be on the "([^"]*)" detail page$/, (name, callback) ->
       @browser
-        .waitForVisible('.organization-detail', 30000, assert.ifError)
+        .waitForVisible('.organization-detail', assert.ifError)
         .call(callback)
 
     @Then /^I see that "([^"]*)" is a member of the organization$/, (emailOrName, callback) ->
