@@ -7,16 +7,16 @@ Feature: Accounts
     Then I am logged in
     And I should see content "Sign Out"
     And I should see content "Profile"
-
+  
   Scenario: Editing my profile
     When I register an account
     And I navigate to "/profile/edit"
     Then I should not see a "Success" toast
     When I fill out the profile edit form with fullName "Test Name"
     Then I should see a "Success" toast
-    When I view my public profile
+    Then I should be on my profile page
     And I should see content "Test Name"
-
+  
   Scenario: Navigating to profile
     Given there is a test user in the database
     When I log in as the test user

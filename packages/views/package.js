@@ -17,6 +17,7 @@ Package.onUse(function(api) {
   api.addFiles('accounts_modal.jade');
   api.addFiles('accounts_header_buttons.jade');
   api.addFiles('splash_page.jade', 'client');
+  api.addFiles('not_found.jade', 'client');
   api.addFiles('profile_edit.jade', 'client');
   api.addFiles('profile_detail.jade', 'client');
   api.addFiles('organizations.jade', 'client');
