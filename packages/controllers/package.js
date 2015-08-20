@@ -14,7 +14,7 @@ Package.onUse(function(api) {
   api.use('mantle:views');
   api.use('mantle:route-helpers');
   api.use('accounts-password');
-  api.use('useraccounts:core');
+  api.use('useraccounts:core@1.12.2');
   api.use('chrismbeckett:toastr');
 
   api.addFiles('toastr.coffee', 'client');

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#Ensure all dependencies are downloaded
+meteor build throw-away --debug
+rm -fr throw-away
+
 echo "Unit Tests *******************************************************************************"
 type spacejam || npm install -g spacejam
 spacejam test-packages packages/* || touch FAILURE
