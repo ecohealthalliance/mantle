@@ -13,9 +13,9 @@ echo "Integration Tests ********************************************************
 export VELOCITY_CI=1
 export CUCUMBER_TAIL=1
 
-#echo "Running against PhantomJS..."
-#export CUCUMBER_TAGS="~@chrome"
-#meteor --test || touch FAILURE
+echo "Running against PhantomJS..."
+export CUCUMBER_TAGS="~@chrome"
+meteor --test || touch FAILURE
 
 echo "Running against Chrome..."
 export CHIMP_OPTIONS="--browser=chrome"
