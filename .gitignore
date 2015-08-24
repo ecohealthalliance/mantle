@@ -2,3 +2,4 @@
 /tests/cucumber/node_modules/
 .vagrant/*
 FAILURE
+build/*
