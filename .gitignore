@@ -1,4 +1,5 @@
 /tests/cucumber/.screenshots/
 /tests/cucumber/node_modules/
 .vagrant/*
+FAILURE
 build/*
