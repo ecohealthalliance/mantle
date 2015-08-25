@@ -16,6 +16,7 @@ Package.onUse(function(api) {
   api.use('accounts-password');
   api.use('useraccounts:core');
   api.use('chrismbeckett:toastr');
+  api.use('agnito:autogrow');
 
   api.addFiles('toastr.coffee', 'client');
   api.addFiles('header.coffee', 'client');

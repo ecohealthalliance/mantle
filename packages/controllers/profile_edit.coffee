@@ -2,6 +2,9 @@ if Meteor.isClient
   Template.profileEdit.onCreated ->
     @subscribe('currentUserProfile')
 
+  Template.profileEdit.onRendered ->
+    $('textarea').autogrow({onInitialize: true})
+
   Template.profileEdit.helpers
     userProfile: ->
       UserProfiles.findOne({userId: Meteor.userId()})

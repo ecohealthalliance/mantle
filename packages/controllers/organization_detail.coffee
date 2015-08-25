@@ -4,6 +4,7 @@ if Meteor.isClient
     @editingName = new ReactiveVar(false)
     @editingDescription = new ReactiveVar(false)
 
+
   Template.organizationDetail.helpers
     organization: ->
       Organizations.findOne(@organizationId)
@@ -67,6 +68,9 @@ if Meteor.isClient
     'click .edit-description-button': (event, instance) ->
       event.preventDefault()
       instance.editingDescription.set(true)
+      setTimeout (->
+        $('#organization-description').autogrow({onInitialize: true, animate: false})
+      ), 0
 
     'click .cancel-description-button': (event, instance)->
       instance.editingDescription.set(false)
