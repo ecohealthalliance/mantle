@@ -108,18 +108,23 @@ section
     position static
     centerPosition(0,0)
     display block
-    margin 10px 0
+    margin $mobile-btn-margin
+    padding $mobile-btn-padding
   .fa
     color $d-gray
 
-.toast-top-right-custom
-  right 15px
-  top $header-height+20
-  +below(2)
-    right 0
-    bottom 0
-    top auto
+.btn-block-mobile
+  +mobile()
+    display block
     width 100%
+    padding $mobile-btn-padding
+    margin $mobile-btn-margin
+    font-size $mobile-btn-font-size
+
+.toast-bottom-center
+  bottom -7px
+  left 50%
+  transform translate(-50%, 0)
 
 #toast-container
   .toast

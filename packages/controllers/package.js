@@ -14,11 +14,12 @@ Package.onUse(function(api) {
   api.use('mantle:views');
   api.use('mantle:route-helpers');
   api.use('accounts-password');
-  api.use('useraccounts:core');
+  api.use('useraccounts:core@1.12.2');
   api.use('chrismbeckett:toastr');
   api.use('agnito:autogrow');
 
   api.addFiles('toastr.coffee', 'client');
+  api.addFiles('file_input.coffee', 'client');
   api.addFiles('header.coffee', 'client');
   api.addFiles('accounts_modal.coffee', 'client');
   api.addFiles('accounts_header_buttons.coffee', ['client', 'server']);
@@ -27,6 +28,8 @@ Package.onUse(function(api) {
   api.addFiles('organizations.coffee', ['client', 'server']);
   api.addFiles('organization_form.coffee', ['client', 'server']);
   api.addFiles('organization_detail.coffee', ['client', 'server']);
+  api.addFiles('dataset_form.coffee', ['client', 'server']);
+  api.addFiles('dataset_detail.coffee', ['client', 'server']);
   api.addFiles('paragraph_text.coffee', 'client');
 });
 

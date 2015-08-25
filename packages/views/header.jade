@@ -7,6 +7,12 @@ template(name="header")
           a.navbar-brand(href="/")
             h1 Mantle
         .navbar-collapse.collapse
+          ul.nav.navbar-nav.navbar-left.main-action
+            if currentUser
+              li
+                a.navbar-btn.add-dataset(href="{{path route='newDataset'}}")
+                  i.fa.fa-plus
+                  span Add Dataset
           ul.nav.navbar-nav.navbar-right
             li
               a(href="{{path route='organizations'}}")
