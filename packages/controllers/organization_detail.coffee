@@ -62,7 +62,7 @@ if Meteor.isClient
 
     'submit .edit-name': (event, instance) ->
       event.preventDefault()
-      Meteor.call 'updateName', $('#organization-name').val(), @organizationId, ->
+      Meteor.call 'updateOrganizationName', $('#organization-name').val(), @organizationId, ->
         instance.editingName.set(false)
 
     'click .edit-description-button': (event, instance) ->
@@ -77,7 +77,7 @@ if Meteor.isClient
 
     'click .save-description-button': (event, instance) ->
       event.preventDefault()
-      Meteor.call 'updateDescription', $('#organization-description').val(), @organizationId, ->
+      Meteor.call 'updateOrganizationDescription', $('#organization-description').val(), @organizationId, ->
         instance.editingDescription.set(false)
 
 if Meteor.isServer
@@ -108,14 +108,12 @@ if Meteor.isServer
       if organization.userIsAdmin(@userId)
         organization.removeAdmin(profileId)
 
-    updateName: (name, id) ->
+    updateOrganizationName: (name, id) ->
       organization = Organizations.findOne({_id: id, createdById: this.userId})
       organization.set({name: name})
-      organization.save ->
-        organization
+      organization.save()
 
-    updateDescription: (description, id) ->
+    updateOrganizationDescription: (description, id) ->
       organization = Organizations.findOne({_id: id, createdById: this.userId})
       organization.set({description: description})
-      organization.save ->
-        organization
+      organization.save()
