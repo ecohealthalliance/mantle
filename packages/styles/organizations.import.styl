@@ -6,6 +6,7 @@
         padding 20px 0
 
 .organization-name
+  margin-bottom 0
   font-size 1.4em
   font-weight 600
   +below(1)
@@ -29,50 +30,54 @@
     padding 0
     font-size 14px
   input[name=name]
+    vAlign()
     @extend h1
+    max-width 75%
     min-height 80px
+    margin-right 10px
+    margin-bottom 0
     padding 6px 12px
     +below(2)
+      max-width 100%
       min-height 55px
-      margin-bottom 20px
   textarea
     padding-right 50px
     +below(2)
       padding-right 70px
+      margin-bottom 0
 
 .edit-name
   position relative
 
 .actions
-  position absolute
-  right 25px
-  z-index $bottom-layer
-  &.middle
-    centerVertically()
-    right 10px
-  &.top
-    top 10px
+  vAlign()
+  &.right
+    float right
+  .save
+    padding-right 25px
+    padding-left 25px
+    font-weight bold
+  .cancel
+    color $d-gray
+    font-weight normal
+  +below(2)
+    margin-top 10px
+    button
+      padding 10px 20px
+    .save
+      padding-left 40px
+      padding-right 40px
   button
-    width 25px
-    font-size 25px
-    line-height 100%
     cursor pointer
     +below(2)
       display inline-block
-    &.save
-      color $confirm
-      &:hover
-        color darken(@color, 20%)
-    &.cancel
-      color $m-gray
-      &:hover
-        color darken(@color, 20%)
 
 .organization-description-wrap
   margin 15px 0
 
 .organization-description
   position relative
+  margin-bottom 40px
   p
     padding-right 5%
     +below(2)

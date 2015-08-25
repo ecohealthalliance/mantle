@@ -5,11 +5,9 @@ template(name="organizationDetail")
         if editingName
           form.edit-name
             input#organization-name.form-control(type="string" name="name" value=organization.name)
-            .actions.middle
-              button.btn-plain.save.save-name-button(type="submit")
-                i.fa.fa-check-circle
-              button.btn-plain.cancel.cancel-name-button(type="button")
-                i.fa.fa-times-circle
+            .actions
+              button.btn.btn-primary.btn-sm.save.save-name-button(type="submit") Save
+              button.btn.btn-default.btn-sm.cancel.cancel-name-button(type="button") Cancel
         else
           h1= organization.name
           if userIsAdmin
@@ -20,11 +18,9 @@ template(name="organizationDetail")
       .container.organization-description
         if editingDescription
           textarea#organization-description.form-control(type="string" name="description")= organization.description
-          .actions.top
-            button.btn-plain.save.save-description-button(type="submit")
-              i.fa.fa-check-circle
-            button.btn-plain.cancel.cancel-description-button(type="button")
-              i.fa.fa-times-circle
+          .actions.right.clearfix
+            button.btn.btn-primary.btn-sm.save.save-description-button(type="submit") Save
+            button.btn.btn-default.btn-sm.cancel.cancel-description-button(type="button") Cancel
         else
           +paragraphText text=organization.description
           if userIsAdmin
