@@ -72,6 +72,5 @@ do ->
 
     @When '"$name" should be listed under my datasets', (name)->
       @browser
-        .pause(10000)
         .waitForVisible(".dataset-link")
         .getText(".dataset-link").should.become(name)
