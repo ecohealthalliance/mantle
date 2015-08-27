@@ -37,3 +37,12 @@ if Meteor.isClient
 if Meteor.isServer
   Dataset.addMethod 'getFileCursor', ->
     RawFiles.find(@fileId)
+    csvParseSync = Meteor.wrapAsync CSVParse
+
+  Dataset.addMethod 'readFile', ->
+    file = @file()
+    stream = file.createReadStream()
+    csv = ''
+    stream.on 'data', (data) ->
+      csv += data.toString()
+    csv

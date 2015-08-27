@@ -13,6 +13,7 @@ Package.onUse(function(api) {
   api.use('accounts-password');
   api.use('useraccounts:core@1.7.0');
   api.use('mongo');
+  api.use('csats:csv-parse');
   api.use('cfs:standard-packages');
   api.use('cfs:gridfs');
   api.addFiles('user_profiles.coffee', ['client', 'server']);

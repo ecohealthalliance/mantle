@@ -42,3 +42,8 @@ Feature: Datasets
     And the current user has a dataset called "Frog data"
     And I go to the datasets page
     Then "Frog data" should be listed under my datasets
+
+  Scenario: Viewing a tabular dataset
+    Given there is a test tabular dataset in the database
+    When I navigate to the test dataset detail page
+    Then I should see the test dataset data in a table

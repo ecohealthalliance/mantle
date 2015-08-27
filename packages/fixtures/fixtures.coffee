@@ -46,7 +46,7 @@ do ->
     'createOrg': (attributes) ->
       Organizations.insert attributes
 
-    'addDataset': (attributes)->
+    'createDataset': (attributes) ->
       dataset = new Dataset()
       dataset.set(attributes)
       dataset.save()

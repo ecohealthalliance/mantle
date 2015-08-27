@@ -31,6 +31,7 @@ check@1.0.5
 chrismbeckett:toastr@0.1.0
 coffeescript@1.0.6
 cosmos:browserify@0.1.4
+csats:csv-parse@1.0.1
 ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6

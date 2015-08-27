@@ -18,6 +18,9 @@ do ->
         .chooseFile('input[name="file"]', path.join(process.cwd(), "files", "testfile"))
         .call(callback)
 
+    @Given "there is a test tabular dataset in the database", ->
+      @server.call('createDataset', {name: "Test Dataset", _id: 'fakedatasetid'})
+
     @Then /^I should( not)? see the filename$/, (shouldNot, callback) ->
       @browser
         .getValue '.file-name', (err, value) ->
@@ -58,7 +61,7 @@ do ->
           Meteor.userId()
         ), ((err, ret) =>
           assert.ifError(err)
-          @server.call('addDataset', {
+          @server.call('createDataset', {
             name: name,
             createdById: ret.value
           })
@@ -74,3 +77,14 @@ do ->
       @browser
         .waitForVisible(".dataset-link")
         .getText(".dataset-link").should.become(name)
+
+    @When "I navigate to the test dataset detail page", ->
+      @client
+        .url(url.resolve(process.env.ROOT_URL, '/datasets/fakedatasetid'))
+
+    @Then "I should see the test dataset data in a table", ->
+      @client
+        .waitForExist('.dataset-table')
+        .getHTML '.dataset-table', (error, attr) ->
+          assert.ifError error
+>>>>>>> 1a95910... Build some dataset file parsing functionality
