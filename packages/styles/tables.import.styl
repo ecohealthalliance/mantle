@@ -1,68 +1,5 @@
-.full-width-table
-  border-top 1px solid $l-gray
-  margin-top -15px
-  +below(1)
-    margin-top -5px
-  border-top 1px solid $l-gray
-  .table-content-wrap
-    border-bottom 1px solid $l-gray
-    .container
-        padding 15px 0
-  td.title
-    font-size 120%
-    font-weight bold
-  .controls
-    text-align right
-
-.table > tbody > tr > td
-  vertical-align middle
-
 .reactive-table
-  border-bottom 2px solid #DDD
-
-.reactive-table-filter
-  margin-bottom 0
-
-.reactive-table-options
-  margin-right -15px
-
-.reactive-table
-  padding-left 0
-  padding-right 0
-  border-radius 5px
-  overflow hidden
-  border table-border
-  tbody tr
-    cursor pointer
-  .controls
-    text-align right
-    padding-right 15px
-
-.reactive-table-columns-dropdown
-  button
-    text-shadow none
-  width auto
-  padding 0
-  a
-    position relative
-  label
-    white-space initial
-    padding-left 25px
-    margin 0
-  input
-    position absolute
-    left 15px
-
-.reactive-table-options
-  .dropdown-toggle
-    &::before,
-    &::after
-      vAlign()
-    &::before
-      @extend .icon
-      content '\f0db'
-      padding-right 5px
-      font-size 16px
+  border-bottom 2px solid $border-gray
 
 .reactive-table-navigation
   label
@@ -72,18 +9,18 @@
     font-size 150%
     line-height 0
 
-.rows-per-page
-.page-number
-  span
-    display inline-block
-    padding 0 1px
-    margin 0
-    font-weight normal
-  .page-number-count
-  .rows-per-page-count
-  .form-control
-    font-weight bold
-  .form-control
-    margin 0
-    text-align center
-    font-weight bold
+  .rows-per-page
+  .page-number
+    span
+      display inline-block
+      padding 0 1px
+      margin 0
+      font-weight normal
+    .page-number-count
+    .rows-per-page-count
+    .form-control
+      font-weight bold
+    .form-control
+      margin 0
+      text-align center
+      font-weight bold
