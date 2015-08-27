@@ -16,6 +16,14 @@ do ->
     @Given /^there is a test user in the database/, ->
       @server.call('createUserWithProfile', _testUser, {fullName: 'Test User'})
 
+    @Given '"$name" is an user', (name)->
+      @server.call('createUserWithProfile', {
+        email: name.split(" ").join(".") + "@email"
+        password: name
+      }, {
+        fullName: name
+      })
+
     @When "I log in as the test user", (callback) ->
       @client
         .url(url.resolve(process.env.ROOT_URL, '/'))

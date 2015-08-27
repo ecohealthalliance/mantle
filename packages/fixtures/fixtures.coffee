@@ -8,6 +8,7 @@ do ->
       Meteor.users.remove({})
       UserProfiles.remove({})
       Organizations.remove({})
+      Datasets.remove({})
 
     'createTestUser': (attributes) ->
       Meteor.users.remove({})
@@ -44,3 +45,8 @@ do ->
 
     'createOrg': (attributes) ->
       Organizations.insert attributes
+
+    'addDataset': (attributes)->
+      dataset = new Dataset()
+      dataset.set(attributes)
+      dataset.save()

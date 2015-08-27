@@ -1,0 +1,7 @@
+template(name="myDatasets")
+  .container
+    h1.my-datasets-header My Datasets
+    +reactiveTable collection=myDatasetsCollection settings=myDatasetsTableSettings
+
+template(name="noDatasets")
+  h2 There are no datasets in this table

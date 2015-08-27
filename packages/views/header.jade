@@ -14,6 +14,10 @@ template(name="header")
                   i.fa.fa-plus
                   span Add Dataset
           ul.nav.navbar-nav.navbar-right
+            if currentUser
+              li
+                a.my-datasets-link(href="{{path route='myDatasets'}}")
+                  span My Datasets
             li
               a(href="{{path route='organizations'}}")
                 span Organizations

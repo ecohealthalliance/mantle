@@ -10,7 +10,14 @@ Dataset = Astro.Class
     name: 'string'
     fileId: 'string'
     createdById: 'string'
-
+  events:
+    afterinsert: ->
+      UserProfiles.update({
+        userId: @createdById
+      }, {
+        $addToSet:
+          adminOfDatasets: @_id
+      })
   methods:
     file: () ->
       RawFiles.findOne(@fileId)

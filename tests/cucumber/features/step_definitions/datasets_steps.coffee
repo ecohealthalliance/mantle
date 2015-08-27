@@ -51,3 +51,26 @@ do ->
         .waitForExist('.remove')
         .click('.remove', assert.ifError)
         .call(callback)
+
+    @When 'the current user has a dataset called "$name"', (name)->
+      @browser
+        .execute((->
+          Meteor.userId()
+        ), ((err, ret) =>
+          assert.ifError(err)
+          @server.call('addDataset', {
+            name: name,
+            createdById: ret.value
+          })
+        ))
+
+    @When 'I go to the datasets page', ->
+      @browser
+        .waitForExist('.my-datasets-link')
+        .click('.my-datasets-link')
+        .waitForVisible(".my-datasets-header")
+
+    @When '"$name" should be listed under my datasets', (name)->
+      @browser
+        .waitForVisible(".dataset-link")
+        .getText(".dataset-link").should.become(name)
