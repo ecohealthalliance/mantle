@@ -19,6 +19,32 @@ Feature: Organizations
     And I see that "Test User" is an admin of the organization
 
   @organizations
+  Scenario: Editing an organization
+    When I log in as the test user
+    And I create an organization with name "Test Organization"
+    And I navigate to "/organizations"
+    Then I should not see content "Better Name"
+    And I should not see content "Better Description"
+
+    When I click on the organization link
+    And I change the organization name to "Better Name"
+    And I change the organization description to "Better Description"
+    And I navigate to "/organizations"
+    Then I should see content "Better Name"
+    And I should see content "Better Description"
+    And I should not see content "Test Organization"
+
+  @organizations
+  Scenario: Trying to edit an organization as unauthorized user
+    When I log in as the test user
+    And I create an organization with name "Test Organization"
+    And I navigate to "/organizations"
+    When I click on the organization link
+    Then I should see content "Edit"
+    When I log out
+    Then I should not see content "Edit"
+
+  @organizations
   Scenario: Joining an organization
     Given there is an organization in the database created by the test user
     When I register an account with email address "user@example.com"

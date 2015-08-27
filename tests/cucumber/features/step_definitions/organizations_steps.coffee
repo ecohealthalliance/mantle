@@ -7,6 +7,31 @@ do ->
 
     url = require('url')
 
+    @When /^I create an organization with name "([^"]*)"$/, (name, callback) ->
+      @browser
+        .url(url.resolve(process.env.ROOT_URL, '/organizations/new'))
+        .waitForExist('#new-organization-form')
+        .setValue('#organization-name', name)
+        .setValue('#organization-description', 'This is an organization.')
+        .submitForm('#new-organization-form', assert.ifError)
+        .call(callback)
+
+    @When /^I change the organization name to "([^"]*)"$/, (name, callback) ->
+      @browser
+        .waitForExist('.organization-detail', assert.ifError)
+        .click(".edit-name-button", assert.ifError)
+        .setValue('#organization-name', name)
+        .click(".save-name-button", assert.ifError)
+        .call(callback)
+
+    @When /^I change the organization description to "([^"]*)"$/, (description, callback) ->
+      @browser
+        .waitForExist('.organization-detail', assert.ifError)
+        .click(".edit-description-button", assert.ifError)
+        .setValue('#organization-description', description)
+        .click(".save-description-button", assert.ifError)
+        .call(callback)
+
     @Given "there is a user with full name $name who belongs to the test organization", (name) ->
       @server.call('createUserInTestOrg',
         {email: "#{name}@example.com", password: 'password'},

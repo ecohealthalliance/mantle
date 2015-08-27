@@ -6,10 +6,92 @@
         padding 20px 0
 
 .organization-name
+  margin-bottom 0
   font-size 1.4em
   font-weight 600
   +below(1)
     font-size 1.25em
+
+.organization-detail
+  .edit-inline
+  h1
+    display inline-block
+  .edit-inline
+    vertical-align top
+    margin-left 10px
+    color lighten($d-gray, 20%)
+    &:hover
+      color $body-text
+      text-decoration none
+    .fa
+      margin-left 2px
+      font-size 95%
+  .btn-link
+    padding 0
+    font-size 14px
+  input[name=name]
+    vAlign()
+    @extend h1
+    max-width 75%
+    min-height 80px
+    margin-right 10px
+    margin-bottom 0
+    padding 6px 12px
+    +below(2)
+      max-width 100%
+      min-height 55px
+  textarea
+    padding-right 50px
+    +below(2)
+      padding-right 70px
+      margin-bottom 0
+
+.edit-name
+  position relative
+
+.actions
+  vAlign()
+  &.right
+    float right
+  .save
+    padding-right 25px
+    padding-left 25px
+    font-weight bold
+  .cancel
+    color $d-gray
+    font-weight normal
+  +below(2)
+    margin-top 10px
+    button
+      padding 10px 20px
+    .save
+      padding-left 40px
+      padding-right 40px
+  button
+    cursor pointer
+    +below(2)
+      display inline-block
+
+.organization-description-wrap
+  margin 15px 0
+
+.organization-description
+  position relative
+  margin-bottom 40px
+  p
+    padding-right 5%
+    +below(2)
+      padding-right 0
+    &:last-of-type
+      margin-bottom 0
+
+.edit-description-button
+  position absolute
+  top -5px
+  right 15px
+  +below(2)
+    top -40px
+    right 15px
 
 .member-table
   border 1px solid $l-gray
@@ -25,4 +107,3 @@
   color $d-gray
   +below(2)
     font-size 90%
-
