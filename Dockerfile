@@ -5,7 +5,7 @@ FROM ubuntu:12.04
 MAINTAINER EHA Tech Team
 
 #Install apt dependencies
-RUN apt-get update && apt-get -y install sudo wget curl gnupg2 git make gcc g++ xvfb firefox openjdk-7-jre-headless bzip2
+RUN apt-get update && apt-get -y install sudo wget curl gnupg2 git make gcc g++ xvfb firefox bzip2
 
 #Install Google Chrome
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
