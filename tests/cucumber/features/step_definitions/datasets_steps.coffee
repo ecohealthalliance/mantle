@@ -58,6 +58,7 @@ do ->
           Meteor.userId()
         ), ((err, ret) =>
           assert.ifError(err)
+          assert.ok(ret.value)
           @server.call('addDataset', {
             name: name,
             createdById: ret.value
@@ -72,5 +73,45 @@ do ->
 
     @When '"$name" should be listed under my datasets', (name)->
       @browser
-        .waitForVisible(".dataset-link")
+        .waitForVisible(".datasets .dataset-link")
         .getText(".dataset-link").should.become(name)
+
+    @When '"$name" should be listed under my shared datasets', (name)->
+      @browser
+        .waitForVisible(".shared-datasets .dataset-link")
+        .getText(".dataset-link").should.become(name)
+
+    @When 'I click on the "$name" dataset', (name)->
+      @browser
+        .waitForVisible '.dataset-link[data-name="' + name + '"]'
+        .click '.dataset-link[data-name="' + name + '"]'
+
+    @When 'I click the Invite Collaborators button', ->
+      @browser
+        # The next waitForVisible will timeout if there is no pause here.
+        .pause 100
+        .waitForVisible '.invite-collaborators'
+        .click '.invite-collaborators'
+
+    @When 'I search for "$name"', (name)->
+      @browser
+        .waitForVisible '.invite-user-table .reactive-table-input'
+        .setValue '.invite-user-table .reactive-table-input', name
+
+    @When 'I should see "$name" in the search results', (name)->
+      @browser
+        .waitForVisible '.invite-user-table tbody tr'
+        .getHTML '.invite-user-table tbody tr', (error, response) ->
+          assert.ok(response.toString().match(name))
+
+    @When 'I should see "$name" in the list of collaborators', (name)->
+      @browser
+        .waitForVisible 'tr.member-row'
+        .getHTML 'tr.member-row', (error, response) ->
+          assert.ok(response.toString().match(name))
+
+    @When 'I click the invite button for "$name"', (name)->
+      @browser
+        .click '.invite-user-table tbody tr .invite-user'
+        # close the modal
+        .click '.close'

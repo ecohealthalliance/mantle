@@ -50,3 +50,11 @@ do ->
       dataset = new Dataset()
       dataset.set(attributes)
       dataset.save()
+
+    'addUserToOrg': (fullName, orgName)->
+      UserProfiles.update({
+        'fullName': fullName
+      }, {
+        $addToSet:
+          memberOfOrgs: Organizations.findOne(name: orgName)._id
+      })

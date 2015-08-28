@@ -31,5 +31,6 @@ Package.onUse(function(api) {
   api.addFiles('dataset_detail.coffee', ['client', 'server']);
   api.addFiles('paragraph_text.coffee', 'client');
   api.addFiles('my_datasets.coffee');
+  api.addFiles('invite_user_modal.coffee', ['client', 'server']);
 });
 

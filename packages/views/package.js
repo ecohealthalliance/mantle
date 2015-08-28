@@ -30,4 +30,5 @@ Package.onUse(function(api) {
   api.addFiles('layout.jade', 'client');
   api.addFiles('paragraph_text.jade', 'client');
   api.addFiles('my_datasets.jade', 'client');
+  api.addFiles('invite_user_modal.jade', 'client');
 });

@@ -18,8 +18,8 @@ do ->
 
     @Given '"$name" is an user', (name)->
       @server.call('createUserWithProfile', {
-        email: name.split(" ").join(".") + "@email"
-        password: name
+        email: name.split(" ").join(".").toLocaleLowerCase() + "@email"
+        password: name.toLocaleLowerCase()
       }, {
         fullName: name
       })
@@ -62,3 +62,25 @@ do ->
           else
             assert.ok(match)
         .call(callback)
+
+    @When 'I log out', ->
+      @client
+        .waitForVisible('.admin-settings')
+        .click('.admin-settings')
+        .waitForVisible('.sign-out')
+        .click('.sign-out')
+
+    @When 'I log in as "$name"', (name) ->
+      @client
+        .url(url.resolve(process.env.ROOT_URL, '/'))
+        .waitForExist('.sign-in')
+        .click('.sign-in')
+        .setValue('#at-field-email', name.split(" ").join(".").toLocaleLowerCase() + "@email")
+        .setValue('#at-field-password', name.toLocaleLowerCase())
+        .submitForm('#at-field-email')
+        # The next waitForVisible will timeout if there is no pause here.
+        .pause(100)
+        .waitForVisible('.my-datasets-link')
+
+    @Given '"$name" is in the "$org" organization', (name, org)->
+      @server.call('addUserToOrg', name, org)
