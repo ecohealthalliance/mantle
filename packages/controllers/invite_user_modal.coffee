@@ -1,54 +1,46 @@
 if Meteor.isClient
   Template.inviteUserModal.onCreated ->
-    @subscribe('usersInMyOrgs')
+    @invitableUsers = new ReactiveVar([])
+    @selectedUser = new ReactiveVar()
 
   Template.inviteUserModal.helpers
+    selectedUser: ->
+      Template.instance().selectedUser.get()
     invitableUsers: ->
-      userProfile = UserProfiles.findOne(userId: Meteor.userId())
-      if userProfile
-        myOrgs = Organizations.find
-          _id:
-            $in: userProfile.memberOfOrgs
-        UserProfiles.find({
-          memberOfOrgs:
-            $in: myOrgs.map((x)-> x._id)
-          memberOfDatasets:
-            $not: @datasetId
-        }, {
-          fields:
-            emailAddress: false
-        })
-    invitableUsersTableSettings: ->
-      noDataTmpl: Template.noDatasets
-      showRowCount: true
-      fields: [
-        {
-          key: 'fullName'
-          label: 'Name'
-        },
-        {
-          key: ""
-          label: ""
-          hideToggle: true
-          fn: (val, obj) ->
-            new Spacebars.SafeString("""
-              <a class="btn btn-success invite-user" data-id="#{obj._id}">
-                Invite
-              </a>
-            """)
-        }
-      ]
+      Template.instance().invitableUsers.get()
 
   Template.inviteUserModal.events
-    'click .invite-user': (event, template) ->
-      userId = $(event.target).data('id')
-      datasetId = template.data.datasetId
-      Meteor.call 'inviteUser', userId, datasetId, (error, response) ->
+    'click .invite-user': (event, instance) ->
+      user = instance.selectedUser.get()
+      if not user
+        return
+      datasetId = instance.data.datasetId
+      Meteor.call 'inviteUser', user._id, datasetId, (error, response) ->
         if error
           toastr.error("Error:" + error.message)
         else
           toastr.success("Success")
-
+          $('#invite-collaborators-modal').modal('hide')
+    'click .invitable-user': (event, instance) ->
+      instance.selectedUser.set
+        _id: $(event.target).data('id')
+        fullName: $(event.target).data('fullname')
+      instance.$('.invite-user-input').val($(event.target).data('fullname'))
+    'keyup .invite-user-input': _.throttle((event, instance) ->
+      instance.selectedUser.set null
+      partialName = instance.$('.invite-user-input').val()
+      filter = null
+      if instance.data.datasetId
+        filter = {
+          memberOfDatasets:
+            $ne: instance.data.datasetId
+        }
+      Meteor.call 'usernameAutocomplete', partialName, filter, (error, response) ->
+        if error
+          toastr.error("Error:" + error.message)
+        else
+          instance.invitableUsers.set(response)
+    )
 if Meteor.isServer
   Meteor.methods
     inviteUser: (userId, datasetId) ->
@@ -62,20 +54,22 @@ if Meteor.isServer
         Datasets.findOne(datasetId).addMember(userId)
       else
         throw new Meteor.Error("Not logged in")
-  Meteor.publish 'usersInMyOrgs', ->
-    myOrgs = Organizations.find
-      _id:
-        $in: UserProfiles.findOne(userId: @userId)?.memberOfOrgs or []
-    if not myOrgs
-      @ready()
-    else
-      [
-        myOrgs,
-        UserProfiles.find({
-          memberOfOrgs:
-              $in: myOrgs.map((x)-> x._id)
-        }, {
+    usernameAutocomplete: (partialName, filter) ->
+      if not filter
+        filter = {}
+      # Based on bobince's regex escape function.
+      # source: http://stackoverflow.com/questions/3561493/is-there-a-regexp-escape-function-in-javascript/3561711#3561711
+      regexEscape = (s)->
+        s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
+      if @userId
+        UserProfiles.find(_.extend({
+          fullName:
+            $regex: regexEscape(partialName)
+            $options: "i"
+        }, filter), {
+          limit: 5
           fields:
             emailAddress: false
-        })
-      ]
+        }).fetch()
+      else
+        throw new Meteor.Error("Not logged in")

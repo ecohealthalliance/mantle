@@ -56,8 +56,9 @@ Feature: Datasets
     When I click on the "radioactivity experiments" dataset
     And I click the Invite Collaborators button
     And I search for "Curie"
-    Then I should see "Pierre Curie" in the search results
-    When I click the invite button for "Pierre Curie"
+    Then I should see "Pierre Curie" in the autocomplete
+    When I select "Pierre Curie" in the autocomplete
+    And I click the Invite button
     Then I should see "Pierre Curie" in the list of collaborators
     When I log out
     And I log in as "Pierre Curie"

@@ -10,6 +10,7 @@ Package.onUse(function(api) {
   api.use('coffeescript');
   api.use('templating');
   api.use('reactive-var');
+  api.use('underscore');
   api.use('mantle:models');
   api.use('mantle:views');
   api.use('mantle:route-helpers');

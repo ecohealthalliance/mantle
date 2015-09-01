@@ -88,30 +88,31 @@ do ->
 
     @When 'I click the Invite Collaborators button', ->
       @browser
-        # The next waitForVisible will timeout if there is no pause here.
-        .pause 100
-        .waitForVisible '.invite-collaborators'
+        .waitForVisible '.invite-collaborators', 2000
         .click '.invite-collaborators'
+
+    @When 'I click the Invite button', ->
+      @browser
+        .waitForVisible '.invite-user', 2000
+        .click '.invite-user'
 
     @When 'I search for "$name"', (name)->
       @browser
-        .waitForVisible '.invite-user-table .reactive-table-input'
-        .setValue '.invite-user-table .reactive-table-input', name
+        .waitForVisible '.invite-user-input'
+        .setValue '.invite-user-input', name
 
-    @When 'I should see "$name" in the search results', (name)->
+    @When 'I should see "$name" in the autocomplete', (name)->
       @browser
-        .waitForVisible '.invite-user-table tbody tr'
-        .getHTML '.invite-user-table tbody tr', (error, response) ->
+        .waitForVisible '.invitable-user', 2000
+        .getHTML '.invitable-user', (error, response) ->
           assert.ok(response.toString().match(name))
 
     @When 'I should see "$name" in the list of collaborators', (name)->
       @browser
-        .waitForVisible 'tr.member-row'
-        .getHTML 'tr.member-row', (error, response) ->
+        .waitForVisible '.member-table'
+        .getHTML '.member-table', (error, response) ->
           assert.ok(response.toString().match(name))
 
-    @When 'I click the invite button for "$name"', (name)->
+    @When 'I select "$name" in the autocomplete', (name)->
       @browser
-        .click '.invite-user-table tbody tr .invite-user'
-        # close the modal
-        .click '.close'
+        .click '.invitable-user'
