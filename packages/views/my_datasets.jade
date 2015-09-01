@@ -1,7 +1,10 @@
 template(name="myDatasets")
   .container
     h1.my-datasets-header My Datasets
-    +reactiveTable collection=myDatasetsCollection settings=myDatasetsTableSettings
-
+    .datasets
+      +reactiveTable collection=myDatasetsCollection settings=myDatasetsTableSettings
+    h1.my-datasets-header My Shared Datasets
+    .shared-datasets
+      +reactiveTable collection=mySharedDatasetsCollection settings=mySharedDatasetsTableSettings
 template(name="noDatasets")
   h2 There are no datasets in this table

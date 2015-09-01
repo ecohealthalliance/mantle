@@ -14,3 +14,25 @@ template(name="datasetDetail")
                 a.btn.btn-primary.pull-right.btn-block-mobile(href="{{this.url download=true}}" target="_blank") Download
               else
                 p Upload in progress
+    .row
+      .col-sm-7
+        h2 Collaborators
+          if userIsAdmin
+            a.btn.btn-primary.invite-collaborators.pull-right.btn-block-mobile(data-toggle="modal" data-target="#invite-collaborators-modal") Invite Collaborators
+        table.table.member-table
+          thead
+            tr
+              th Name
+              th Role
+              th
+          tbody
+            each members
+              tr.member-row
+                td.name
+                  if fullName
+                    a(href="{{path route='profileDetail' params=this}}")=fullName
+                  else
+                    a(href="{{path route='profileDetail' params=this}}") Name unknown
+                td.role=role
+
+  +inviteUserModal datasetId=datasetId

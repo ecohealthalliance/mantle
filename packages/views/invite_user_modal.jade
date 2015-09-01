@@ -1,0 +1,17 @@
+template(name="inviteUserModal")
+  #invite-collaborators-modal.modal.fade(tabindex="-1" role="dialog")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+            i.fa.fa-times-circle
+        .modal-body
+          label User Name
+            input.invite-user-input
+          if selectedUser
+            a.btn.btn-success.invite-user Invite
+          else
+            a.btn.btn-success.invite-user.disabled Invite
+          ul.invite-user-autocomplete
+            each invitableUsers
+              li.invitable-user(data-id="#{_id}" data-fullname="#{fullName}") #{fullName}

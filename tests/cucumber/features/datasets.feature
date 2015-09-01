@@ -42,3 +42,25 @@ Feature: Datasets
     And the current user has a dataset called "Frog data"
     And I go to the datasets page
     Then "Frog data" should be listed under my datasets
+
+  Scenario: Inviting an user to a dataset
+    Given "Marie Curie" is an user
+    And "Pierre Curie" is an user
+    And there is an organization in the database with name "Science"
+    And "Marie Curie" is in the "Science" organization
+    And "Pierre Curie" is in the "Science" organization
+    When I log in as "Marie Curie"
+    Given the current user has a dataset called "radioactivity experiments"
+    When I navigate to "/myDatasets"
+    Then "radioactivity experiments" should be listed under my datasets
+    When I click on the "radioactivity experiments" dataset
+    And I click the Invite Collaborators button
+    And I search for "Curie"
+    Then I should see "Pierre Curie" in the autocomplete
+    When I select "Pierre Curie" in the autocomplete
+    And I click the Invite button
+    Then I should see "Pierre Curie" in the list of collaborators
+    When I log out
+    And I log in as "Pierre Curie"
+    And I navigate to "/myDatasets"
+    Then "radioactivity experiments" should be listed under my shared datasets

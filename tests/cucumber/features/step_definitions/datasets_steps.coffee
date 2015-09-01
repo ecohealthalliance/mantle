@@ -58,6 +58,7 @@ do ->
           Meteor.userId()
         ), ((err, ret) =>
           assert.ifError(err)
+          assert.ok(ret.value)
           @server.call('addDataset', {
             name: name,
             createdById: ret.value
@@ -72,5 +73,46 @@ do ->
 
     @When '"$name" should be listed under my datasets', (name)->
       @browser
-        .waitForVisible(".dataset-link")
+        .waitForVisible(".datasets .dataset-link")
         .getText(".dataset-link").should.become(name)
+
+    @When '"$name" should be listed under my shared datasets', (name)->
+      @browser
+        .waitForVisible(".shared-datasets .dataset-link")
+        .getText(".dataset-link").should.become(name)
+
+    @When 'I click on the "$name" dataset', (name)->
+      @browser
+        .waitForVisible '.dataset-link[data-name="' + name + '"]'
+        .click '.dataset-link[data-name="' + name + '"]'
+
+    @When 'I click the Invite Collaborators button', ->
+      @browser
+        .waitForVisible '.invite-collaborators', 2000
+        .click '.invite-collaborators'
+
+    @When 'I click the Invite button', ->
+      @browser
+        .waitForVisible '.invite-user', 2000
+        .click '.invite-user'
+
+    @When 'I search for "$name"', (name)->
+      @browser
+        .waitForVisible '.invite-user-input'
+        .setValue '.invite-user-input', name
+
+    @When 'I should see "$name" in the autocomplete', (name)->
+      @browser
+        .waitForVisible '.invitable-user', 2000
+        .getHTML '.invitable-user', (error, response) ->
+          assert.ok(response.toString().match(name))
+
+    @When 'I should see "$name" in the list of collaborators', (name)->
+      @browser
+        .waitForVisible '.member-table'
+        .getHTML '.member-table', (error, response) ->
+          assert.ok(response.toString().match(name))
+
+    @When 'I select "$name" in the autocomplete', (name)->
+      @browser
+        .click '.invitable-user'

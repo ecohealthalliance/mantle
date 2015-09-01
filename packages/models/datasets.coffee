@@ -17,11 +17,27 @@ Dataset = Astro.Class
       }, {
         $addToSet:
           adminOfDatasets: @_id
+          memberOfDatasets: @_id
       })
   methods:
     file: () ->
       RawFiles.findOne(@fileId)
-
+    userIsMember: (userId) ->
+      UserProfiles.findOne({userId: userId, memberOfDatasets: @_id})
+    userIsAdmin: (userId) ->
+      UserProfiles.findOne({userId: userId, memberOfDatasets: @_id})
+    addMember: (profileId)->
+      UserProfiles.update({_id: profileId}, {
+        $addToSet: {memberOfDatasets: @_id}
+      })
+    addAdmin: (profileId) ->
+      profile = UserProfiles.findOne(profileId)
+      if @userIsMember(profile.userId)
+        UserProfiles.update({_id: profileId}, {
+          $addToSet: {adminOfDatasets: @_id}
+        })
+      else
+        throw new Meteor.Error('Only dataset members can be made admins')
 
 if Meteor.isClient
   Dataset.addMethod 'uploadFile', (file, callback) ->
