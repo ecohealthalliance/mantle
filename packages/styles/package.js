@@ -22,7 +22,5 @@ Package.onUse(function(api) {
   api.addFiles('header.import.styl');
   api.addFiles('footer.import.styl');
 
-  api.addFiles('accounts.import.styl');
-
   api.addFiles('main.styl');
 });

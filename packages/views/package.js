@@ -12,22 +12,10 @@ Package.onUse(function(api) {
   api.use('mantle:styles');
   api.use('mantle:route-helpers');
   api.use('aslagle:reactive-table');
-  
-  api.addFiles('file_input.jade', 'client');
-  api.addFiles('accounts_modal.jade');
-  api.addFiles('accounts_header_buttons.jade');
+
   api.addFiles('splash_page.jade', 'client');
   api.addFiles('not_found.jade', 'client');
-  api.addFiles('profile_edit.jade', 'client');
-  api.addFiles('profile_detail.jade', 'client');
-  api.addFiles('organizations.jade', 'client');
-  api.addFiles('organization_form.jade', 'client');
-  api.addFiles('organization_detail.jade', 'client');
-  api.addFiles('dataset_form.jade', 'client');
-  api.addFiles('dataset_detail.jade', 'client');
   api.addFiles('header.jade', 'client');
   api.addFiles('footer.jade', 'client');
   api.addFiles('layout.jade', 'client');
-  api.addFiles('paragraph_text.jade', 'client');
-  api.addFiles('my_datasets.jade', 'client');
 });

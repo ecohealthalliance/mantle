@@ -19,7 +19,5 @@ Package.onUse(function(api) {
 
   api.addFiles('toastr.coffee', 'client');
   api.addFiles('header.coffee', 'client');
-  api.addFiles('accounts_header_buttons.coffee', ['client', 'server']);
-  api.addFiles('paragraph_text.coffee', 'client');
 });
 
