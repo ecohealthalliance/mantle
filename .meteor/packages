@@ -6,13 +6,13 @@
 
 mantle:router
 
-xolvio:cucumber
 mantle:models
 mantle:fixtures
 
 # CollectionFS security requires this to be global
 # https://github.com/CollectionFS/Meteor-CollectionFS/issues/711
-accounts-base
+aslagle:reactive-table
+zimme:active-route
 standard-minifiers
 meteor-base
 mobile-experience
@@ -27,3 +27,5 @@ random
 ejson
 spacebars
 check
+reactive-dict
+xolvio:cucumber@0.20.3_1

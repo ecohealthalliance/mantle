@@ -5,44 +5,89 @@ do ->
 
   module.exports = ->
 
-    url = require('url')
+    url = require 'url'
+
+    _test_document =
+      _id:   "fakedocumentid"
+      title: "Test Document"
+      body:  "This is a doc for testing"
+
+    _testUser =
+      email:    'test@example.com'
+      password: 'password'
+
 
     @Before (callback) ->
       @server.call('reset')
-      @client.url(url.resolve(process.env.ROOT_URL, '/'), callback)
+      @client.url(url.resolve(process.env.ROOT_URL, '/'))
+        .execute (->
+          Meteor.logout()
+        ), callback
 
-    _testUser = {email: 'test@example.com', password: 'password'}
+    @Given 'there is a test user in the database', ->
+      @server.call('createTestUser', _testUser)
 
-    @Given /^there is a test user in the database/, ->
-      @server.call('createUserWithProfile', _testUser, {fullName: 'Test User'})
+    @Given 'there is a group in the database', ->
+      @server.call('createTestGroup')
 
-    @Given '"$name" is an user', (name)->
-      @server.call('createUserWithProfile', {
-        email: name.split(" ").join(".") + "@email"
-        password: name
-      }, {
-        fullName: name
-      })
+    @Given 'there is a test document in the database', ->
+      @server.call('createTestDocument', _test_document)
 
-    @When "I log in as the test user", (callback) ->
+    @Given /^there is an annotation with codingKeyword header "([^"]*)", subHeader "([^"]*)" and key "([^"]*)"$/, (header, subHeader, keyword) ->
+      that = @
+      @server
+        .call('createCodingKeyword', header, subHeader, keyword, 1)
+        .then (codeId) ->
+          that.server.call('createTestAnnotation', {codeId: codeId})
+          codeId
+
+    @Given 'there is a group in the database with id "$id"', (id)->
+      @server.call('createTestGroup', _id: id)
+
+    @When "I log in as the test user", ->
       @client
         .url(url.resolve(process.env.ROOT_URL, '/'))
         .waitForExist('.sign-in')
-        .click('.sign-in', assert.ifError)
-        .setValue('#at-field-email', _testUser.email)
-        .setValue('#at-field-password', _testUser.password)
-        .submitForm('#at-field-email', assert.ifError)
-        .waitForExist('.sign-out', assert.ifError)
-        .call(callback)
+        .click('.sign-in')
+        .waitForVisible('.page-wrap #at-pwd-form')
+        .setValue('.page-wrap #at-field-email', _testUser.email)
+        .setValue('.page-wrap #at-field-password', _testUser.password)
+        .submitForm('.page-wrap #at-field-email')
+        .waitForExist('.sign-out')
 
-    @When /^I navigate to "([^"]*)"$/, (relativePath, callback) ->
+    @When "I log in as the non-admin test group user", ->
+      @client
+        .url(url.resolve(process.env.ROOT_URL, '/'))
+        .waitForExist('.sign-in')
+        .click('.sign-in')
+        .waitForVisible('.page-wrap #at-pwd-form')
+        .setValue('#at-field-email', _nonAdminTestUser.email)
+        .setValue('#at-field-password', _nonAdminTestUser.password)
+        .submitForm('#at-field-email')
+        .waitForExist('.sign-out')
+
+    @When /^I navigate to "([^"]*)"$/, (relativePath) ->
       @client
         .url(url.resolve(process.env.ROOT_URL, relativePath))
-        .call(callback)
 
-    @Then /^I should( not)? see an? "([^"]*)" toast$/, (noToast, message, callback) ->
+    @When 'I navigate to the admin page', ->
+      @client
+        .waitForExist('a[href="/admin"]')
+        .click('a[href="/admin"]')
+
+    @Then /^I should see the "([^"]*)" link highlighted in the header$/,
+    (linkText) ->
+      @client
+        .waitForExist('.navbar-nav')
+        .getHTML('.navbar-nav .active', (error, response) ->
+          match = response?.toString().match(linkText)
+          assert.ok(match)
+        )
+
+    @Then /^I should( not)? see a "([^"]*)" toast$/, (noToast, message) ->
       @browser
-        .waitForVisible('body *')
+        .waitForVisible('.toast')
+        # This causes a warning if no toast is visible
         .getHTML('.toast', (error, response) ->
           match = response?.toString().match(message)
           if noToast
@@ -50,15 +95,18 @@ do ->
           else
             assert.ifError(error)
             assert.ok(match)
-        ).call(callback)
+        )
 
-    @Then /^I should( not)? see content "([^"]*)"$/, (shouldNot, text, callback) ->
+    @Then 'I should see an error toast', ->
+      @browser
+        .waitForVisible '.toast-error'
+
+    @Then /^I should( not)? see content "([^"]*)"$/, (shouldNot, text) ->
       @client
-        .waitForVisible('body *')
-        .getHTML 'body', (error, response) ->
-          match = response.toString().match(text)
+        .pause 8000 # Give Meteor enough time to populate the <body>
+        .getHTML 'body', (error, html) ->
+          match = html?.toString().match(text)
           if shouldNot
             assert.notOk(match)
           else
             assert.ok(match)
-        .call(callback)
