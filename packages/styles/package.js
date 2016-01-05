@@ -18,15 +18,11 @@ Package.onUse(function(api) {
   api.addFiles('globals.import.styl');
 
   api.addFiles('tables.import.styl');
-  api.addFiles('file_input.import.styl');
   api.addFiles('forms.import.styl');
   api.addFiles('header.import.styl');
   api.addFiles('footer.import.styl');
 
   api.addFiles('accounts.import.styl');
-  api.addFiles('profile.import.styl');
-  api.addFiles('organizations.import.styl');
-  api.addFiles('dataset.import.styl');
 
   api.addFiles('main.styl');
 });
