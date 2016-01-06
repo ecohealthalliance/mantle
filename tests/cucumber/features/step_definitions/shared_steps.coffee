@@ -10,7 +10,7 @@ do ->
     @Before (callback) ->
       @server.call('reset')
       @client.url(url.resolve(process.env.ROOT_URL, '/'))
-        .execute (->
+      @client.execute (->
           Meteor.logout()
         ), callback
 
