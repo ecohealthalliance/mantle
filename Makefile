@@ -16,10 +16,12 @@ model:
 	spacejam test-packages packages/models/
 
 test:
-	CUCUMBER_TAIL=1 ./node_modules/.bin/chimp --ddp=http://localhost:3000 --path=tests/cucumber/features/ --coffee=true --chai=true --sync=false
+	MONGO_URL=mongodb://localhost:27017/chimp_db meteor --port 3100 &
+	CUCUMBER_TAIL=1 ./node_modules/.bin/chimp --ddp=http://localhost:3100 --path=tests/cucumber/features/ --coffee=true --chai=true --sync=false
 
 devtest:
-	CUCUMBER_TAIL=1 ./node_modules/.bin/chimp --ddp=http://localhost:3000 --tags=@dev --path=tests/cucumber/features/ --coffee=true --chai=true --sync=false
+	MONGO_URL=mongodb://localhost:27017/chimp_db meteor --port 3100 &
+	CUCUMBER_TAIL=1 ./node_modules/.bin/chimp --ddp=http://localhost:3100 --tags=@dev --path=tests/cucumber/features/ --coffee=true --chai=true --sync=false
 
 install:
 	curl https://install.meteor.com | sh
